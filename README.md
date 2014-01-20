@@ -1,7 +1,8 @@
 WayangCMS
 =========
 
-![alt tag](http://wayang-cms.org/img/wy.png)
+![](http://wayang-cms.org/img/wy.png)
+
 Official Wayang CMS Repository on Github
 
 The  development alpha version has been started, and will be launch about last January.
