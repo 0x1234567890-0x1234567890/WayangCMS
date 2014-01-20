@@ -1,6 +1,8 @@
 WayangCMS
 =========
 
+![alt tag](http://wayang-cms.org/img/hero-image.png)
+
 
 Official Wayang CMS Repository on Github
 
