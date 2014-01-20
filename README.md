@@ -1,7 +1,7 @@
 WayangCMS
 =========
 
-![](http://wayang-cms.org/img/wy.png)
+[![WayangCMS](http://wayang-cms.org/img/wy.png)](http://www.wayang-cms.org)
 
 Official Wayang CMS Repository on Github
 
