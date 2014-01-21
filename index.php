@@ -4,7 +4,7 @@ require_once 'wy_files/libs/AltoRouter.php';
 
 $routeCollections = require_once 'wy_files/confs/routes.php';
 
-$altoRouter = new AltoRouter($routeCollections, '/WayangCMS');
+$altoRouter = new AltoRouter($routeCollections, '/Wy/WayangCMS');
 
 $matchRoute = $altoRouter->match();
 
