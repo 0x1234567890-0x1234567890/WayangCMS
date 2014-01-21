@@ -2,10 +2,7 @@
 
 require_once 'wy_files/libs/AltoRouter.php';
 
-$routeCollections = array(
-    array('GET', '/', array('c'=>'PageController', 'a'=>'index'), 'home'),
-    array('GET', '/install', array('c'=>'InstallController', 'a'=>'index'), 'install'),
-);
+$routeCollections = require_once 'wy_files/confs/routes.php';
 
 $altoRouter = new AltoRouter($routeCollections, '/WayangCMS');
 
