@@ -1,10 +1,12 @@
 <?php
 
+define('BASEPATH', __DIR__);
+
 require_once 'wy_files/libs/AltoRouter.php';
 
 $routeCollections = require_once 'wy_files/confs/routes.php';
 
-$altoRouter = new AltoRouter($routeCollections, '/Wy/WayangCMS');
+$altoRouter = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
 
 $matchRoute = $altoRouter->match();
 
