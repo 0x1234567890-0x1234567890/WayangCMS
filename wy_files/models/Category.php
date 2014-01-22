@@ -22,7 +22,7 @@
  * 
  */
 
-class Post extends Model {
+class Category extends Model {
 
-    protected static $tableName = 'wy_post';
+    protected static $tableName = 'wy_category';
 }

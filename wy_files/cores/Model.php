@@ -1,7 +1,5 @@
 <?php
 
-require_once '../libs/idiorm.php';
-
 class Model{
     
     public static function queryAll($sql, array $params = array()){
@@ -12,15 +10,11 @@ class Model{
         return ORM::for_table(static::$tableName)->raw_query($sql, $params)->find_one();
     }
     
-    public static  function findAll(array $condition = array(), array $params = array()){
+    public static  function findAll(array $condition = array()){
         $orm = ORM::for_table(static::$tableName);
         foreach($condition as $func => $cond){
-            if($func === 'where'){
-                $orm->where_raw($cond, $params);
-            }
-            $orm->$func($cond);
+            call_user_func_array(array($orm, $func), (array)$cond);
         }
-        
         return $orm->find_many();
     }
     

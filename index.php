@@ -3,6 +3,9 @@
 define('BASEPATH', __DIR__);
 
 require_once 'wy_files/libs/AltoRouter.php';
+require_once 'wy_files/libs/idiorm.php';
+require_once 'wy_files/confs/db.php';
+require_once 'wy_files/cores/Model.php';
 
 $routeCollections = require_once 'wy_files/confs/routes.php';
 
