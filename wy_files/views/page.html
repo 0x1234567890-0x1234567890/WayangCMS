@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>Page - Wayang CMS</title>
+</head>
+<body>
+    <h1>Categories</h1>
+    <ul>
+    {% for category in categories %}
+        <li>{{ category.cat_title }}</li>
+    {% endfor %}
+    </ul>
+    
+    <h1>Posts</h1>
+    <ul>
+    {% for post in posts %}
+        <li>{{ post.post_title }}</li>
+    {% endfor %}
+    </ul>
+    
+    <h3>Install Url : <a href="{{ installUrl }}">install</a></h3>
+</body>
+</html>
