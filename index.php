@@ -3,13 +3,13 @@
 define('BASEPATH', __DIR__);
 
 require_once 'wy_files/libs/AltoRouter.php';
-require_once 'wy_files/libs/idiorm.php';
-require_once 'wy_files/confs/db.php';
-require_once 'wy_files/cores/Model.php';
-
+require_once 'wy_files/cores/Registry.php';
+$dbConfig = require_once 'wy_files/confs/db.php';
 $routeCollections = require_once 'wy_files/confs/routes.php';
 
 $altoRouter = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
+
+$theRegistry = new 
 
 $matchRoute = $altoRouter->match();
 
