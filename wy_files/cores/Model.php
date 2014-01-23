@@ -22,11 +22,19 @@ class Model{
         return ORM::for_table(static::$tableName)->find_one($id);
     }
     
-    public static function findAllByAttributes($attributes, array $params = array()){
-        
+    public static function findAllByAttributes(array $attributes){
+        $orm = ORM::for_table(static::$tableName);
+        foreach($attributes as $field => $value){
+            $orm->where($field, $value);
+        }
+        return $orm->find_many();
     }
     
-    public static function findByAttributes($attributes, array $params = array()){
-        
+    public static function findByAttributes(array $attributes){
+        $orm = ORM::for_table(static::$tableName);
+        foreach($attributes as $field => $value){
+            $orm->where($field, $value);
+        }
+        return $orm->find_one();
     }
 }
