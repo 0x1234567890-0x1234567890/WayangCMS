@@ -7,8 +7,11 @@ require_once 'wy_files/libs/AltoRouter.php';
 require_once 'wy_files/cores/Container.php';
 require_once 'wy_files/cores/Database.php';
 require_once 'wy_files/cores/Controller.php';
+require_once 'wy_files/libs/Twig/Autoloader.php';
 $appConfig = require_once 'wy_files/confs/app.php';
 $routeCollections = require_once 'wy_files/confs/routes.php';
+
+Twig_Autoloader::register();
 
 $altoRouter = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
 
