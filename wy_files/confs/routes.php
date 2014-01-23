@@ -1,6 +1,6 @@
 <?php
 
 return array(
-    array('GET', '/', array('c'=>'PageController', 'a'=>'index'), 'home'),
-    array('GET', '/install', array('c'=>'InstallController', 'a'=>'index'), 'install'),
+    array('GET', '/', 'page:index', 'home'),
+    array('GET', '/install', 'install:index', 'install'),
 );
