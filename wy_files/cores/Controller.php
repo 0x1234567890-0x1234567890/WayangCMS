@@ -1,15 +1,12 @@
 <?php
 
-class Controller{
+class Controller {
     
     protected $module;
     protected $container;
     
-    public function setModule($module_name){
-        $this->module = $module_name;
-    }
-    
-    public function setContainer($container){
+    public function __construct($module, $container){
+        $this->module = $module;
         $this->container = $container;
     }
     

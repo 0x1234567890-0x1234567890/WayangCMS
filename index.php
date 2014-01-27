@@ -1,17 +1,10 @@
 <?php
-
 define('BASEPATH', __DIR__);
 define('DEBUG', TRUE);
 
-require_once 'wy_files/libs/AltoRouter.php';
-require_once 'wy_files/cores/Container.php';
-require_once 'wy_files/cores/Database.php';
-require_once 'wy_files/cores/Controller.php';
-require_once 'wy_files/libs/Twig/Autoloader.php';
+require_once 'wy_files/confs/autoload.php';
 $appConfig = require_once 'wy_files/confs/app.php';
 $routeCollections = require_once 'wy_files/confs/routes.php';
-
-Twig_Autoloader::register();
 
 $altoRouter = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
 
@@ -32,15 +25,19 @@ if($matchRoute['target'] !== NULL){
         $controllerName = ucfirst($target[1]).'Controller';
         $actionName = $target[2];
     }else{
+        $moduleName = '';
         $controllerName = ucfirst($target[0]).'Controller';
         $actionName = $target[1];
     }
     
-    require_once "wy_files/controllers/{$controllerName}.php";
+    if(file_exists("wy_files/controllers/{$controllerName}.php")){
+        require "wy_files/controllers/{$controllerName}.php";
+    }else{
+        require 'wy_files/views/404.html';
+        exit();
+    }
     
-    $theController = new $controllerName();
-    //$theController->setModule($moduleName);
-    $theController->setContainer($theContainer);
+    $theController = new $controllerName($moduleName, $theContainer);
     
     call_user_func_array(array($theController, $actionName), $matchRoute['params']);
 }else{
