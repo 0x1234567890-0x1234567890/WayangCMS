@@ -1,8 +1,8 @@
 <?php
 
-require_once 'wy_files/cores/Autoloader.php';
+require_once 'wy_files/cores/WY_Autoloader.php';
 
-Autoloader::register();
+WY_Autoloader::register();
 
 require_once 'wy_files/libs/Twig/Autoloader.php';
 

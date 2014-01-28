@@ -1,6 +1,6 @@
 <?php
 
-class PageController extends Controller{
+class PageController extends WY_Controller {
     
     public function index(){
         $dbConn = $this->container['db_conn'];
