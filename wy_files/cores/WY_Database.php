@@ -1,56 +1,29 @@
 <?php
 
 class WY_Database {
-    protected $pdo;
     
-    public function __construct($dsn, $username, $password){
-        try{
-            $this->pdo = new PDO($dsn, $username, $password);
-            if(DEBUG === true){
-                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            }
-        } catch (Exception $e) {
-            echo 'Connection failed: ' . $e->getMessage();
-        }
+    protected $type;
+    protected $options;
+    
+    function __construct($type, array $options){
+        $this->type = $type;
+        $this->options = $options;
     }
     
-    public function query($sql, $params = array()){
-        try{
-            $stmt = $this->pdo->prepare($sql);
-            
-            if(!empty($params)){
-                foreach($params as $k => $v){
-                    $stmt->bindParam($k, $v);
-                }
-            }
-            
-            $stmt->execute();
-            
-            // always use limit 1 to find unique row from DB
-            if(strpos(strtolower($sql), 'limit 1') === false){
-                return $stmt->fetchAll(PDO::FETCH_OBJ);
-            }else{
-                return $stmt->fetch(PDO::FETCH_OBJ);
-            }
-        }catch(PDOException $e){
-            echo $e->getMessage();
+    public function initialize(){
+        if(!$this->type){
+            throw new Exception('Invalid type');
         }
-        return false;
-    }
-    
-    public function execute($sql, $params = array()){
-        try{
-            $stmt = $this->pdo->prepare($sql);
-            if(!empty($params)){
-                foreach($params as $k => $v){
-                    $stmt->bindParam($k, $v);
-                }
-            }
-            $stmt->execute();
-            return $stmt->rowCount();
-        }catch(PDOException $e){
-            echo $e->getMessage();
+        
+        switch($this->type){
+            case 'mysqli':
+                return new WY_MySqliConnector($this->options);
+                break;
+            case 'pdo-mysql':
+                return new WY_PdoMySqlConnector($this->options);
+                break;
+            default:
+                throw new Exception('Invalid type');
         }
-        return false;
     }
 }
