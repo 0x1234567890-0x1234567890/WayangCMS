@@ -34,7 +34,7 @@ class WY_MySqliConnector extends WY_Connector {
     }
     
     public function query(){
-        return new Query($this);
+        return new WY_Query($this);
     }
     
     public function execute($sql){

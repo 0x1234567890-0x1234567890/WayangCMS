@@ -11,10 +11,6 @@ class WY_Database {
     }
     
     public function initialize(){
-        if(!$this->type){
-            throw new Exception('Invalid type');
-        }
-        
         switch($this->type){
             case 'mysqli':
                 return new WY_MySqliConnector($this->options);

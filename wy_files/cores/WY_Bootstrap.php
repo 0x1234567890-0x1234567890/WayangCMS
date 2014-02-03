@@ -3,32 +3,42 @@
 class WY_Bootstrap {
 	
 	protected $router;
-    protected $container;
     
     public function initRouter(){
         $routeCollections = require_once 'wy_files/confs/routes.php';
         $this->router = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
+        WY_Registry::set('router', $this->router);
     }
     
-    public function initContainer(){
-        $appConfig = require_once 'wy_files/confs/app.php';
-        $this->container = new WY_Container($appConfig);
+    public function initConfiguration(){
+        $configuration = new WY_Configuration('ini');
+        $configuration = $configuration->initialize();
+        WY_Registry::set('configuration', $configuration);
     }
     
-    public function initComponents(){
-        $this->container['db_conn'] = $this->container->share(function ($c) {
-            return new WY_Database($c['db']['dsn'], $c['db']['username'], $c['db']['password']);
-        });
+    public function initDatabase(){
+        $configuration = WY_Registry::get('configuration');
+        $parsed = $configuration->parse("wy_files/confs/app");
         
-        $this->container['router'] = $this->router;
+        $type = $parsed->database->default->type;
+        
+        unset($parsed->database->default->type);
+        
+        $options = (array) $parsed->database->default;
+        
+        $database = new WY_Database($type, $options);
+        
+        $database = $database->initialize();
+        
+        WY_Registry::set('database', $database);
     }
     
     public function run(){
+        $this->initConfiguration();
         $this->initRouter();
-        $this->initContainer();
-        $this->initComponents();
+        $this->initDatabase();
         
-        $matchRoute = $this->container['router']->match();
+        $matchRoute = WY_Registry::get('router')->match();
         
         if($matchRoute['target'] !== NULL){
             $target = explode(':', $matchRoute['target']);
@@ -49,7 +59,7 @@ class WY_Bootstrap {
                 exit();
             }
             
-            $theController = new $controllerName($moduleName, $this->container);
+            $theController = new $controllerName($moduleName);
             
             call_user_func_array(array($theController, $actionName), $matchRoute['params']);
         }else{

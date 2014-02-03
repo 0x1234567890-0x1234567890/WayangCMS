@@ -1,6 +1,6 @@
 <?php
 
-class WY_PdoConnector {
+class WY_PDOConnector {
 
     protected function isValidService(){
         $isEmpty = empty($this->service);
@@ -13,10 +13,12 @@ class WY_PdoConnector {
     }
     
     public function connect(){
+        $port = isset($this->port) ? $this->port : '3306';
         try{
             $this->service = new PDO("mysql:dbname={$this->schema};host={$this->host};port={$this->port}", $this->username, $this->password);
+            $this->service->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
             if(DEBUG === true){
-                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->service->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             $this->isConnected = true;
         } catch (Exception $e) {
@@ -33,33 +35,17 @@ class WY_PdoConnector {
         return $this;
     }
     
-    public function query($sql, $params = array()){
-        try{
-            $stmt = $this->pdo->prepare($sql);
-            
-            if(!empty($params)){
-                foreach($params as $k => $v){
-                    $stmt->bindParam($k, $v);
-                }
-            }
-            
-            $stmt->execute();
-            
-            // always use limit 1 to find unique row from DB
-            if(strpos(strtolower($sql), 'limit 1') === false){
-                return $stmt->fetchAll(PDO::FETCH_OBJ);
-            }else{
-                return $stmt->fetch(PDO::FETCH_OBJ);
-            }
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-        return false;
+    public function query(){
+        return new PDOQuery($this);
     }
     
     public function execute($sql, $params = array()){
+        if(!$this->isValidService()){
+            throw new Exception('Not connected to a valid service');
+        }
+        
         try{
-            $stmt = $this->pdo->prepare($sql);
+            $stmt = $this->service->prepare($sql);
             if(!empty($params)){
                 foreach($params as $k => $v){
                     $stmt->bindParam($k, $v);
@@ -70,18 +56,16 @@ class WY_PdoConnector {
         }catch(PDOException $e){
             echo $e->getMessage();
         }
-        return false;
     }
     
     public function quote($value){
-        return $this->pdo->quote($value);
+        if(!$this->isValidService()){
+            throw new Exception('Not connected to a valid service');
+        }
+        return $this->service->quote($value);
     }
     
     public function getLastInsertId(){
-        return $this->pdo->lastInsertId();
-    }
-    
-    public function disconnect(){
-        $this->pdo = null;
+        return $this->service->lastInsertId();
     }
 }

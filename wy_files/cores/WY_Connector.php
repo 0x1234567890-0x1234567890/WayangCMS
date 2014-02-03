@@ -1,6 +1,6 @@
 <?php
 
-class Connector {
+class WY_Connector {
     
     protected $service;
     protected $host;
@@ -14,12 +14,10 @@ class Connector {
     
     function __construct(array $options){
         foreach($options as $key => $value){
-            $this->$key = $value;
+            if(property_exists($this, $key)){
+                $this->$key = $value;
+            }
         }
         $this->connect();
-    }
-    
-    public function connect(){
-        
     }
 }

@@ -3,12 +3,17 @@
 class PageController extends WY_Controller {
     
     public function index(){
-        $dbConn = $this->container['db_conn'];
+        $database = WY_Registry::get('database');
+        $database->connect();
         
-        $categories = $dbConn->query('select * from wy_category');
-        $posts = $dbConn->query('select * from wy_post');
-        $installUrl = $this->container['router']->generate('install');
+        $categories = $database->query()
+            ->from('wy_category')
+            ->all();
+            
+        $posts = $database->query()
+            ->from('wy_post')
+            ->all();
         
-        $this->render('page.html', compact('categories', 'posts', 'installUrl'));
+        $this->render('page.html', compact('categories', 'posts'));
     }
 }

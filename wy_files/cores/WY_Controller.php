@@ -3,11 +3,9 @@
 class WY_Controller {
     
     protected $module;
-    protected $container;
     
-    public function __construct($module, $container){
+    public function __construct($module){
         $this->module = $module;
-        $this->container = $container;
     }
     
     public function render($template, $data=array()){
@@ -25,7 +23,10 @@ class WY_Controller {
     }
     
     public function redirect($to, $statusCode=302){
-        header('Location: '.$this->container['base_url'].$to, true, $statusCode);
+        $configuration = WY_Registry::get('configuration');
+        $parsed = $configuration->parse('wy_files/confs/app');
+        
+        header('Location: '.$parsed->base_url.$to, true, $statusCode);
         exit();
     }
 }
