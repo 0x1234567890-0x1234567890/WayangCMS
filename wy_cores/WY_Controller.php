@@ -11,15 +11,15 @@ class WY_Controller {
     public function render($template, $data=array()){
         $loader = new Twig_Loader_Filesystem(array(
             BASEPATH."/{$this->module}/views",
-            BASEPATH."/wy_files/shared/views",
+            BASEPATH."/wy_shared/views",
         ));
         $twig = new Twig_Environment($loader, array(
-            'cache'=>BASEPATH.'/wy_files/cache/twig',
+            'cache'=>BASEPATH.'/wy_cache/twig',
             'auto_reload'=>true,
         ));
         
         $configuration = WY_Registry::get('configuration');
-        $parsed = $configuration->parse("wy_files/confs/app");
+        $parsed = $configuration->parse("wy_confs/app");
         
         $baseUrl = $parsed->base_url;
         
@@ -31,7 +31,7 @@ class WY_Controller {
     
     public function redirect($to, $statusCode=302){
         $configuration = WY_Registry::get('configuration');
-        $parsed = $configuration->parse('wy_files/confs/app');
+        $parsed = $configuration->parse('wy_confs/app');
         
         header('Location: '.$parsed->base_url.$to, true, $statusCode);
         exit();

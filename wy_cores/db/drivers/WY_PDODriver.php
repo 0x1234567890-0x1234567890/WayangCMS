@@ -1,6 +1,6 @@
 <?php
 
-class WY_PDOConnector {
+class WY_PDODriver extends WY_Driver {
 
     protected function isValidService(){
         $isEmpty = empty($this->service);
@@ -36,7 +36,7 @@ class WY_PDOConnector {
     }
     
     public function query(){
-        return new PDOQuery($this);
+        return new WY_PDOQuery($this);
     }
     
     public function execute($sql, $params = array()){

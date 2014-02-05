@@ -1,6 +1,6 @@
 <?php
 
-class WY_IniConfigDriver {
+class WY_Ini {
     
     public function parse($path){
         if(empty($path)){

@@ -1,6 +1,6 @@
 <?php
 
-class WY_Connector {
+class WY_Driver {
     
     protected $service;
     protected $host;

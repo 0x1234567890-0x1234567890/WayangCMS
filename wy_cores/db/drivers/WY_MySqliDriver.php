@@ -1,6 +1,6 @@
 <?php
 
-class WY_MySqliConnector extends WY_Connector {
+class WY_MySqliDriver extends WY_Driver {
     
     protected function isValidService(){
         $isEmpty = empty($this->service);
@@ -34,7 +34,7 @@ class WY_MySqliConnector extends WY_Connector {
     }
     
     public function query(){
-        return new WY_Query($this);
+        return new WY_MySqliQuery($this);
     }
     
     public function execute($sql){

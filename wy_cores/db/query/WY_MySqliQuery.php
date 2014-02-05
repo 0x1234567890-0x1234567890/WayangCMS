@@ -1,6 +1,6 @@
 <?php
 
-class WY_Query {
+class WY_MySqliQuery {
     
     protected $connector;
     protected $from;

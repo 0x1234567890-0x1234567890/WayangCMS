@@ -11,7 +11,7 @@ class WY_Configuration {
     public function initialize(){
         switch($this->type){
             case 'ini':
-                return new WY_IniConfigDriver();
+                return new WY_Ini();
                 break;
             default:
                 throw new Exception('Invalid type');

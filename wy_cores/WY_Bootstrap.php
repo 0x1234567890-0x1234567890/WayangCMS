@@ -4,7 +4,7 @@ class WY_Bootstrap {
     
     public function initRouter(){
         $configuration = WY_Registry::get('configuration');
-        $parsed = $configuration->parse("wy_files/confs/routes");
+        $parsed = $configuration->parse("wy_confs/routes");
         
         $routeCollections = get_object_vars($parsed->route);
         
@@ -29,7 +29,7 @@ class WY_Bootstrap {
     
     public function initDatabase(){
         $configuration = WY_Registry::get('configuration');
-        $parsed = $configuration->parse("wy_files/confs/app");
+        $parsed = $configuration->parse("wy_confs/app");
         
         $type = $parsed->database->default->type;
         
@@ -54,20 +54,14 @@ class WY_Bootstrap {
         if($matchRoute['target'] !== NULL){
             $target = explode(':', $matchRoute['target']);
             
-            if(count($target) >= 3){
-                $moduleName = $target[0];
-                $controllerName = ucfirst($target[1]).'Controller';
-                $actionName = $target[2];
-            }else{
-                $moduleName = 'wy_files';
-                $controllerName = ucfirst($target[0]).'Controller';
-                $actionName = $target[1];
-            }
+            $moduleName = $target[0];
+            $controllerName = ucfirst($target[1]).'Controller';
+            $actionName = $target[2];
             
             if(file_exists("{$moduleName}/controllers/{$controllerName}.php")){
                 require "{$moduleName}/controllers/{$controllerName}.php";
             }else{
-                require 'wy_files/shared/views/404.html';
+                require 'wy_shared/views/404.html';
                 exit();
             }
             
@@ -75,7 +69,7 @@ class WY_Bootstrap {
             
             call_user_func_array(array($theController, $actionName), $matchRoute['params']);
         }else{
-            require 'wy_files/shared/views/404.html';
+            require 'wy_shared/views/404.html';
         }
     }
 }
