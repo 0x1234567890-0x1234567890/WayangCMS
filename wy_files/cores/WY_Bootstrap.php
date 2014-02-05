@@ -1,13 +1,24 @@
 <?php
 
 class WY_Bootstrap {
-	
-	protected $router;
     
     public function initRouter(){
-        $routeCollections = require_once 'wy_files/confs/routes.php';
-        $this->router = new AltoRouter($routeCollections, dirname($_SERVER['SCRIPT_NAME']));
-        WY_Registry::set('router', $this->router);
+        $configuration = WY_Registry::get('configuration');
+        $parsed = $configuration->parse("wy_files/confs/routes");
+        
+        $routeCollections = get_object_vars($parsed->route);
+        
+        array_walk($routeCollections, function(&$item, $key){
+            $item = explode(' ', $item);
+        });
+        
+        $basePath = dirname($_SERVER['SCRIPT_NAME']);
+        if(in_array($basePath, array('/', '\\'))){
+            $basePath = '';
+        }
+        
+        $router = new AltoRouter($routeCollections, $basePath);
+        WY_Registry::set('router', $router);
     }
     
     public function initConfiguration(){
@@ -42,20 +53,21 @@ class WY_Bootstrap {
         
         if($matchRoute['target'] !== NULL){
             $target = explode(':', $matchRoute['target']);
+            
             if(count($target) >= 3){
                 $moduleName = $target[0];
                 $controllerName = ucfirst($target[1]).'Controller';
                 $actionName = $target[2];
             }else{
-                $moduleName = '';
+                $moduleName = 'wy_files';
                 $controllerName = ucfirst($target[0]).'Controller';
                 $actionName = $target[1];
             }
             
-            if(file_exists("wy_files/controllers/{$controllerName}.php")){
-                require "wy_files/controllers/{$controllerName}.php";
+            if(file_exists("{$moduleName}/controllers/{$controllerName}.php")){
+                require "{$moduleName}/controllers/{$controllerName}.php";
             }else{
-                require 'wy_files/views/404.html';
+                require 'wy_files/shared/views/404.html';
                 exit();
             }
             
@@ -63,7 +75,7 @@ class WY_Bootstrap {
             
             call_user_func_array(array($theController, $actionName), $matchRoute['params']);
         }else{
-            require 'wy_files/views/404.html';
+            require 'wy_files/shared/views/404.html';
         }
     }
 }

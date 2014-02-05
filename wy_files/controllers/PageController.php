@@ -6,14 +6,22 @@ class PageController extends WY_Controller {
         $database = WY_Registry::get('database');
         $database->connect();
         
-        $categories = $database->query()
-            ->from('wy_category')
-            ->all();
-            
-        $posts = $database->query()
-            ->from('wy_post')
+        $pages = $database->query()
+            ->from('wy_page')
             ->all();
         
-        $this->render('page.html', compact('categories', 'posts'));
+        $this->render('index.html', compact('pages'));
+    }
+    
+    public function view($name){
+        $database = WY_Registry::get('database');
+        $database->connect();
+        
+        $page = $database->query()
+            ->from('wy_page')
+            ->where('page_title=?', array($name))
+            ->first();
+        
+        $this->render('page.html', compact('page'));
     }
 }

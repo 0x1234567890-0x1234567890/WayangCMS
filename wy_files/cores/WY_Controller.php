@@ -10,13 +10,20 @@ class WY_Controller {
     
     public function render($template, $data=array()){
         $loader = new Twig_Loader_Filesystem(array(
-            BASEPATH."/wy_files/views",
-            //BASEPATH."/common/templates",
+            BASEPATH."/{$this->module}/views",
+            BASEPATH."/wy_files/shared/views",
         ));
         $twig = new Twig_Environment($loader, array(
             'cache'=>BASEPATH.'/wy_files/cache/twig',
             'auto_reload'=>true,
         ));
+        
+        $configuration = WY_Registry::get('configuration');
+        $parsed = $configuration->parse("wy_files/confs/app");
+        
+        $baseUrl = $parsed->base_url;
+        
+        $twig->addGlobal('base_url', $baseUrl);
         
         $template = $twig->loadTemplate($template);
         $template->display($data);

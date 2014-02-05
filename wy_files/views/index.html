@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+    <title>All Pages - Wayang CMS</title>
+</head>
+<body>
+    <h2>All Pages</h2>
+    <ul>
+        {% for page in pages %}
+            <li>{{ page.page_title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -261,7 +261,7 @@ class WY_Query {
         $this->limit(1);
         
         $all = $this->all();
-        $first = ArrayMethods::first($all);
+        $first = WY_ArrayUtils::first($all);
         
         if($limit){
             $this->limit = $limit;

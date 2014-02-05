@@ -39,7 +39,7 @@ class WY_ArrayUtils {
     }
     
     public static function toObject($array){
-        $result = new \stdClass();
+        $result = new stdClass();
         
         foreach ($array as $key => $value){
             if (is_array($value)){
