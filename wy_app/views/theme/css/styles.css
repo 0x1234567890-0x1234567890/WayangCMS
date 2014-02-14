@@ -1,0 +1,134 @@
+.home{
+background:#F1F1F1;
+}
+.contnav{
+padding-right:120px;
+padding-left:90px;
+}
+
+.box-wide{
+background:#FFFFFF;
+}
+.main{
+padding-bottom:3em;
+}
+.posting{
+padding: 2px 30px 30px;
+/*
+border-bottom: 1px solid #dddddd;
+*/
+background:#FFFFFF;
+}
+.wrapslid{
+margin-top:80px;
+}
+
+.sidebar{
+margin-left:30px;
+background:#FFFFFF;
+padding-top:15px;
+margin-bottom:20px;
+}
+
+.recent-post{
+margin-top:-25px;
+border-bottom: 1px solid #dddddd;
+}
+.post-recent{
+margin-bottom:15px;
+font-size:12px;
+}
+
+
+/* ===== Footer ===== */
+
+footer {
+	font-family: 'Lato', sans-serif;
+	margin-top: 60px;
+	padding: 20px 0;
+	background: #3E7A8C;
+	color: white;
+	font-weight: 300;
+}
+footer a {
+	color: #81D685;
+}
+footer a:hover {
+	color: #81D685;
+	text-decoration: none;
+}
+footer .headline {
+	border-bottom: 1px dotted white;
+	margin-bottom: 20px;
+}
+footer .headline h3{
+	text-transform: uppercase;
+	font-weight: 100;
+}
+.legal {
+	padding: 20px 0 10px 0;
+	background: #386F80;
+	color: white;
+	font-weight: 300;
+}
+.legal a {
+	color: #81D685;
+	text-decoration: none;
+}
+.social ul {
+    background: #3E7A8C;
+    color: white;
+    font-size: 24px;
+    margin: 0;
+	padding: 0;
+}
+.social li {
+    float: left;
+    display: block;
+    list-style-type: none;
+    width: 28px;
+    height: 28px;
+    background: #eee;
+    margin: 0 5px 5px 0;
+    text-align: center;
+    line-height: 28px;
+}
+.social li:hover {
+    background: none;
+}
+.social li, .social li:hover {
+    transition: background 0.1s;
+    -webkit-transition: background 0.1s;
+    -moz-transition: background 0.1s;
+}
+.social li a {
+    color: #3E7A8C;
+
+}
+.social li:hover a {
+    color: #fff;
+}
+.social li a, .social li:hover a {
+    transition: color 0.1s;
+    -webkit-transition: color 0.1s;
+    -moz-transition: color 0.1s;
+}
+footer .hl-btn-default {
+	color: #fff;
+	background: none;
+}
+footer .hl-btn-default:hover {
+	color: #3E7A8C;
+	background: #fff;
+	font-weight: bold;
+	border: 1px solid #fff;
+}
+footer .form-control {
+	border: white;
+}
+footer .form-control:focus {
+	border: white;
+}
+footer .sbtn {
+	margin-bottom: 5px;
+}

@@ -2,7 +2,7 @@
 define('BASEPATH', __DIR__);
 define('DEBUG', TRUE);
 
-require_once 'wy_shared/autoload.php';
+require 'wy_config/autoload.php';
 
 $wyBootstrap = new WY_Bootstrap;
 
