@@ -21,6 +21,7 @@ class WY_Session
     {
         $_SESSION = array();
         session_destroy();
+        session_write_close();
     }
     
     public static function set_flash($type, $message)

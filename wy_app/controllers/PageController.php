@@ -1,14 +1,16 @@
 <?php
 
-class PageController extends WY_Controller
+class PageController extends WY_Controller_Template
 {
+    public $template = 'layout';
     
     public function index()
     {
-        $pages = WY_Db::all("select * from wy_page order by page_date");
-        $view = new WY_View('index');
-        $view->pages = $pages;
-        $view->render();
+        //$pages = WY_Db::all("select * from wy_page order by page_date");
+        //$view = new WY_View('index');
+        //$view->pages = $pages;
+        //$view->render();
+        $this->view->content = '<h1>Page index</h1>';
     }
     
     public function view($name)

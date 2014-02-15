@@ -33,7 +33,7 @@ class WY_Db
     public static function execute($sql, $params = null)
     {
         try{
-            $conn = self::connet();
+            $conn = self::connect();
             $stmt = $conn->prepare($sql);
             $stmt->execute($params);
         }catch(PDOException $e){
