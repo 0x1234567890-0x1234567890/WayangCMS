@@ -8,7 +8,5 @@ return array(
         'password' => '',
         'dbname' => 'wayang',
     ),
-    
-    'base_url' => 'http://localhost/WayangCMS/',
     'timezone' => 'Asia/Jakarta',
 );

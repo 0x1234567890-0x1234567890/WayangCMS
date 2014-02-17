@@ -27,7 +27,7 @@ class WY_Auth
     
     public static function is_authenticated()
     {
-        
+        return WY_Session::get('authenticated', false);
     }
     
     public static function has_role($role)

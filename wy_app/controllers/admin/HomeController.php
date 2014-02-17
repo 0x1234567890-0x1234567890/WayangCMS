@@ -1,11 +1,11 @@
 <?php
 
-class HomeController extends WY_Controller_Template
+class HomeController extends WY_TController
 {
-	public $template = 'admin/index';
+	public $layout = 'admin/index';
     
     public function index()
     {
-        $this->view->content = WY_View::fetch('admin/home/statistic');
+        $this->layout->content = WY_View::fetch('admin/home/statistic');
     }
 }

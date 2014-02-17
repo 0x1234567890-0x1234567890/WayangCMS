@@ -2,7 +2,6 @@
 
 class WY_Bootstrap
 {
-    
     public function initRouter()
     {
         $routeCollections = include('wy_config/routes.php');
@@ -27,7 +26,7 @@ class WY_Bootstrap
         
         $matchRoute = WY_Registry::get('router')->match();
         
-        if($matchRoute['target'] !== NULL){
+        if($matchRoute['target'] !== null){
             $target = explode(':', $matchRoute['target']);
             $moduleName = $target[0];
             $controllerName = ucfirst($target[1]).'Controller';
@@ -40,9 +39,13 @@ class WY_Bootstrap
                 exit();
             }
             $theController = new $controllerName();
+            $reflection_object = new ReflectionObject($theController);
+            if($reflection_object->hasMethod('before_action')){
+                $reflection_object->getMethod('before_action')->invoke($theController);
+            }
             call_user_func_array(array($theController, $actionName), $matchRoute['params']);
-            if($theController instanceof WY_Controller_Template){
-                $theController->render_template();
+            if($reflection_object->hasMethod('after_action')){
+                $reflection_object->getMethod('after_action')->invoke($theController);
             }
         }else{
             require 'wy_app/views/404.php';

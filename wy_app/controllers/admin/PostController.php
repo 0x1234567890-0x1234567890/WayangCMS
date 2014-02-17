@@ -2,10 +2,9 @@
 
 class PostController extends WY_Controller
 {
-	
     public function all()
     {
-        $view = new WY_View('posts/alll');
+        $view = new WY_View('posts/all');
         $view->render();
     }
     

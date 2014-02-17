@@ -29,7 +29,7 @@ class WY_View
         if(!is_null($_data_) and is_array($_data_)) extract($_data_);
         $_view_filepath = BASEPATH.'/wy_app/views/'.$this->view.'.php';
         if(!file_exists($_view_filepath)){
-            throw new Exception("The view file does'nt exist");
+            throw new Exception("The view file doesn't exist");
         }
         if(!$_print_){
             ob_start();

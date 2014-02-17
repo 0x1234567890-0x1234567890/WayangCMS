@@ -2,7 +2,6 @@
 
 class WY_Registry
 {
-    
     private static $instances = array();
     
     private function __construct()
