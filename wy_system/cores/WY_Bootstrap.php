@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Kelas ini berfungsi sebagai inisialisasi awal framework
+ * 
+ */
 class WY_Bootstrap
 {
+    /**
+     * Inisialisasi routing engine
+     * 
+     */
     public function initRouter()
     {
         $routeCollections = include('wy_config/routes.php');
@@ -13,12 +21,20 @@ class WY_Bootstrap
         WY_Registry::set('router', $router);
     }
     
+    /**
+     * Inisialisasi konfigurasi inti sistem
+     * 
+     */
     public function initConfiguration()
     {
         WY_Config::load('wy_config/config.php');
         date_default_timezone_set(WY_Config::get('timezone'));
     }
     
+    /**
+     * Eksekusi program di mulai disini
+     * 
+     */
     public function run()
     {
         $this->initConfiguration();
