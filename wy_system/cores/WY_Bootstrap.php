@@ -43,6 +43,9 @@ class WY_Bootstrap
         $matchRoute = WY_Registry::get('router')->match();
         
         if($matchRoute['target'] !== null){
+            array_walk($matchRoute['params'], function(&$item, $key){
+                $item = rtrim($item, '/');
+            });
             $target = explode(':', $matchRoute['target']);
             $moduleName = $target[0];
             $controllerName = ucfirst($target[1]).'Controller';

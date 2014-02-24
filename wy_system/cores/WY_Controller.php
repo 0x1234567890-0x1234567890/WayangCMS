@@ -5,7 +5,7 @@
  * 
  */
 class WY_Controller
-{
+{   
     /**
      * @var string aksi default yang dijalankan ketika tidak disediakan melalui url
      * 

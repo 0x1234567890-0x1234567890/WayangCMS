@@ -56,7 +56,7 @@ class WY_Request
      * Mendapatkan base url dari sistem
      * @return string base_url sistem saat ini
      */
-    public static function get_base_url()
+    public static function base_url()
     {
         $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
         $path = $_SERVER['PHP_SELF'];

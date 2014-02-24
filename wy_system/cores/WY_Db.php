@@ -75,7 +75,7 @@ class WY_Db
      * @param int $fetch_style mode fetching: PDO::FETCH_ASSOC,PDO::FETCH_NUM, PDO::FETCH_OBJ dll.
      * @return array baris dari database, array kosong jika tidak ada yang ditemukan
      */
-    public static function all($sql, $params = null, $fetch_style = PDO::FETCH_ASSOC)
+    public static function all($sql, $params = null, $fetch_style = PDO::FETCH_OBJ)
     {
         $result = null;
         try{
@@ -97,7 +97,7 @@ class WY_Db
      * @param int $fetch_style mode fetching: PDO::FETCH_ASSOC,PDO::FETCH_NUM, PDO::FETCH_OBJ dll.
      * @return mixed baris dari database, false jika gagal
      */
-    public static function row($sql, $params = null, $fetch_style = PDO::FETCH_ASSOC)
+    public static function row($sql, $params = null, $fetch_style = PDO::FETCH_OBJ)
     {
         $result = null;
         try{

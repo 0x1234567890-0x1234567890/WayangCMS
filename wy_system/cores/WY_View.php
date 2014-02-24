@@ -13,6 +13,12 @@ class WY_View
 	protected $view;
     
     /**
+     * @var string judul halaman
+     * 
+     */
+    public $pageTitle = "";
+    
+    /**
      * @var array variable penyimpanan data-data untuk ditampilkan
      * 
      */

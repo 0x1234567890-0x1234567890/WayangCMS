@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Default - Wayang CMS</title>
+        <title><?php echo $this->pageTitle; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- CSS
             ================================================== -->
-        <link rel="stylesheet" href="assets/theme/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/theme/css/styles.css">
+        <link rel="stylesheet" href="<?php echo WY_Request::base_url(); ?>/assets/theme/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo WY_Request::base_url(); ?>/assets/theme/css/styles.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <!-- Favicons
@@ -18,9 +18,9 @@
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
         <!-- JS
             ================================================== -->
-        <script src="assets/theme/js/jquery.js" type="text/javascript"></script>
-        <script src="assets/theme/js/bootstrap.js" type="text/javascript"></script>
-        <script src="assets/theme/js/styles.js" type="text/javascript"></script>
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/jquery.js" type="text/javascript"></script>
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/bootstrap.js" type="text/javascript"></script>
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/styles.js" type="text/javascript"></script>
     </head>
     <body class="home">
         <div class="navbar navbar-default navbar-fixed-top contnav">
@@ -120,23 +120,9 @@
             </div>
             <div class="main">
                 <!-- Articles -->
-                <div class="row col-lg-8">
-                    <div class="posting">
-                        <h2><a>Example body text</a></h2>
-                        <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                        <button type="button" class="btn btn-info"><i class="fa fa-eye"></i>   Read More</button>
-                    </div>
-                    <div class="posting">
-                        <h2><a>Example body text</a></h2>
-                        <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                        <button type="button" class="btn btn-info"><i class="fa fa-eye"></i>   Read More</button>
-                    </div>
-                    <div class="posting">
-                        <h2><a>Example body text</a></h2>
-                        <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                        <button type="button" class="btn btn-info"><i class="fa fa-eye"></i>   Read More</button>
-                    </div>
-                </div>
+                
+                <?php echo $content; ?>
+                
                 <div class="row col-lg-4 sidebar">
                     <div class="alert alert-dismissable alert-success">
                         <button type="button" class="close" data-dismiss="alert">×</button>
