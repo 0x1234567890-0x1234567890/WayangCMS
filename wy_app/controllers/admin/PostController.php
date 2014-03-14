@@ -8,7 +8,7 @@ class PostController extends WY_Controller
         $view->render();
     }
     
-    public function new()
+    public function add()
     {
         
     }
