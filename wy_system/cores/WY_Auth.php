@@ -39,7 +39,7 @@ class WY_Auth
     }
     
     /**
-     * Memeriksa apakah pengguna saat ini telah ter-otentifikasi dengan benar
+     * Memeriksa apakah pengguna saat ini telah ter-otentikasi dengan benar
      * @return boolean
      */
     public static function is_authenticated()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Kelas ini berfungi sebagai autoloader untuk kelas lain yang
  * diperlukan ketika sistem berjalan
