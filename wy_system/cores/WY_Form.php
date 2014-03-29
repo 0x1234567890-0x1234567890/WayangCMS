@@ -6,5 +6,13 @@
  */
 class WY_Form
 {
-	
+	public function open()
+    {
+        
+    }
+    
+    public function close()
+    {
+        
+    }
 }

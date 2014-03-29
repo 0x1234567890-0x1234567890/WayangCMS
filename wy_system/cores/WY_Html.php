@@ -20,4 +20,15 @@ class WY_Html
         
         return $html;
     }
+    
+    /**
+     * Meng-generate tag <a href="">
+     * @param mixed $url url yang dituju
+     * @param string $text text untuk link
+     * @param array $attributes atribut tambahan untuk tag <a>
+     */
+    public static function a($url, $text, $attributes = null)
+    {
+        return "";
+    }
 }

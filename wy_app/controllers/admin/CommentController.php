@@ -1,13 +1,13 @@
 <?php
 
-class PostController extends WY_TController
+class CommentController extends WY_TController
 {
-    public $layout = 'admin/index';
-    
+	public $layout = 'admin/index';
+	
     public function all()
     {
-        $this->layout->pageTitle = 'Wayang CMS - Posts';
-        $this->layout->content = WY_View::fetch('admin/posts/all');
+        $this->layout->pageTitle = 'Wayang CMS - Comments';
+        $this->layout->content = WY_View::fetch('admin/comments/all');
     }
     
     public function add()

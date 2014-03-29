@@ -65,7 +65,7 @@ class WY_View
     public function render($_print_ = true, $_data_ = null)
     {
         extract($this->vars);
-        if(!is_null($_data_) and is_array($_data_)) extract($_data_);
+        if(!is_null($_data_) and is_array($_data_)) extract($_data_, EXTR_SKIP);
         $_view_filepath = BASEPATH.'/wy_app/views/'.$this->view.'.php';
         if(!file_exists($_view_filepath)){
             throw new Exception("The view file doesn't exist");
@@ -73,7 +73,7 @@ class WY_View
         if(!$_print_){
             ob_start();
         }
-        require $_view_filepath;
+        require_once $_view_filepath;
         if(!$_print_){
             return ob_get_clean();
         }
