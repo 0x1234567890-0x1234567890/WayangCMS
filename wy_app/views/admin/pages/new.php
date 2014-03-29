@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <label>Page Content</label>
                                             <textarea id="content" name="content" class="form-control" rows="3"></textarea>
-                                            <script type='text/javascript' src='../lib/ckeditor/config.editor.js'></script>
+                                            <script type='text/javascript' src='<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/config.editor.js'></script>
                                             <p class="help-block">Leave blank if use plugin or module.</p>
                                         </div>
                                         <div class="form-group">
