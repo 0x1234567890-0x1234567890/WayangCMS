@@ -1,3 +1,4 @@
+<?php $router = WY_Registry::get('router'); ?>
 <!DOCTYPE html>
 <!--
     Copyright 2013 root <root@wayang-cms.org>
@@ -23,21 +24,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Wayang CMS | Dashboard</title>
+    <title><?php echo $this->pageTitle; ?></title>
 
     <!-- Core CSS - Include with every page -->
-    <link href="assets/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-    <link href="assets/admin/css/plugins/timeline/timeline.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/timeline/timeline.css" rel="stylesheet">
     <!-- Page-Level Plugin CSS - Tables -->
-    <link href="assets/admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <!-- SB Admin CSS - Include with every page -->
-    <link href="assets/admin/css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/sb-admin.css" rel="stylesheet">
     <!-- ckeditor have to load first -->
-    <script type="text/javascript" src="assets/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/ckeditor.js"></script>
 
 </head>
 
@@ -53,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index">Wayang CMS Administration</a>
+                <a class="navbar-brand" href="<?php echo $router->generate('admin-home'); ?>">Wayang CMS Administration</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -285,16 +286,16 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="<?php echo $router->generate('admin-home'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-files-o fa-fw"></i> Pages<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="pages/new/">Add New Page</a>
+                                <a href="<?php echo $router->generate('admin-pages-add'); ?>">Add New Page</a>
                             </li>
                             <li>
-                                <a href="pages/all">All Pages</a>
+                                <a href="<?php echo $router->generate('admin-pages'); ?>">All Pages</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -303,16 +304,16 @@
                         <a href="#"><i class="fa fa-edit fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="posts/new">Add New Post</a>
+                                <a href="<?php echo $router->generate('admin-posts-add'); ?>">Add New Post</a>
                             </li>
                             <li>
-                                <a href="posts/all">All Posts</a>
+                                <a href="<?php echo $router->generate('admin-posts'); ?>">All Posts</a>
                             </li>
                             <li>
-                                <a href="categories/all">Categories</a>
+                                <a href="<?php echo $router->generate('admin-categories'); ?>">Categories</a>
                             </li>
                             <li>
-                                <a href="comments/all">Comments</a>
+                                <a href="<?php echo $router->generate('admin-comments'); ?>">Comments</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -325,10 +326,10 @@
                                 <a href="#">Themes<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="themes/new">Add New Themes</a>
+                                        <a href="<?php echo $router->generate('admin-themes-add'); ?>">Add New Themes</a>
                                     </li>
                                     <li>
-                                        <a href="themes/all">All Themes</a>
+                                        <a href="<?php echo $router->generate('admin-themes'); ?>">All Themes</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-third-level -->
@@ -337,16 +338,16 @@
                                 <a href="#">Plugins<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="plugins/new">Add New Plugin</a>
+                                        <a href="<?php echo $router->generate('admin-plugins-add'); ?>">Add New Plugin</a>
                                     </li>
                                     <li>
-                                        <a href="plugins/all">All Plugins</a>
+                                        <a href="<?php echo $router->generate('admin-plugins'); ?>">All Plugins</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-third-level -->
                             </li>
                             <li>
-                                <a href="sites/view">Site Preferences</a>
+                                <a href="<?php echo $router->generate('admin-prefs'); ?>">Site Preferences</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -356,16 +357,16 @@
                         <a href="#"><i class="fa fa-user fa-fw"></i> Users<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Add New Users</a>
+                                <a href="<?php echo $router->generate('admin-users-add'); ?>">Add New Users</a>
                             </li>
                             <li>
-                                <a href="#">All Users</a>
+                                <a href="<?php echo $router->generate('admin-users'); ?>">All Users</a>
                             </li>
                             <li>
-                                <a href="#">Levels</a>
+                                <a href="<?php echo $router->generate('admin-users-level'); ?>">Levels</a>
                             </li>
                             <li>
-                                <a href="#">Profile</a>
+                                <a href="<?php echo $router->generate('admin-users-profile'); ?>">Profile</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -390,21 +391,21 @@
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="assets/jquery-1.10.2.js"></script>
-    <script src="assets/bootstrap.min.js"></script>
-    <script src="assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/jquery-1.10.2.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/bootstrap.min.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
     <!-- Page-Level Plugin Scripts - Dashboard -->
-    <script src="assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/admin/js/plugins/morris/morris.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script>
 
     <!-- SB Admin Scripts - Include with every page -->
         <!-- Page-Level Plugin Scripts - Tables -->
-    <script src="assets/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
     <!-- SB Admin Scripts - Include with every page -->
-    <script src="assets/admin/js/sb-admin.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/sb-admin.js"></script>
 
     
     <script>
