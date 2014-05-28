@@ -19,13 +19,14 @@
                                     <form role="form" method="POST" action="" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Categoriy Title</label>
-                                            <input type="text" id="title" name="title" placeholder="Categoriy Title" class="form-control">
+                                            <input type="text" id="title" value="<?php echo $category->title; ?>" name="title" placeholder="Categoriy Title" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Published</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="published" type="checkbox" value="">Publish Categoriy
+                                                    <input type="hidden" name="published" value="0" />
+                                                    <input name="published" type="checkbox" value="1" <?php if($category->published) echo 'checked'; ?>>Publish Category
                                                 </label>
                                             </div>
                                         </div>
