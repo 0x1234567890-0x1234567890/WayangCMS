@@ -15,4 +15,14 @@ class LoginController extends WY_TController
         $this->layout->pageTitle = 'Wayang CMS - Reset Password';
         $this->layout->content = WY_View::fetch('admin/login/forgot');
     }
+    
+    public function login()
+    {
+        WY_Response::redirect('admin');
+    }
+    
+    public function logout()
+    {
+        WY_Response::redirect('login');
+    }
 }

@@ -20,8 +20,9 @@ return array(
     array('GET', '/admin', 'admin:home:index', 'admin-home'),
     
     // admin login/logout
-    array('GET|POST','/login', 'admin:login:index', 'admin-login'),
-    array('GET','/login', 'admin:login:logout', 'admin-logout'),
+    array('GET','/login', 'admin:login:index', 'admin-login'),
+    array('POST','/login', 'admin:login:login', 'admin-login-process'),
+    array('GET','/logout', 'admin:login:logout', 'admin-logout'),
     array('GET|POST','/login/reset', 'admin:login:forgot', 'admin-reset-password'),
     
     // admin pages section
