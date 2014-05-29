@@ -401,9 +401,8 @@
     <!-- Page-Level Plugin Scripts - Dashboard -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script>
-
-    <!-- SB Admin Scripts - Include with every page -->
-        <!-- Page-Level Plugin Scripts - Tables -->
+    
+    <!-- Page-Level Plugin Scripts - Tables -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 

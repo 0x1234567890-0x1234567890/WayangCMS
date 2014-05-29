@@ -19,6 +19,10 @@ return array(
     // admin home section
     array('GET', '/admin', 'admin:home:index', 'admin-home'),
     
+    // admin login
+    array('GET|POST','/login', 'admin:login:index', 'admin-login'),
+    array('GET|POST','/login/reset', 'admin:login:forgot', 'admin-reset-password'),
+    
     // admin pages section
     array('GET', '/admin/pages/all', 'admin:page:all', 'admin-pages'),
     array('GET|POST', '/admin/pages/add', 'admin:page:add', 'admin-pages-add'),
