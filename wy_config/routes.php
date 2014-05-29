@@ -19,8 +19,9 @@ return array(
     // admin home section
     array('GET', '/admin', 'admin:home:index', 'admin-home'),
     
-    // admin login
+    // admin login/logout
     array('GET|POST','/login', 'admin:login:index', 'admin-login'),
+    array('GET','/login', 'admin:login:logout', 'admin-logout'),
     array('GET|POST','/login/reset', 'admin:login:forgot', 'admin-reset-password'),
     
     // admin pages section
@@ -68,6 +69,9 @@ return array(
     array('GET|POST', '/admin/users/edit/[i:id]', 'admin:user:edit', 'admin-users-edit'),
     array('GET', '/admin/users/delete/[i:id]', 'admin:user:delete', 'admin-users-delete'),
     array('GET', '/admin/users/level', 'admin:user:level', 'admin-users-level'),
+    array('GET|POST', '/admin/users/level', 'admin:user:level_add', 'admin-users-level-add'),
+    array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_edit', 'admin-users-level-edit'),
+    array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_delete', 'admin-users-level-delete'),
     array('GET', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     
     array('GET', '/[*:permalink]', ':page:view', 'page'),

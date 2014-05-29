@@ -12,7 +12,8 @@ class PostController extends WY_TController
     
     public function add()
     {
-        
+        $this->layout->pageTitle = 'Wayang CMS - Post Add';
+        $this->layout->content = WY_View::fetch('admin/posts/new');
     }
     
     public function view($id)
