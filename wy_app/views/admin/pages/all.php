@@ -26,9 +26,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <?php 
-                                        $row = 1;
-                                        foreach($pages as $p): ?>
+                                       <?php $row = 1; ?>
+                                       <?php foreach($pages as $p): ?>
                                         <tr class="<?php if($row % 2 == 0) echo 'even'; else echo 'odd'; $row++; ?> gradeX">
                                             <td><?php echo $p->title; ?></td>
                                             <td><?php echo $p->date_add; ?></td>
