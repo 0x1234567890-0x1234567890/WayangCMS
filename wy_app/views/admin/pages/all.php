@@ -35,8 +35,8 @@
                                             <td><?php echo $p->permalink; ?></td>
                                             <td><?php echo $p->date_modified; ?></td>
                                             <th>
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-page-edit', array('id'=>$p->page_id)); ?>">Edit</a> | 
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-page-delete', array('id'=>$p->page_id)); ?>">Delete</a>
+                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-pages-edit', array('id'=>$p->page_id)); ?>">Edit</a> | 
+                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-pages-delete', array('id'=>$p->page_id)); ?>">Delete</a>
                                             </th>
                                         </tr>
                                         <?php endforeach; ?>
