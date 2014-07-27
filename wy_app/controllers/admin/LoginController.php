@@ -38,7 +38,7 @@ class LoginController extends WY_TController
     
     public function logout()
     {
-        
+        WY_Session::destroy();
         WY_Response::redirect('login');
     }
 }

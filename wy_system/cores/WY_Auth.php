@@ -18,12 +18,15 @@ class WY_Auth
             ':password' => $password,
         ));
         
-        if($user){ // login sukses
+        if($user)
+        { // login sukses
             WY_Session::set('authenticated', true);
             WY_Session::set('user_id', $user->user_id);
             WY_Session::set('user_name', $user->username);
             return true;
-        }else{ // login gagal
+        }
+        else
+            { // login gagal
             WY_Session::set_flash('error', 'Invalid username or password');
             return false;
         }

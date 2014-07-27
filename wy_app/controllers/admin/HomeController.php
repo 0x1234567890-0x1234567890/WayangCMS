@@ -13,7 +13,6 @@ class HomeController extends WY_TController
         }
         else
         {
-            echo "<script>alert('tidak terdefenisi')</script>";
             WY_Response::redirect('login');
         }
         
