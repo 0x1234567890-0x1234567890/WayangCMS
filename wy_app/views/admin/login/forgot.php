@@ -11,6 +11,7 @@
                 </div>
                 <!-- Change this to a button or input when using this as a form -->
                 <button type="submit" class="btn btn-lg btn-success btn-block">Send New Password</button>
+                <h5><a href="<?php echo $router->generate('admin-login'); ?>" >Back to Login page</a></h5>
             </fieldset>
         </form>
     </div>

@@ -3,11 +3,13 @@
 class LoginController extends WY_TController
 {
 	public $layout = 'admin/login';
+        public $log;
     
     public function index()
-    {
+    { 
         $this->layout->pageTitle = 'Wayang CMS - Login';
         $this->layout->content = WY_View::fetch('admin/login/index');
+        
     }
     
     public function forgot()
@@ -18,11 +20,25 @@ class LoginController extends WY_TController
     
     public function login()
     {
-        WY_Response::redirect('admin');
+        if(WY_Request::isPost())
+        {
+            $username = $_POST['username'];
+            $password = sha1($_POST['password']);
+            $this->log = WY_Auth::login($username, $password);
+            if($this->log)
+            {
+                WY_Response::redirect('admin');
+            }
+            else
+            {
+                WY_Response::redirect('login');
+            }
+        }
     }
     
     public function logout()
     {
+        
         WY_Response::redirect('login');
     }
 }
