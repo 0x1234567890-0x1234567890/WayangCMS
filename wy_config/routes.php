@@ -19,6 +19,8 @@ return array(
     // admin home section
     array('GET', '/admin', 'admin:home:index', 'admin-home'),
     
+    array('GET|POST', '/register', ':register:index', 'register'),
+    
     // admin login/logout
     array('GET','/login', 'admin:login:index', 'admin-login'),
     array('POST','/login', 'admin:login:login', 'admin-login-process'),
