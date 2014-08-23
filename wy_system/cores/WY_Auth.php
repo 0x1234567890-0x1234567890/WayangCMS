@@ -13,17 +13,20 @@ class WY_Auth
      */
 	public static function login($username, $password)
     {
-        $user = WY_Db::row("select * from user where user_name = :username and user_pass = :password", array(
+        $user = WY_Db::row("select * from wy_user where username = :username and pass = :password", array(
             ':username' => $username,
             ':password' => $password,
         ));
         
-        if($user){ // login sukses
+        if($user)
+        { // login sukses
             WY_Session::set('authenticated', true);
             WY_Session::set('user_id', $user->user_id);
-            WY_Session::set('user_name', $user->user_name);
+            WY_Session::set('user_name', $user->username);
             return true;
-        }else{ // login gagal
+        }
+        else
+            { // login gagal
             WY_Session::set_flash('error', 'Invalid username or password');
             return false;
         }

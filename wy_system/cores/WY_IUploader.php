@@ -79,7 +79,7 @@ class WY_IUploader{
     /*
      * fungsi menyimpan image berdasarkan tipe mime nya(jpeg/jpg,png,gif)
      */
-    private function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=80){
+    private function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=70){
         $this->getInfo($file);
         $this->path=BASEPATH."/assets/uploads/";
         if(!$resize){
@@ -100,13 +100,13 @@ class WY_IUploader{
                 }
             }
             elseif( $this->imageType == IMAGETYPE_PNG ){
-            if(imagepng($this->image,$this->path)){
-                $this->message="Image Saved!";
+                if(imagepng($this->image,$this->path)){
+                    $this->message="Image Saved!";
+                }
+                else{
+                    $this->message="Cannot Save Image!";
+                }
             }
-            else{
-                $this->message="Cannot Save Image!";
-            }
-        }
         }
         else{
             $this->resizeImage($percent);
@@ -128,13 +128,13 @@ class WY_IUploader{
                 }
             }
             elseif( $this->imageType == IMAGETYPE_PNG ){
-            if(imagepng($this->image,$this->path)){
-                $this->message="Image Saved!";
+                if(imagepng($this->image,$this->path)){
+                    $this->message="Image Saved!";
+                }
+                else{
+                    $this->message="Cannot Save Image!";
+                }
             }
-            else{
-                $this->message="Cannot Save Image!";
-            }
-        }
         }
         return $this->message;
     }

@@ -1,4 +1,3 @@
-
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Category -> All Categories</h1>
@@ -23,7 +22,7 @@
                                             <th>Published</th>
                                             <th>Permalink</th>
                                             <th>Date Modified</th>
-                                            <th></th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

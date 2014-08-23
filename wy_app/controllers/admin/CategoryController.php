@@ -15,13 +15,11 @@ class CategoryController extends WY_TController
     {
         if(WY_Request::isPost()){
             $title = $_POST['title'];
-            $date_add = date('Y-m-d H:i:s');
             $published = $_POST['published'];
             $permalink = strtolower(str_replace(' ', '-', $title));
             WY_Db::execute('INSERT INTO wy_category (title, date_add, published, permalink) VALUES 
-                (:title, :date_add, :published, :permalink)', array(
+                (:title, NOW(), :published, :permalink)', array(
                     ':title'=>$title,
-                    ':date_add'=>$date_add,
                     ':published'=>$published,
                     ':permalink'=>$permalink,
                 ));
@@ -41,7 +39,6 @@ class CategoryController extends WY_TController
         }
         if(WY_Request::isPost()){
             $title = $_POST['title'];
-            $date_add = date('Y-m-d H:i:s');
             $published = $_POST['published'];
             $permalink = strtolower(str_replace(' ', '-', $title));
             WY_Db::execute('UPDATE wy_category 

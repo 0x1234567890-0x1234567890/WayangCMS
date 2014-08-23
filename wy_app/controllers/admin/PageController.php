@@ -6,8 +6,9 @@ class PageController extends WY_TController
 	
     public function all()
     {
+        $pages = WY_Db::all("SELECT * FROM wy_page ORDER BY page_id ASC");
         $this->layout->pageTitle = 'Wayang CMS - Pages All';
-        $this->layout->content = WY_View::fetch('admin/pages/all');
+        $this->layout->content = WY_View::fetch('admin/pages/all', array('pages'=>$pages));
     }
     
     public function add()
