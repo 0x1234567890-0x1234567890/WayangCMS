@@ -52,7 +52,7 @@ class WY_Config
      */
     public static function has($key)
     {
-         if(isset(self::$config_items[$key])){
+        if(isset(self::$config_items[$key])){
             return true;
         }
         return false;

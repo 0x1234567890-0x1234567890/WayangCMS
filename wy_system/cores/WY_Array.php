@@ -2,20 +2,14 @@
 
 class WY_Array
 {
-	public function flatten($array, $return = array())
-    {
-        foreach($array as $key => $value)
-        {
-            if(is_array($value) || is_object($value))
-            {
+	public function flatten($array, $return = array()){
+        foreach($array as $key => $value){
+            if(is_array($value) || is_object($value)){
                 $return  = self::flatten($value, $return);
-            }
-            else
-            {
+            }else{
                 $return[] = $value;
             }
         }
-        
         return $return;
     }
 }

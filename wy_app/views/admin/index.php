@@ -310,6 +310,9 @@
                                 <a href="<?php echo $router->generate('admin-posts'); ?>">All Posts</a>
                             </li>
                             <li>
+                                <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
+                            </li>
+                            <li>
                                 <a href="<?php echo $router->generate('admin-categories'); ?>">Categories</a>
                             </li>
                             <li>

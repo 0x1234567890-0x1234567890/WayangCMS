@@ -25,7 +25,8 @@
                                             <label>Published</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="published" type="checkbox" value="">Publish Categoriy
+                                                    <input type="hidden" name="published" value="0" />
+                                                    <input name="published" type="checkbox" value="1">Publish Categoriy
                                                 </label>
                                             </div>
                                         </div>

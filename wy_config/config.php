@@ -6,8 +6,8 @@ return array(
     'db' => array(
         'host' => 'localhost', // 127.0.0.1
         'port' => '3306', // default mysql
-        'username' => 'wayang',
-        'password' => 'wayang',
+        'username' => 'root',
+        'password' => '',
         'dbname' => 'wayang',
     ),
     'timezone' => 'Asia/Jakarta',
