@@ -9,4 +9,4 @@ class PostController extends WY_TController
         $this->layout->content = WY_View::fetch('post', array('post' => $post));
         $this->layout->pageTitle = 'Wayang - Post';
     }
-}
+} 

@@ -11,4 +11,4 @@ class HomeController extends WY_TController
         $this->layout->pageTitle = 'Wayang - Home';
     }
     
-}
+} 

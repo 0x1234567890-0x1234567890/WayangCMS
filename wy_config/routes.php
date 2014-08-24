@@ -2,7 +2,6 @@
 
 /* Konfigurasi url untuk routing */
 
-
 /**
  * format : 
  * method (GET, POST, PUT, DELETE)

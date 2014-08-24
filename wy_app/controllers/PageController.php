@@ -10,4 +10,4 @@ class PageController extends WY_TController
         $this->layout->content = WY_View::fetch('page', array('post' => $post));
         $this->layout->pageTitle = 'Wayang - Page';
     }
-}
+} 
