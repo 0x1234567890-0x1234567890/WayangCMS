@@ -46,6 +46,7 @@ class WY_Bootstrap
             array_walk($matchRoute['params'], function(&$item, $key){
                 $item = rtrim($item, '/');
             });
+            
             $target = explode(':', $matchRoute['target']);
             $moduleName = $target[0];
             $controllerName = ucfirst($target[1]).'Controller';
