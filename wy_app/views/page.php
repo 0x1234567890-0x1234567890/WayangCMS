@@ -3,4 +3,4 @@
         <h2><a><?php echo $post->title; ?></a></h2>
         <?php echo $post->content; ?>
     </div>
-</div>
+</div> 

@@ -2,7 +2,6 @@
 
 /* Konfigurasi url untuk routing */
 
-
 /**
  * format : 
  * method (GET, POST, PUT, DELETE)
@@ -11,7 +10,7 @@
  * name nama dari rules *optional
  */
 return array(
-    array('GET', '/', ':page:index', 'home'),
+    array('GET', '/', ':home:index', 'home'),
     
     // install section
     array('GET', '/install', ':install:index', 'install'),
@@ -77,5 +76,7 @@ return array(
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_delete', 'admin-users-level-delete'),
     array('GET', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     
-    array('GET', '/[*:permalink]', ':page:view', 'page'),
+    //view page/post/
+    array('GET', '/page/[*:permalink]', ':page:index', 'page'),
+    array('GET', '/post/[*:permalink]', ':post:index', 'post'),
 );
