@@ -8,7 +8,6 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"></a></li>
                     <?php print_r($lists);?>
                     <?php if(!empty($lists)): ?>
                         <?php foreach($lists as $list): ?>
