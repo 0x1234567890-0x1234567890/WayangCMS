@@ -16,11 +16,7 @@
         <link rel="apple-touch-icon" href="<?php echo WY_Request::base_url(); ?>/assets/images/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<?php echo WY_Request::base_url(); ?>/assets/images/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="<?php echo WY_Request::base_url(); ?>/assets/images/apple-touch-icon-114x114.png">
-        <!-- JS
-            ================================================== -->
-        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/jquery.js" type="text/javascript"></script>
-        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/bootstrap.js" type="text/javascript"></script>
-        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/styles.js" type="text/javascript"></script>
+        
     </head>
     <body class="home">
         <div class="navbar navbar-default navbar-fixed-top contnav">
@@ -37,7 +33,7 @@
                             <li data-slide-to="2" data-target="#carousel-332749" class="active"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="item">
+                            <div class="item active">
                                 <img alt="" src="http://lorempixel.com/1600/500/sports/1">
                                 <div class="carousel-caption">
                                     <h4>First Thumbnail label</h4>
@@ -51,7 +47,7 @@
                                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                                 </div>
                             </div>
-                            <div class="item active">
+                            <div class="item">
                                 <img alt="" src="http://lorempixel.com/1600/500/sports/3">
                                 <div class="carousel-caption">
                                     <h4>Third Thumbnail label</h4>
@@ -225,5 +221,10 @@
                 </div>
             </div>
         </div>
+        <!-- JS
+            ================================================== -->
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/jquery.js" type="text/javascript"></script>
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/bootstrap.js" type="text/javascript"></script>
+        <script src="<?php echo WY_Request::base_url(); ?>/assets/theme/js/extra.js" type="text/javascript"></script>
     </body>
 </html>
