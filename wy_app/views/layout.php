@@ -24,7 +24,7 @@
     </head>
     <body class="home">
         <div class="navbar navbar-default navbar-fixed-top contnav">
-            <?php echo $mlist; ?>
+            <?php echo $menu; ?>
             <!-- /.nav-collapse -->
         </div>
         <div class="container wrapslid">
