@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit Page -> {Title Page}
+                            Edit Page -> <?php echo $page->title;?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -19,7 +19,7 @@
                                     <form role="form" method="POST" action="" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Page Title</label>
-                                            <input type="text" id="title" name="title" placeholder="Page Title" class="form-control">
+                                            <input type="text" id="title" name="title" value="<?php echo $page->title;?>" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Page Content</label>
-                                            <textarea id="content" name="content" class="form-control" rows="3"></textarea>
+                                            <textarea id="content" name="content" class="form-control" rows="3"><?php echo $page->content;?></textarea>
                                             <script type='text/javascript' src='<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/config.editor.js'></script>
                                             <p class="help-block">Leave blank if use plugin or module.</p>
                                         </div>
@@ -42,7 +42,7 @@
                                             <label>Allow Comment</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="a_comment" type="checkbox" value="">Allow Comment on Page
+                                                    <input name="a_comment" type="checkbox" <?php if($page->comment_open===1) echo "checked"; ?>>Allow Comment on Page
                                                 </label>
                                             </div>
                                         </div>
@@ -50,18 +50,18 @@
                                             <label>Published</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="published" type="checkbox" value="">Publish Page
+                                                    <input name="published" type="checkbox" <?php if($page->published===1) echo "checked"; ?>>Publish Page
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Page Parent</label>
-                                            <select class="form-control">
-                                                <option></option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <select class="form-control" name="isParent" id="isParent">
+                                                <?php if(!empty($isParent)): ?>
+                                                    <?php foreach($isParent as $parent): ?>
+                                                <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
                                             <p class="help-block">Leave blank if not use parent page.</p>
                                         </div>
