@@ -78,7 +78,7 @@ class WY_Session
     
     public static function flash_has_error()
     {
-         if(!isset($_SESSION['flash_message'][$type])){
+        if(!isset($_SESSION['flash_message'][$type])){
             return false;
         }
         if(!in_array($type, self::$flash_types)){

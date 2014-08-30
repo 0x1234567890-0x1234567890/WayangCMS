@@ -30,12 +30,8 @@ class PageController extends WY_TController
             $view->render();
             exit();
         }
-        $isParent = WY_Db::row('SELECT * FROM wy_page WHERE is_parent = 0');
-        if(!$isParent){
-            $view = new WY_View('404');
-            $view->render();
-            exit();
-        }
+        $isParent = WY_Db::all('SELECT * FROM wy_page WHERE is_parent = 0');
+        
         if(WY_Request::isPost()){
             $title = $_POST['title'];
             $published = $_POST['published'];
@@ -56,8 +52,7 @@ class PageController extends WY_TController
             WY_Response::redirect('admin/pages/all');
         }
         $this->layout->pageTitle = 'Wayang CMS - Pages Edit';
-        $this->layout->content = WY_View::fetch('admin/pages/edit',array('page'=>$page));
-        $this->layout->content = WY_View::fetch('admin/pages/edit',array('isParent'=>$isParent));
+        $this->layout->content = WY_View::fetch('admin/pages/edit',array('page'=>$page, 'isParent'=>$isParent));
     }
     
     public function delete($id)
