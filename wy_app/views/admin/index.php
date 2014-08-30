@@ -218,4 +218,3 @@
 </body>
 
 </html>
-<?php echo $date_add = date('Y-m-d H:i:s');
