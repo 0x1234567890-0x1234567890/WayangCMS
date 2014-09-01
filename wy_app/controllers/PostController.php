@@ -5,7 +5,7 @@ class PostController extends WY_TController
     
     public function menu() {
         $lists = WY_Db::all('Select * from wy_page');
-        $this->layout->mlist = WY_View::fetch('menu',array('lists' => $lists));
+        $this->layout->menu = WY_View::fetch('menu',array('lists' => $lists));
     }
     
     public function index($permalink)
