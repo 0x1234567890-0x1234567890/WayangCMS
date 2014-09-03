@@ -45,7 +45,7 @@ class PageController extends WY_TController
                     ':comment_open'=>$comment,
                     ':published'=>$published,
                     ':use_plugin'=>$plugin,
-                    ':is_parent'=>$isParent,
+                    ':is_parent'=>$isParent, 
                     ':permalink'=>$permalink,
                     ':taglist'=>$tags,
                 ));
