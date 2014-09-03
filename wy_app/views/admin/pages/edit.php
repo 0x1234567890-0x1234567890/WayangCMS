@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
-                                            <select class="form-control">
+                                            <select class="form-control" name="plugin" id="plugin">
                                                 <option></option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -58,6 +58,7 @@
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
                                                 <?php if(!empty($isParent)): ?>
+                                                <option></option>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>
@@ -65,8 +66,12 @@
                                             </select>
                                             <p class="help-block">Leave blank if not use parent page.</p>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <div class="form-group">
+                                            <label>Tags List</label>
+                                            <div id="tag"></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-info">Save Page</button>
+                                        <button type="reset" class="btn btn-warning">Reset Form</button>
                                     </form>
                                 </div>
                             </div>

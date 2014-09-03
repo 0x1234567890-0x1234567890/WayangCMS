@@ -21,6 +21,7 @@
                                             <th>Permalink</th>
                                             <th>Date Add</th>
                                             <th>Published</th>
+                                            <th>Allow Comment</th>
                                             <th>Date Modified</th>
                                             <th>Action</th>
                                         </tr>
@@ -30,9 +31,10 @@
                                        <?php foreach($pages as $p): ?>
                                         <tr class="<?php if($row % 2 == 0) echo 'even'; else echo 'odd'; $row++; ?> gradeX">
                                             <td><?php echo $p->title; ?></td>
+                                            <td><?php echo $p->permalink; ?></td>
                                             <td><?php echo $p->date_add; ?></td>
                                             <td><?php echo $p->published ? 'Yes' : 'No'; ?></td>
-                                            <td><?php echo $p->permalink; ?></td>
+                                            <td><?php echo $p->comment_open ? 'Yes' : 'No'; ?></td>
                                             <td><?php echo $p->date_modified; ?></td>
                                             <th>
                                                 <a href="<?php echo WY_Registry::get('router')->generate('admin-pages-edit', array('id'=>$p->page_id)); ?>">Edit</a> | 

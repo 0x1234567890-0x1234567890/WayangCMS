@@ -23,23 +23,21 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title><?php echo $this->pageTitle; ?></title>
-
     <!-- Core CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
-
     <!-- Page-Level Plugin CSS - Dashboard -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-
     <!-- Page-Level Plugin CSS - Tables -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <!-- SB Admin CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/sb-admin.css" rel="stylesheet">
+    <!-- CSS Bootstrap Tags Input -->
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap-tags.css" rel="stylesheet">
     <!-- ckeditor have to load first -->
     <script type="text/javascript" src="<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/ckeditor.js"></script>
-
+    
 </head>
 
 <body>
@@ -55,7 +53,6 @@
                 </button>
                 <a class="navbar-brand" href="<?php echo $router->generate('admin-home'); ?>">Wayang CMS Administration</a>
             </div>
-            <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -71,11 +68,8 @@
                         <li><a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
 
             <div class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
@@ -93,7 +87,7 @@
                                     <a href="<?php echo $router->generate('admin-pages-add'); ?>"> Add New Page</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Posts <span class="fa arrow"></span></a>
@@ -114,15 +108,13 @@
                                             <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="<?php echo $router->generate('admin-comments'); ?>"> Comments</a>
-                                </li>
+                                </li>-->
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Preferences <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -135,7 +127,6 @@
                                             <a href="<?php echo $router->generate('admin-themes-add'); ?>"> Add New Themes</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
                                 </li>
                                 <li>
                                     <a href="#"> Plugins Preferences <span class="fa arrow"></span></a>
@@ -147,14 +138,12 @@
                                             <a href="<?php echo $router->generate('admin-plugins-add'); ?>"> Add New Plugin</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
                                 </li>
                                 <li>
                                     <a href="<?php echo $router->generate('admin-prefs'); ?>"> Sites Preferences</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        </li>-->
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -171,7 +160,7 @@
                                     <a href="<?php echo $router->generate('admin-users-profile'); ?>"> Profiles</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         
                     </ul>
@@ -195,26 +184,34 @@
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/jquery-1.10.2.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/bootstrap.min.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-    <!-- Page-Level Plugin Scripts - Dashboard -->
+    <!-- Page-Level Plugin Scripts - Dashboard
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script>
-
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script> -->
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/sb-admin.js"></script>
-
-    <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
-    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/demo/dashboard-demo.js"></script>
+    <!-- Page-Level Demo Scripts - Dashboard - Use for reference 
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/demo/dashboard-demo.js"></script>-->
      <!-- Page-Level Plugin Scripts - Tables -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
+    <!-- Bootstrap Tags Input -->
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/bootstrap-tags.js"></script>
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+        /*
+         * Datatables
+         */
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
+        /*
+         * Bootstrap Tags Input
+         */
+        $(function(){
+            $("#tag").tags({
+                tagSize: "lg"
+            });
+        });
     </script>
-
 </body>
 
 </html>

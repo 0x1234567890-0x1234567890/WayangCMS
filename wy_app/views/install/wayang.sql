@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 17, 2014 at 06:59 AM
--- Server version: 5.5.37
--- PHP Version: 5.3.10-1ubuntu3.11
+-- Inang: 127.0.0.1
+-- Waktu pembuatan: 03 Sep 2014 pada 22.08
+-- Versi Server: 5.5.27
+-- Versi PHP: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `wayang`
+-- Basis data: `wayang`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_category`
+-- Struktur dari tabel `wy_category`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_category` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `wy_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data for table `wy_category`
+-- Dumping data untuk tabel `wy_category`
 --
 
 INSERT INTO `wy_category` (`cat_id`, `title`, `date_add`, `published`, `date_modified`, `permalink`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `wy_category` (`cat_id`, `title`, `date_add`, `published`, `date_mod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_comment`
+-- Struktur dari tabel `wy_comment`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_comment` (
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `wy_comment` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `wy_comment`
+-- Dumping data untuk tabel `wy_comment`
 --
 
 INSERT INTO `wy_comment` (`c_id`, `c_name`, `c_email`, `c_url`, `c_date`, `c_content`, `c_post_id`, `c_page_id`, `c_ip`, `is_parent`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `wy_comment` (`c_id`, `c_name`, `c_email`, `c_url`, `c_date`, `c_con
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_page`
+-- Struktur dari tabel `wy_page`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_page` (
@@ -93,21 +93,23 @@ CREATE TABLE IF NOT EXISTS `wy_page` (
   `use_plugin` varchar(225) DEFAULT NULL,
   `is_parent` int(11) NOT NULL DEFAULT '0',
   `permalink` varchar(225) NOT NULL,
+  `taglist` text NOT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `wy_page`
+-- Dumping data untuk tabel `wy_page`
 --
 
-INSERT INTO `wy_page` (`page_id`, `author`, `title`, `date_add`, `content`, `comment_open`, `published`, `date_modified`, `use_plugin`, `is_parent`, `permalink`) VALUES
-(1, 1, 'First Page ', '2014-02-21 00:00:00', '<p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>\r\n\r\n<p>A huge thanks to Death to the Stock Photo for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>', 1, 1, NULL, NULL, 0, 'first-page'),
-(2, 2, 'Sample Page', '2014-02-21 00:00:00', '<p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>\r\n\r\n<p>A huge thanks to Death to the Stock Photo for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>', 0, 0, NULL, NULL, 0, 'sample-page');
+INSERT INTO `wy_page` (`page_id`, `author`, `title`, `date_add`, `content`, `comment_open`, `published`, `date_modified`, `use_plugin`, `is_parent`, `permalink`, `taglist`) VALUES
+(1, 1, 'First Page', '2014-02-21 00:00:00', '<p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>\r\n\r\n<p>A huge thanks to Death to the Stock Photo for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n', 1, 1, '2014-09-03 15:03:53', NULL, 0, 'first-page', ''),
+(2, 0, 'Second Pages', '2014-09-03 18:16:29', '<p>Second Pages</p>\r\n', 1, 1, '2014-09-03 22:05:53', '', 0, 'second-pages', ''),
+(3, 0, 'Page Tags', '2014-09-03 21:48:36', '<p>Page Tags</p>\r\n', 1, 1, NULL, '', 0, 'page-tags', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_plugin`
+-- Struktur dari tabel `wy_plugin`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_plugin` (
@@ -121,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `wy_plugin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_post`
+-- Struktur dari tabel `wy_post`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_post` (
@@ -140,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `wy_post` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `wy_post`
+-- Dumping data untuk tabel `wy_post`
 --
 
 INSERT INTO `wy_post` (`post_id`, `title`, `tag`, `date_add`, `author`, `content`, `comment_open`, `comment_count`, `permalink`, `published`, `date_modified`) VALUES
@@ -150,7 +152,7 @@ INSERT INTO `wy_post` (`post_id`, `title`, `tag`, `date_add`, `author`, `content
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_setting`
+-- Struktur dari tabel `wy_setting`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_setting` (
@@ -162,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `wy_setting` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `wy_setting`
+-- Dumping data untuk tabel `wy_setting`
 --
 
 INSERT INTO `wy_setting` (`s_id`, `s_key`, `s_value`, `is_auto`) VALUES
@@ -181,7 +183,7 @@ INSERT INTO `wy_setting` (`s_id`, `s_key`, `s_value`, `is_auto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_themes`
+-- Struktur dari tabel `wy_themes`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_themes` (
@@ -195,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `wy_themes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_user`
+-- Struktur dari tabel `wy_user`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_user` (
@@ -212,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `wy_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `wy_user`
+-- Dumping data untuk tabel `wy_user`
 --
 
 INSERT INTO `wy_user` (`user_id`, `username`, `pass`, `email`, `url`, `date_registered`, `actiovation`, `status`, `display_name`) VALUES
@@ -223,7 +225,7 @@ INSERT INTO `wy_user` (`user_id`, `username`, `pass`, `email`, `url`, `date_regi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wy_usermeta`
+-- Struktur dari tabel `wy_usermeta`
 --
 
 CREATE TABLE IF NOT EXISTS `wy_usermeta` (

@@ -23,6 +23,7 @@ class WY_Auth
             WY_Session::set('authenticated', true);
             WY_Session::set('user_id', $user->user_id);
             WY_Session::set('user_name', $user->username);
+            WY_Session::set('display', $user->display_name);
             return true;
         }
         else

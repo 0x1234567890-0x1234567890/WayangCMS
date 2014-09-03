@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<?php echo WY_Request::base_url(); ?>/assets/theme/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo WY_Request::base_url(); ?>/assets/theme/css/styles.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="<?php echo WY_Request::base_url(); ?>/assets/theme/css/font-awesome.min.css" rel="stylesheet">
         <!-- Favicons
             ================================================== -->
         <link rel="shortcut icon" href="<?php echo WY_Request::base_url(); ?>/assets/images/icon.ico">
@@ -79,10 +79,6 @@
                 <?php echo $content; ?>
                 
                 <div class="row col-lg-4 sidebar">
-                    <div class="alert alert-dismissable alert-success">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
-                    </div>
                     <h2>Labels</h2>
                     <div class="bs-example" style="margin-bottom: 20px;border-bottom: 1px solid #dddddd;padding-bottom:25px;">
                         <span class="label label-default">Default</span>
