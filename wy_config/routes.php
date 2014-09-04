@@ -25,6 +25,7 @@ return array(
     array('POST','/login', 'admin:login:login', 'admin-login-process'),
     array('GET','/logout', 'admin:login:logout', 'admin-logout'),
     array('GET|POST','/login/reset', 'admin:login:forgot', 'admin-reset-password'),
+    array('GET|POST','/login/reset/[*:actiovation]', 'admin:login:newpwd', 'admin-new-password'),
     
     // admin pages section
     array('GET', '/admin/pages/all', 'admin:page:all', 'admin-pages'),
@@ -70,6 +71,7 @@ return array(
     array('GET|POST', '/admin/users/add', 'admin:user:add', 'admin-users-add'),
     array('GET|POST', '/admin/users/edit/[i:id]', 'admin:user:edit', 'admin-users-edit'),
     array('GET', '/admin/users/delete/[i:id]', 'admin:user:delete', 'admin-users-delete'),
+    
     array('GET', '/admin/users/level', 'admin:user:level', 'admin-users-level'),
     array('GET|POST', '/admin/users/level', 'admin:user:level_add', 'admin-users-level-add'),
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_edit', 'admin-users-level-edit'),
@@ -79,4 +81,7 @@ return array(
     //view page/post/
     array('GET', '/page/[*:permalink]', ':page:index', 'page'),
     array('GET', '/post/[*:permalink]', ':post:index', 'post'),
+    
+    //adding comment into post/page
+    array('POST', '/post/[*:permalink]', ':comment:add', 'comment'),
 );

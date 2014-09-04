@@ -56,6 +56,11 @@ class PageController extends WY_TController
         $this->layout->content = WY_View::fetch('admin/pages/new',array('isParent'=>$isParent));
     }
     
+    public function view($id)
+    {
+        
+    }
+    
     public function edit($id)
     {
         $page = WY_Db::row('SELECT * FROM wy_page WHERE page_id = :id', array(':id'=> (int) $id));
@@ -106,6 +111,7 @@ class PageController extends WY_TController
     public function delete($id)
     {
         WY_Db::execute('DELETE FROM wy_page WHERE page_id = :id', array(':id'=> (int) $id));
+        WY_Db::execute('DELETE FROM wy_comment WHERE page_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/pages/all');
     }
 }

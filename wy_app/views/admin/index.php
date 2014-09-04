@@ -59,15 +59,20 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> Welcome Admin <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user "></i> Welcome <?php echo WY_Session::get('display');?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <li><a href="<?php echo $router->generate('home'); ?>" target="_new"><i class="fa fa-globe "></i> View Website</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a href="#"><i class="fa fa-user "></i> User Profile</a>
+                        </li>
+                        <!--<li>
+                            <a href="#"><i class="fa fa-gear "></i> Settings</a>
+                        </li>-->
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa fa-sign-out "></i> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -77,10 +82,10 @@
                 <div class="sidebar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="<?php echo $router->generate('admin-home'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo $router->generate('admin-home'); ?>"><i class="fa fa-home "></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Pages<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-files-o "></i> Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-pages'); ?>"> All Pages</a>
@@ -92,7 +97,7 @@
                             
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Posts <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit "></i> Posts <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-posts'); ?>"> All Post</a>
@@ -100,24 +105,24 @@
                                 <li>
                                     <a href="<?php echo $router->generate('admin-posts-add'); ?>"> Add New Post</a>
                                 </li>
-                                <li>
-                                    <a href="#"> Category <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="<?php echo $router->generate('admin-categories'); ?>"> All Categories</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!--<li>
-                                    <a href="<?php echo $router->generate('admin-comments'); ?>"> Comments</a>
-                                </li>-->
                             </ul>
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list-alt "></i> Category <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-categories'); ?>"> All Categories</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa fa-list-ul "></i> Comments</a>
+                        </li>
                         <!--<li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Preferences <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench "></i> Preferences <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#"> Themes Preferences <span class="fa arrow"></span></a>
@@ -147,7 +152,7 @@
                             </ul>
                         </li>-->
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users "></i> Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users'); ?>"> All Users</a>
@@ -155,12 +160,12 @@
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users-add'); ?>"> Add New User</a>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="<?php echo $router->generate('admin-users-level'); ?>"> User Levels</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users-profile'); ?>"> Profiles</a>
-                                </li>
+                                </li>-->
                             </ul>
                             
                         </li>

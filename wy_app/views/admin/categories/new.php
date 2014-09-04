@@ -1,6 +1,9 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Categories -> New Categoriy</h1>
+                    <div class="wizard">
+                        <a href="<?php echo WY_Registry::get('router')->generate('admin-categories');?>"><span class="badge"></span> Category</a>
+                        <a class="current"><span class="badge badge-inverse"></span> New</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>            
@@ -30,8 +33,8 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <button type="submit" class="btn btn-info">Save Category</button>
+                                        <button type="reset" class="btn btn-warning">Reset Form</button>
                                     </form>
                                 </div>
                             </div>

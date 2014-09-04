@@ -10,7 +10,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             All Pages
                         </div>
@@ -21,7 +21,6 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Permalink</th>
                                             <th>Date Add</th>
                                             <th>Published</th>
                                             <th>Allow Comment</th>
@@ -34,14 +33,14 @@
                                        <?php foreach($pages as $p): ?>
                                         <tr class="<?php if($row % 2 == 0) echo 'even'; else echo 'odd'; $row++; ?> gradeX">
                                             <td><?php echo $p->title; ?></td>
-                                            <td><?php echo $p->permalink; ?></td>
                                             <td><?php echo $p->date_add; ?></td>
                                             <td><?php echo $p->published ? 'Yes' : 'No'; ?></td>
                                             <td><?php echo $p->comment_open ? 'Yes' : 'No'; ?></td>
                                             <td><?php echo $p->date_modified; ?></td>
                                             <th>
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-pages-edit', array('id'=>$p->page_id)); ?>">Edit</a> | 
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-pages-delete', array('id'=>$p->page_id)); ?>">Delete</a>
+                                                <a class="btn btn-primary btn-sm" title="Edit" href="<?php echo WY_Registry::get('router')->generate('admin-pages-edit', array('id'=>$p->page_id)); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <a class="btn btn-info btn-sm" title="View" href=""><span class="glyphicon glyphicon-search"></span></a>
+                                                <a class="btn btn-danger btn-sm" title="Delete" href="<?php echo WY_Registry::get('router')->generate('admin-pages-delete', array('id'=>$p->page_id)); ?>"><span class="glyphicon glyphicon-trash"></span></a>
                                             </th>
                                         </tr>
                                         <?php endforeach; ?>

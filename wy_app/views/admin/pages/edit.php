@@ -10,9 +10,9 @@
             </div>            
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Edit Page -> <?php echo $page->title;?>
+                            <?php echo $page->title;?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -28,13 +28,12 @@
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
                                             <select class="form-control" name="plugin" id="plugin">
-                                                <option></option>
+                                                <option value="">Not Use</option>
                                                 <option>2</option>
                                                 <option>3</option>
                                                 <option>4</option>
                                                 <option>5</option>
                                             </select>
-                                            <p class="help-block">Leave blank if not used.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Page Content</label>
@@ -62,13 +61,12 @@
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
                                                 <?php if(!empty($isParent)): ?>
-                                                <option></option>
+                                                <option value="">Not Use</option>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </select>
-                                            <p class="help-block">Leave blank if not use parent page.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Tags List</label>

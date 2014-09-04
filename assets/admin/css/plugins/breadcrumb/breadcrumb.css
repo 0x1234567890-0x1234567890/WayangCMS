@@ -72,4 +72,10 @@ and open the template in the editor.
 .wizard .current:after {
     border-left-color: #007ACC;
 }
-
+.wizard a:hover {
+    background: #007ACC;
+    color: #fff;
+}
+.wizard a:hover:after {
+    border-left-color: #007ACC;
+}
