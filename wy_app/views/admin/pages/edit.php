@@ -1,6 +1,10 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pages -> Edit Page</h1>
+                    <div class="wizard">
+                        <a><span class="badge"></span> Pages</a>
+                        <a href="<?php echo WY_Registry::get('router')->generate('admin-pages');?>"><span class="badge"></span> All Pages</a>
+                        <a class="current"><span class="badge badge-inverse"></span> Edit Pages</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>            
@@ -68,7 +72,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tags List</label>
-                                            <input type="text" id="tags" name="tags" placeholder="Tags List" class="form-control" data-role="tagsinput" >
+                                            <input type="text" id="tags" name="tags" value="<?php echo $page->taglist;?>" placeholder="Tags List" class="form-control" data-role="tagsinput" >
                                         </div>
                                         <button type="submit" class="btn btn-info">Save Page</button>
                                         <button type="reset" class="btn btn-warning">Reset Form</button>

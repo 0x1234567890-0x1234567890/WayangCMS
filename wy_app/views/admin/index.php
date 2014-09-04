@@ -36,7 +36,9 @@
     <!-- ckeditor have to load first -->
     <script type="text/javascript" src="<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/ckeditor.js"></script>
     <!-- Bootstrap tags input -->
-    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap-tagsinput.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/tags/bootstrap-tagsinput.css" rel="stylesheet">
+    <!-- Bootstrap breadcrumb -->
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/breadcrumb/breadcrumb.css" rel="stylesheet">
     
 </head>
 
@@ -183,7 +185,7 @@
     <!-- Core Scripts - Include with every page -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/jquery-1.10.2.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/bootstrap.min.js"></script>
-    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/bootstrap-tagsinput.min.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/tags/bootstrap-tagsinput.min.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     
     <!-- SB Admin Scripts - Include with every page -->

@@ -1,6 +1,10 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pages -> Edit Post</h1>
+                    <div class="wizard">
+                        <a><span class="badge"></span> Posts</a>
+                        <a href="<?php echo WY_Registry::get('router')->generate('admin-posts');?>"><span class="badge"></span> All Posts</a>
+                        <a class="current"><span class="badge badge-inverse"></span> Edit Posts</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>            

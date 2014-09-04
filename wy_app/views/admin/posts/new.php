@@ -1,6 +1,9 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pages -> New Post</h1>
+                    <div class="wizard">
+                        <a><span class="badge"></span> Posts</a>
+                        <a class="current"><span class="badge badge-inverse"></span> New Posts</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>            
