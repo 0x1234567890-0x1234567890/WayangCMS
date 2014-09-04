@@ -33,7 +33,7 @@ class PageController extends WY_TController
             $plugin= $_POST['plugin'];
             $content = $_POST['content'];
             $isParent = $_POST['isParent'];
-            $tags = $_POST['taglist'];
+            $tags = $_POST['tags'];
             $permalink = strtolower(str_replace(' ', '-', $title));
             WY_Db::execute('INSERT INTO `wy_page`'
                     . '(`author`, `title`, `date_add`, `content`, `comment_open`, `published`, `use_plugin`, `is_parent`, `permalink`, `taglist`) '
@@ -84,7 +84,7 @@ class PageController extends WY_TController
             }
             $isParent = $_POST['isParent'];
             $content = $_POST['content'];
-            $tags = $_POST['taglist'];
+            $tags = $_POST['tags'];
             $permalink = strtolower(str_replace(' ', '-', $title));
             WY_Db::execute('UPDATE wy_page 
                 SET title = :title, date_modified = NOW(), content = :content, published = :published, is_parent= :is_parent, permalink = :permalink, comment_open = :comment_open, taglist = :taglist WHERE page_id = :id', array(

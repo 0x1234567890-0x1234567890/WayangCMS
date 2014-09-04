@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tags List</label>
-                                            <div id="tag"></div>
+                                            <input type="text" id="tags" name="tags" placeholder="Tags List" class="form-control" data-role="tagsinput">
                                         </div>
                                         <button type="submit" class="btn btn-info">Save Page</button>
                                         <button type="reset" class="btn btn-warning">Reset Form</button>
