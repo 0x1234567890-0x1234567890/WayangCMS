@@ -119,7 +119,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa fa-list-ul "></i> Comments</a>
+                            <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa fa-comments "></i> Comments</a>
                         </li>
                         <!--<li>
                             <a href="#"><i class="fa fa-wrench "></i> Preferences <span class="fa arrow"></span></a>
