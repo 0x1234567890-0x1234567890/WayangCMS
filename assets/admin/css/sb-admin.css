@@ -236,7 +236,7 @@ body {
 }
 
 .chat-panel .panel-body {
-    height: 350px;
+    height: 250px;
     overflow-y: scroll;
 }
 
