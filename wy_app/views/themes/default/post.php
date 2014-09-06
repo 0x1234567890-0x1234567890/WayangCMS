@@ -40,18 +40,20 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <hr>
+             <hr>
             <h3>Left a Comment</h3>
-
+            
             <div class="col-lg-12 row">
                 <div class="">
-                    <form>
+                    <form role="form" class="form-group" method="POST" action="<?php echo WY_Request::base_url();?>/post/comment/">
+                        <input type="hidden" name="postid" id="postid" value="<?php echo $post->post_id;?>"/>
+                        <input type="hidden" name="p" id="permalink" value="<?php echo $post->permalink;?>"/>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">
                                         Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter name" required="required">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">
@@ -59,13 +61,22 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email" required="required">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">
+                                        URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span>
+                                        </span>
+                                        <input type="url" class="form-control" id="url" name="url" placeholder="Enter URL" value="">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="subject">
                                         Captha</label>
-                                    <input type="text" class="form-control" id="captha" placeholder="Enter captha" required="required">
+                                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Enter captha" required="required">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,7 +86,7 @@
                                     <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Message"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
                                     <i class="fa fa-send"></i> Send Message</button>
                             </div>
@@ -84,42 +95,24 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
     <div class="list-comment">
-
+        <?php if(!empty($comment)): ?>
+        <?php foreach($comment as $c): ?>
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object ava" src="http://lorempixel.com/150/150/" alt="Generic placeholder image">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">Riko Ipsum</h4>
-                <h4 class="media-meta"><i class="fa fa-clock-o"></i> 24 Jan 20:00</h4>
-                <p>This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text.</p>
-
-
+                <h4 class="media-heading"><?php echo $c->name;?></h4>
+                <h4 class="media-meta"><i class="fa fa-clock-o"></i> <?php echo $c->date;?>/h4>
+                <p><?php echo $c->content;?></p>
             </div>
-
-
         </div>
-
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object ava" src="http://lorempixel.com/150/150/" alt="Generic placeholder image">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Riko Ipsum</h4>
-                <h4 class="media-meta"><i class="fa fa-clock-o"></i> 24 Jan 20:00</h4>
-                <p>This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text. This is some sample text.</p>
-
-
-            </div>
-
-
-        </div>
+        <?php endforeach;
+        else: ?>
+        <h4>No Comment Found for This Post.</h4>
+        <?php endif; ?>
     </div>
 </div>
-
