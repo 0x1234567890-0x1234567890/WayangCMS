@@ -11,7 +11,7 @@ class HomeController extends WY_TController
     public function index()
     {        
         $this->menu(); 
-        $posts = WY_Db::all('select * from wy_post order by date_add');
+        $posts = WY_Db::all('select * from wy_post WHERE published=1 order by date_add');
         $this->layout->content = WY_View::fetch('themes/default/index', array('posts' => $posts));
         $this->layout->pageTitle = 'Wayang - Home';
     }

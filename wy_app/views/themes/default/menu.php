@@ -14,4 +14,12 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>
+                <?php
+                if(WY_Auth::is_authenticated())
+                {?>
+                <ul class="nav navbar-right">
+                    <li><a href="<?php echo WY_Request::base_url(); ?>/admin">Back To Admin</a></li>
+                </ul>
+               <?php }
+                ?>
             </div>

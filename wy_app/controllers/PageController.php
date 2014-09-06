@@ -9,6 +9,12 @@ class PageController extends WY_TController
         $this->layout->menu = WY_View::fetch('themes/default/menu',array('lists' => $lists));
     }
     
+    public function sidebar() {
+        $recent = WY_Db::all('');
+        $list = WY_Db::all('');
+        $this->layout->menu = WY_View::fetch('themes/default/sidebar',array('recent' => $recent));
+    }
+    
     public function index($permalink)
     {
         $this->menu(); 
