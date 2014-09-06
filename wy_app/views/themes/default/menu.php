@@ -1,3 +1,4 @@
+<?php $router = WY_Registry::get('router'); ?>   
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                 <span class="icon-bar"></span>
@@ -18,7 +19,7 @@
                 if(WY_Auth::is_authenticated())
                 {?>
                 <ul class="nav navbar-right">
-                    <li><a href="<?php echo WY_Request::base_url(); ?>/admin">Back To Admin</a></li>
+                    <li><a href="<?php echo $router->generate('home').$router->generate('admin-home'); ?>">Back To Admin</a></li>
                 </ul>
                <?php }
                 ?>
