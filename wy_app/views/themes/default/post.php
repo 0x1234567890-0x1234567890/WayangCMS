@@ -106,7 +106,7 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading"><?php echo $c->name;?></h4>
-                <h4 class="media-meta"><i class="fa fa-clock-o"></i> <?php echo $c->date;?>/h4>
+                <h4 class="media-meta"><i class="fa fa-clock-o"></i> <?php echo $c->date;?></h4>
                 <p><?php echo $c->content;?></p>
             </div>
         </div>

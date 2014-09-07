@@ -28,11 +28,12 @@
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
                                             <select class="form-control" name="plugin" id="plugin">
+                                                <?php if(!empty($plugins)): ?>
                                                 <option value="">Not Use</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                    <?php foreach($plugins as $p): ?>
+                                                <option value="<?php echo $p->plugin_id;?>"><?php echo $p->plugin_name;?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">

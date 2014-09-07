@@ -52,6 +52,8 @@ return array(
     // admin plugins section
     array('GET', '/admin/plugins/all', 'admin:plugin:all', 'admin-plugins'),
     array('GET|POST', '/admin/plugins/add', 'admin:plugin:add', 'admin-plugins-add'),
+    array('GET', '/admin/plugins/activate/[i:id]', 'admin:plugin:activate', 'admin-plugins-act'),
+    array('GET', '/admin/plugins/deactivate/[i:id]', 'admin:plugin:deactivate', 'admin-plugins-deact'),
     array('GET', '/admin/plugins/delete/[i:id]', 'admin:plugin:delete', 'admin-plugins-delete'),
     // admin preferences section
     array('GET', '/admin/prefs/all', 'admin:pref:all', 'admin-prefs'),
@@ -74,4 +76,11 @@ return array(
     array('GET', '/post/[*:permalink]', ':post:index', 'post'),
     //adding comment into post/page section
     array('POST', '/post/[*:permalink]', ':comment:add', 'comment'),
+    //plugin register
+    array('POST', '/plugins/register', 'plugins:register:save', 'register-member'),
+    array('GET', '/admin/plugins/register/all', 'plugins:register:all', 'register-member-all'),
+    array('GET|POST', '/admin/plugins/register/accept/[i:id]', 'plugins:register:accept', 'register-member-acc'),
+    array('GET', '/admin/plugins/register/unaccept/[i:id]', 'plugins:register:unaccept', 'register-member-unacc'),
+    array('GET|POST', '/admin/plugins/register/edit/[i:id]', 'plugins:register:edit', 'register-member-edit'),
+    array('GET', '/admin/plugins/register/delete/[i:id]', 'plugins:register:delete', 'register-member-delete'),
 );

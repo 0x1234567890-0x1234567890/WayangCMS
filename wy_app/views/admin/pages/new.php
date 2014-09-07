@@ -27,11 +27,12 @@
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
                                             <select class="form-control" name="plugin" id="plugin">
-                                                <option value="">Not Use</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php if(!empty($plugins)): ?>
+                                                <option value="0">Not Use</option>
+                                                    <?php foreach($plugins as $p): ?>
+                                                <option value="<?php echo $p->plugin_id;?>"><?php echo $p->plugin_name;?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -60,7 +61,7 @@
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
                                                 <?php if(!empty($isParent)): ?>
-                                                <option value="">Not Use</option>
+                                                <option value="0">Not Use</option>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>

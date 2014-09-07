@@ -5,16 +5,16 @@
  */
 
 class WY_IUploader{
-    private $imageType;
-    private $image;
+    public $imageType;
+    public $image;
     public $message="";
-    private $thumPath;
-    private static $thumbnail=0.15;
-    private $path;
+    public $thumPath;
+    public static $thumbnail=0.15;
+    public $path;
     /*
      * fungsi mendapatkan info detail tentang image file
      */
-    private function getInfo($file){
+    public function getInfo($file){
         $temp=getimagesize($file);
         $this->imageType=$temp[2];
         if( $this->imageType == IMAGETYPE_JPEG ){
@@ -30,7 +30,7 @@ class WY_IUploader{
     /*
      * fungsi cek file bertipe jpeg/jpg,png,gif
      */
-    private function checkExt($file){
+    public function checkExt($file){
         $this->getInfo($file);
         $stat=FALSE;
         if( $this->imageType == IMAGETYPE_JPEG ){
@@ -47,19 +47,19 @@ class WY_IUploader{
     /*
      * fungsi mendapatkan width image
      */
-    private function getW(){
+    public function getW(){
         return imagesx($this->image);
     }
     /*
      * fungsi mendapatkan height image
      */
-    private function getH(){
+    public function getH(){
         return imagesy($this->image);
     }
     /*
      * fungsi resize image
      */
-    private function resizeImage($percent){
+    public function resizeImage($percent){
         $w=($percent/100)*$this->getW();
         $h=($percent/100)*$this->getH();
         $newI = imagecreatetruecolor($w, $h);
@@ -69,7 +69,7 @@ class WY_IUploader{
     /*
      * fungsi membuat thumbnail image
      */
-    private function imageThumbnail(){
+    public function imageThumbnail(){
         $w=self::$thumbnail*$this->getW();
         $h=self::$thumbnail*$this->getH();
         $newI = imagecreatetruecolor($w, $h);
@@ -79,7 +79,7 @@ class WY_IUploader{
     /*
      * fungsi menyimpan image berdasarkan tipe mime nya(jpeg/jpg,png,gif)
      */
-    private function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=70){
+    public function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=70){
         $this->getInfo($file);
         $this->path=BASEPATH."/assets/uploads/";
         if(!$resize){
@@ -141,7 +141,7 @@ class WY_IUploader{
     /*
      * fungsi public untuk menerima parameter kiriman berupa file image, path/location ,width,height,compression leve dari image
      */
-    public function saveImage($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=80){
+    public static function saveImage($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=80){
         $ext=$this->checkExt($file);
         if($ext===FALSE){
             return "File not allow to upload!";

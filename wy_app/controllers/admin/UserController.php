@@ -2,7 +2,7 @@
 
 class UserController extends WY_TController
 {
-	public $layout = 'admin/index';
+    public $layout = 'admin/index';
 	
     public function all()
     {

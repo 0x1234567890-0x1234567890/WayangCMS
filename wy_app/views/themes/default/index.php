@@ -19,12 +19,12 @@
         <div class="content clearfix">
             <?php 
             $p=  explode("<p>", $post->content);
+            echo $p[0];
             echo $p[1];
-            echo $p[2];
             ?>
         </div>
         <a href="<?php echo WY_Request::base_url(); ?>/post/<?php echo $post->permalink;?>" class="btn btn-info">  Read More&nbsp; <i class="fa fa-chevron-right"></i> </a>
     </div>
-    <?php endforeach; ?>
+    <?php endforeach; ?>    
     <?php endif; ?>
 </div>

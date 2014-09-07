@@ -52,8 +52,9 @@ class PageController extends WY_TController
             WY_Response::redirect('admin/pages/all');
         }
         $isParent = WY_Db::all('SELECT * FROM wy_page WHERE is_parent = 0');
+        $plugins = WY_Db::all("SELECT * FROM `wy_plugin` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
         $this->layout->pageTitle = 'Wayang CMS - Pages Add';
-        $this->layout->content = WY_View::fetch('admin/pages/new',array('isParent'=>$isParent));
+        $this->layout->content = WY_View::fetch('admin/pages/new',array('isParent'=>$isParent,'plugins'=>$plugins));
     }
     
     public function view($id)
@@ -70,7 +71,7 @@ class PageController extends WY_TController
             exit();
         }
         $isParent = WY_Db::all('SELECT * FROM wy_page WHERE is_parent = 0');
-        
+        $plugins = WY_Db::all("SELECT * FROM `wy_plugin` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
         if(WY_Request::isPost()){
             $title = $_POST['title'];
             if(isset($_POST['published']))
@@ -105,7 +106,7 @@ class PageController extends WY_TController
             WY_Response::redirect('admin/pages/all');
         }
         $this->layout->pageTitle = 'Wayang CMS - Pages Edit';
-        $this->layout->content = WY_View::fetch('admin/pages/edit',array('page'=>$page, 'isParent'=>$isParent));
+        $this->layout->content = WY_View::fetch('admin/pages/edit',array('page'=>$page, 'isParent'=>$isParent,'plugins'=>$plugins));
     }
     
     public function delete($id)

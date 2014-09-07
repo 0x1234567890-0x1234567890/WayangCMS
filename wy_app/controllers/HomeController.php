@@ -5,7 +5,7 @@ class HomeController extends WY_TController
     public $layout = 'themes/default/layout';
     
     public function menu() {
-        $lists = WY_Db::all('Select * from wy_page');
+        $lists = WY_Db::all('Select * from wy_page WHERE published=1 AND is_parent=0');
         $this->layout->menu = WY_View::fetch('themes/default/menu',array('lists' => $lists));
     }
     public function index()
