@@ -93,6 +93,6 @@ class RegisterController extends WY_TController
     public function delete($id)
     {
         WY_Db::execute('DELETE FROM `wy_register_member` WHERE id = :id', array(':id'=> (int) $id));
-        WY_Response::redirect('admin/categories/all');
+        WY_Response::redirect('admin/plugins/register/all');
     }
 } 
