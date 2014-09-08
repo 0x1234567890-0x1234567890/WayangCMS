@@ -14,10 +14,27 @@ padding-bottom:3em;
 }
 .posting{
 padding: 2px 30px 30px;
-/*
 border-bottom: 1px solid #dddddd;
-*/
 background:#FFFFFF;
+    margin-bottom: 30px;
+}
+.comment{
+    margin-top: 30px;
+padding: 2px 30px 30px;
+border-bottom: 1px solid #dddddd;
+background:#FFFFFF;
+    height:700px;
+}
+.avatar{
+    overflow: hidden;
+    height: 150px;
+}
+.social{
+    margin-top:20px;
+    
+}
+.comment h3{
+    margin-bottom: 21px;
 }
 .wrapslid{
 margin-top:80px;
@@ -82,6 +99,13 @@ footer .headline h3{
     margin: 0;
 	padding: 0;
 }
+.socials ul{
+        background: #3E7A8C;
+    color: white;
+    font-size: 24px;
+    margin: 0;
+	padding: 0;
+}
 .social li {
     float: left;
     display: block;
@@ -93,9 +117,24 @@ footer .headline h3{
     text-align: center;
     line-height: 28px;
 }
+.socials li {
+    float: left;
+    display: block;
+    list-style-type: none;
+    width: 28px;
+    height: 28px;
+    background: #eee;
+    margin: 0 5px 5px 0;
+    text-align: center;
+    line-height: 28px;
+}
+.socials li:hover{
+    color: #3E7A8C; 
+}
 .social li:hover {
     background: none;
 }
+
 .social li, .social li:hover {
     transition: background 0.1s;
     -webkit-transition: background 0.1s;
@@ -131,4 +170,50 @@ footer .form-control:focus {
 }
 footer .sbtn {
 	margin-bottom: 5px;
+}
+
+
+.label {
+    display: inline-block;
+}
+
+.list-comment {
+    margin-top: 30px;
+    padding: 30px 30px 30px;
+border-bottom: 1px solid #dddddd;
+background:#FFFFFF;
+
+    
+}
+
+#captha {
+    width: 100px;
+}
+
+.ava {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.media-meta {
+    font-size: 14px;
+}
+
+.media {
+    margin-bottom: 30px;
+}
+
+.socials {
+    margin-top: 30px;
+}
+
+.meta {
+    font-size: 12px;
+    margin-bottom: 21px;
+    font-weight: 500;
+}
+
+.content {
+    margin-bottom: 21px;
 }

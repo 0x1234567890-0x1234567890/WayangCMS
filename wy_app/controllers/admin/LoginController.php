@@ -2,7 +2,7 @@
 
 class LoginController extends WY_TController
 {
-	public $layout = 'admin/login';
+    public $layout = 'admin/login';
     public $log;
     
     public function index()
@@ -15,6 +15,12 @@ class LoginController extends WY_TController
     {
         $this->layout->pageTitle = 'Wayang CMS - Reset Password';
         $this->layout->content = WY_View::fetch('admin/login/forgot');
+    }
+    
+    public function newpwd($activation)
+    {
+        $this->layout->pageTitle = 'Wayang CMS - Reset Password';
+        $this->layout->content = WY_View::fetch('admin/login/new');
     }
     
     public function login()

@@ -4676,7 +4676,7 @@
 			var type = ext.sErrMode || ext.errMode;
 	
 			if ( type == 'alert' ) {
-				alert( msg );
+				//alert( msg );
 			}
 			else {
 				throw new Error(msg);

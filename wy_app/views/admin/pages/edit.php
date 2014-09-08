@@ -1,14 +1,18 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pages -> Edit Page</h1>
+                    <div class="wizard">
+                        <a><span class="badge"></span> Pages</a>
+                        <a href="<?php echo WY_Registry::get('router')->generate('admin-pages');?>"><span class="badge"></span> All Pages</a>
+                        <a class="current"><span class="badge badge-inverse"></span> Edit Pages</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>            
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Edit Page -> <?php echo $page->title;?>
+                            <?php echo $page->title;?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -23,14 +27,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
-                                            <select class="form-control">
-                                                <option></option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <select class="form-control" name="plugin" id="plugin">
+                                                <?php if(!empty($plugins)): ?>
+                                                <option value="">Not Use</option>
+                                                    <?php foreach($plugins as $p): ?>
+                                                <option value="<?php echo $p->plugin_id;?>"><?php echo $p->plugin_name;?></option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </select>
-                                            <p class="help-block">Leave blank if not used.</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Page Content</label>
@@ -58,15 +62,19 @@
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
                                                 <?php if(!empty($isParent)): ?>
+                                                <option value="">Not Use</option>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </select>
-                                            <p class="help-block">Leave blank if not use parent page.</p>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <div class="form-group">
+                                            <label>Tags List</label>
+                                            <input type="text" id="tags" name="tags" value="<?php echo $page->taglist;?>" placeholder="Tags List" class="form-control" data-role="tagsinput" >
+                                        </div>
+                                        <button type="submit" class="btn btn-info">Save Page</button>
+                                        <button type="reset" class="btn btn-warning">Reset Form</button>
                                     </form>
                                 </div>
                             </div>

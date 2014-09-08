@@ -6,8 +6,9 @@ class PluginController extends WY_TController
 	
     public function all()
     {
+        $plugins = WY_Db::all('SELECT * FROM `wy_plugin` ORDER BY `is_active` DESC');
         $this->layout->pageTitle = 'Wayang CMS - Plugins';
-        $this->layout->content = WY_View::fetch('admin/plugins/all');
+        $this->layout->content = WY_View::fetch('admin/plugins/all', array('plugins'=>$plugins));
     }
     
     public function add()
@@ -15,18 +16,19 @@ class PluginController extends WY_TController
         
     }
     
-    public function view($id)
+    public function activate($id)
     {
-        
+        WY_Db::execute('UPDATE wy_plugin SET is_active = 1 WHERE plugin_id = :id', array(':id'=> (int) $id));
+        WY_Response::redirect('admin/plugins/all');
     }
-    
-    public function edit($id)
+    public function deactivate($id)
     {
-        
+        WY_Db::execute('UPDATE wy_plugin SET is_active = 0 WHERE plugin_id = :id', array(':id'=> (int) $id));
+        WY_Response::redirect('admin/plugins/all');
     }
-    
     public function delete($id)
     {
-        
+        WY_Db::execute('DELETE FROM wy_plugin WHERE plugin_id = :id', array(':id'=> (int) $id));
+        WY_Response::redirect('admin/plugins/all');
     }
 }

@@ -2,15 +2,17 @@
 
 class HomeController extends WY_TController
 {
-    public $layout = 'layout';
+    public $layout = 'themes/default/layout';
     
+    public function menu() {
+        $lists = WY_Db::all('Select * from wy_page WHERE published=1 AND is_parent=0');
+        $this->layout->menu = WY_View::fetch('themes/default/menu',array('lists' => $lists));
+    }
     public function index()
-    {
-        $lists = WY_Db::all('select * from wy_page');
-        $this->layout->menu = WY_View::fetch('menu',array('lists' => $lists));
-        
-        $posts = WY_Db::all('select * from wy_post order by date_add');
-        $this->layout->content = WY_View::fetch('index', array('posts' => $posts));
+    {        
+        $this->menu(); 
+        $posts = WY_Db::all('select * from wy_post WHERE published=1 order by date_add');
+        $this->layout->content = WY_View::fetch('themes/default/index', array('posts' => $posts));
         $this->layout->pageTitle = 'Wayang - Home';
     }
 }

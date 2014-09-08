@@ -23,23 +23,24 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title><?php echo $this->pageTitle; ?></title>
-
+    <link rel="shortcut icon" href="<?php echo WY_Request::base_url(); ?>/assets/images/icon.ico">
     <!-- Core CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-
+    <!-- Page-Level Plugin CSS - Dashboard 
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">-->
     <!-- Page-Level Plugin CSS - Tables -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <!-- SB Admin CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/sb-admin.css" rel="stylesheet">
     <!-- ckeditor have to load first -->
     <script type="text/javascript" src="<?php echo WY_Request::base_url(); ?>/assets/admin/ckeditor/ckeditor.js"></script>
-
+    <!-- Bootstrap tags input -->
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/tags/bootstrap-tagsinput.css" rel="stylesheet">
+    <!-- Bootstrap breadcrumb -->
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/breadcrumb/breadcrumb.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -55,36 +56,37 @@
                 </button>
                 <a class="navbar-brand" href="<?php echo $router->generate('admin-home'); ?>">Wayang CMS Administration</a>
             </div>
-            <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> Welcome Admin <i class="fa fa-caret-down"></i>
+                        <i class="fa  fa-user "></i> Welcome <?php echo WY_Session::get('display');?> <i class="fa  fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <li><a href="<?php echo $router->generate('home'); ?>"><i class="fa  fa-globe "></i> View Website</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a href="#"><i class="fa  fa-user "></i> User Profile</a>
+                        </li>
+                        <!--<li>
+                            <a href="#"><i class="fa  fa-gear "></i> Settings</a>
+                        </li>-->
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa  fa-sign-out "></i> Logout</a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
 
             <div class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="<?php echo $router->generate('admin-home'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo $router->generate('admin-home'); ?>"><i class="fa  fa-home "></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Pages<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-files-o "></i> Pages<span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-pages'); ?>"> All Pages</a>
@@ -93,10 +95,10 @@
                                     <a href="<?php echo $router->generate('admin-pages-add'); ?>"> Add New Page</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Posts <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-edit "></i> Posts <span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-posts'); ?>"> All Post</a>
@@ -104,29 +106,27 @@
                                 <li>
                                     <a href="<?php echo $router->generate('admin-posts-add'); ?>"> Add New Post</a>
                                 </li>
-                                <li>
-                                    <a href="#"> Category <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="<?php echo $router->generate('admin-categories'); ?>"> All Categories</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                                <li>
-                                    <a href="<?php echo $router->generate('admin-comments'); ?>"> Comments</a>
-                                </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Preferences <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a href="#"><i class="fa  fa-list-alt "></i> Category <span class="fa  arrow"></span></a>
+                            <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#"> Themes Preferences <span class="fa arrow"></span></a>
+                                    <a href="<?php echo $router->generate('admin-categories'); ?>"> All Categories</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-categories-add'); ?>"> Add New Category</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa  fa-comments "></i> Comments</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa  fa-wrench "></i> Preferences <span class="fa  arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <!--<li>
+                                    <a href="#"> Themes Preferences <span class="fa  arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="<?php echo $router->generate('admin-themes'); ?>"> All Themes</a>
@@ -135,10 +135,9 @@
                                             <a href="<?php echo $router->generate('admin-themes-add'); ?>"> Add New Themes</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
+                                </li>-->
                                 <li>
-                                    <a href="#"> Plugins Preferences <span class="fa arrow"></span></a>
+                                    <a href="#"><span class="fa  fa-gears"></span> Plugins Preferences <span class="fa  fa-gears arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="<?php echo $router->generate('admin-plugins'); ?>"> All Plugins</a>
@@ -146,17 +145,18 @@
                                         <li>
                                             <a href="<?php echo $router->generate('admin-plugins-add'); ?>"> Add New Plugin</a>
                                         </li>
+                                        <li>
+                                            <a href="<?php echo $router->generate('register-member-all'); ?>"> Register Member</a>
+                                        </li>
                                     </ul>
-                                    <!-- /.nav-third-level -->
                                 </li>
-                                <li>
-                                    <a href="<?php echo $router->generate('admin-prefs'); ?>"> Sites Preferences</a>
-                                </li>
+                                <!--<li>
+                                    <a href="<?php echo $router->generate('admin-prefs'); ?>"><span class="fa fa-globe"></span> Sites Preferences</a>
+                                </li>-->
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-users "></i> Users<span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users'); ?>"> All Users</a>
@@ -164,14 +164,14 @@
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users-add'); ?>"> Add New User</a>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="<?php echo $router->generate('admin-users-level'); ?>"> User Levels</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo $router->generate('admin-users-profile'); ?>"> Profiles</a>
-                                </li>
+                                </li>-->
                             </ul>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         
                     </ul>
@@ -194,27 +194,32 @@
     <!-- Core Scripts - Include with every page -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/jquery-1.10.2.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/bootstrap.min.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/tags/bootstrap-tagsinput.min.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-    <!-- Page-Level Plugin Scripts - Dashboard -->
-    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script>
-
+    
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/sb-admin.js"></script>
-
-    <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+    <!-- Page-Level Demo Scripts - Dashboard - Use for reference  
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/demo/dashboard-demo.js"></script>
+    <!-- Page-Level Plugin Scripts - Dashboard 
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/morris/morris.js"></script> -->  
      <!-- Page-Level Plugin Scripts - Tables -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    
 
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').dataTable();
-    });
+        /*
+         * Datatables
+         */
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
+        /*
+         * Bootstrap Tags Input
+         */
     </script>
-
 </body>
 
 </html>

@@ -1,13 +1,16 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Category -> All Categories</h1>
+                    <div class="wizard">
+                        <a><span class="badge"></span> Category</a>
+                        <a class="current"><span class="badge badge-inverse"></span> All Categories</a>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
                             All Categories
                         </div>
@@ -35,8 +38,8 @@
                                             <td><?php echo $c->permalink; ?></td>
                                             <td><?php echo $c->date_modified; ?></td>
                                             <th>
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-categories-edit', array('id'=>$c->cat_id)); ?>">Edit</a> | 
-                                                <a href="<?php echo WY_Registry::get('router')->generate('admin-categories-delete', array('id'=>$c->cat_id)); ?>">Delete</a>
+                                                <a class="btn btn-primary btn-sm" title="Edit" href="<?php echo WY_Registry::get('router')->generate('admin-categories-edit', array('id'=>$c->cat_id)); ?>"><span class="glyphicon glyphicon-pencil"></a>
+                                                <a class="btn btn-danger btn-sm" title="Edit" href="<?php echo WY_Registry::get('router')->generate('admin-categories-delete', array('id'=>$c->cat_id)); ?>"><span class="glyphicon glyphicon-trash"></a>
                                             </th>
                                         </tr>
                                         <?php endforeach; ?>
