@@ -23,7 +23,7 @@ background:#FFFFFF;
 padding: 2px 30px 30px;
 border-bottom: 1px solid #dddddd;
 background:#FFFFFF;
-    height:700px;
+display:inline-block
 }
 .avatar{
     overflow: hidden;
@@ -86,6 +86,8 @@ footer .headline h3{
 	padding: 20px 0 10px 0;
 	background: #386F80;
 	color: white;
+	width:100%;
+	position:absolute;
 	font-weight: 300;
 }
 .legal a {
