@@ -18,7 +18,12 @@ class WY_Config
      */
     public static function load($config_path)
     {
-        self::$config_items = include $config_path;
+        if(file_exists($config_path)){
+            self::$config_items = include $config_path;
+            return true;
+        }else{
+            return false;
+        }
     }
     
     /**

@@ -27,7 +27,10 @@ class WY_Bootstrap
      */
     public function initConfiguration()
     {
-        WY_Config::load('wy_config/config.php');
+        if(!WY_Config::load('wy_config/config.php')){
+            $this->runInstaller();
+            exit();
+        }
         date_default_timezone_set(WY_Config::get('timezone'));
     }
     
@@ -37,10 +40,11 @@ class WY_Bootstrap
      */
     public function run()
     {
-        $this->initConfiguration();
         $this->initRouter();
         
         $matchRoute = WY_Registry::get('router')->match();
+        
+        $this->initConfiguration();
         
         if($matchRoute['target'] !== null){
             array_walk($matchRoute['params'], function(&$item, $key){
@@ -69,6 +73,21 @@ class WY_Bootstrap
             }
         }else{
             require 'wy_app/views/404.php';
+        }
+    }
+    
+    public function runInstaller()
+    {
+        require 'wy_app/controllers/InstallController.php';
+        
+        $theController = new InstallController();
+        $reflection_object = new ReflectionObject($theController);
+        if($reflection_object->hasMethod('before_action')){
+            $reflection_object->getMethod('before_action')->invoke($theController);
+        }
+        call_user_func_array(array($theController, 'index'), array());
+        if($reflection_object->hasMethod('after_action')){
+            $reflection_object->getMethod('after_action')->invoke($theController);
         }
     }
 }
