@@ -16,19 +16,13 @@ class WY_Registry
      * Konstruktor
      * @access private
      */
-    private function __construct()
-    {
-        
-    }
+    private function __construct(){}
     
     /**
      * @access private
      * 
      */
-    private function __clone()
-    {
-        
-    }
+    private function __clone(){}
     
     /**
      * Mendapatkan satu objek yang telah tersimpan sebelumnya

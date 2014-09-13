@@ -4,7 +4,7 @@
         <h3 class="panel-title">WayangCMS Installation Step License Agreement</h3>
     </div>
     <div class="panel-body">
-        <form role="form" method="POST" action="<?php echo $router->generate('install');?>/step/1" enctype="multipart/form-data" >
+        <form role="form" method="POST" action="<?php echo $router->generate('install-step', array('id'=>1));?>" enctype="multipart/form-data" >
             <fieldset>
                 <div class="form-group">
                     <div class="col-md-12">

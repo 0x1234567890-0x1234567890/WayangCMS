@@ -12,8 +12,8 @@
 return array(
     // install section
     array('GET', '/install', ':install:index', 'install'),
-    array('POST','/install/step/[*:id]', ':install:step', 'install-step'),
-    array('POST','/install/step/run', ':install:run', 'install-run'),
+    array('GET|POST','/install/step/[*:id]', ':install:step', 'install-step'),
+    array('GET|POST','/install/step/run', ':install:run', 'install-run'),
     //index home section
     array('GET', '/', ':home:index', 'home'),
     // admin home section

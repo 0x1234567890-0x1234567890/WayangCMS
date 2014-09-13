@@ -31,7 +31,7 @@ class WY_Bootstrap
             $this->runInstaller();
             exit();
         }
-        date_default_timezone_set(WY_Config::get('timezone'));
+        date_default_timezone_set(WY_Config::get('timezone') ? WY_Config::get('timezone') : 'Asia/Jakarta');
     }
     
     /**
