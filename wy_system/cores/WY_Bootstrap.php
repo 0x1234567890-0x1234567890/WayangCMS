@@ -34,6 +34,19 @@ class WY_Bootstrap
         date_default_timezone_set(WY_Config::get('timezone') ? WY_Config::get('timezone') : 'Asia/Jakarta');
     }
     
+    public function runController($cName, $aName, $params)
+    {
+        $theController = new $cName();
+        $reflection_object = new ReflectionObject($theController);
+        if($reflection_object->hasMethod('before_action')){
+            $reflection_object->getMethod('before_action')->invoke($theController);
+        }
+        call_user_func_array(array($theController, $aName), $params);
+        if($reflection_object->hasMethod('after_action')){
+            $reflection_object->getMethod('after_action')->invoke($theController);
+        }
+    }
+    
     /**
      * Eksekusi program di mulai disini
      * 
@@ -62,15 +75,7 @@ class WY_Bootstrap
                 require 'wy_app/views/404.php';
                 exit();
             }
-            $theController = new $controllerName();
-            $reflection_object = new ReflectionObject($theController);
-            if($reflection_object->hasMethod('before_action')){
-                $reflection_object->getMethod('before_action')->invoke($theController);
-            }
-            call_user_func_array(array($theController, $actionName), $matchRoute['params']);
-            if($reflection_object->hasMethod('after_action')){
-                $reflection_object->getMethod('after_action')->invoke($theController);
-            }
+            $this->runController($controllerName, $actionName, $matchRoute['params']);
         }else{
             require 'wy_app/views/404.php';
         }
@@ -79,15 +84,6 @@ class WY_Bootstrap
     public function runInstaller()
     {
         require 'wy_app/controllers/InstallController.php';
-        
-        $theController = new InstallController();
-        $reflection_object = new ReflectionObject($theController);
-        if($reflection_object->hasMethod('before_action')){
-            $reflection_object->getMethod('before_action')->invoke($theController);
-        }
-        call_user_func_array(array($theController, 'index'), array());
-        if($reflection_object->hasMethod('after_action')){
-            $reflection_object->getMethod('after_action')->invoke($theController);
-        }
+        $this->runController('InstallController', 'index', array());
     }
 }

@@ -6,8 +6,6 @@ class CommentController extends WY_TController
     public function add()
     {
         if(WY_Request::isPost()){
-            
-            
             $name = $_POST['name'];
             $email = $_POST['email'];
             $url = $_POST['url'];
