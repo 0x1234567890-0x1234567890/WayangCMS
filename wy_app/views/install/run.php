@@ -6,7 +6,7 @@
         </h3>
     </div>
     <div class="panel-body">
-        <form role="form" method="POST" action="<?php echo $router->generate('install');?>/step/run" enctype="multipart/form-data" >
+        <form role="form" method="POST" action="<?php echo $router->generate('install-run');?>" enctype="multipart/form-data" >
             <div class="col-md-10 col-md-offset-1">
                 <p style="text-align: center"><i class="fa fa-check fa-fw"></i>All data completed, run installation now?</p>
             </div>
