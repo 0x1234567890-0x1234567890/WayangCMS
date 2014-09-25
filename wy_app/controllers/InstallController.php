@@ -18,6 +18,7 @@ return array(
         'dbname' => '%dbname%',
     ),
     'timezone' => 'Asia/Jakarta',
+    'salt' => 'AB87@#5edV!3s)98s^7_9*6HNM%$))$%Has34bk98s*9)&S$@sda',
 );
 WTF;
     
@@ -93,7 +94,7 @@ WTF;
             $table_sql = array();
             $migration = new WY_Migration();
         
-            $table_sql[] = $migration->createTable('wy_user', array(
+            $table_sql[] = $migration->createTable('wy_users', array(
                 'user_id' => 'pk',
                 'username' => 'string NOT NULL',
                 'pass' => 'string NOT NULL',
@@ -105,7 +106,7 @@ WTF;
                 'display_name' => 'string NOT NULL',
             ));
             
-            $table_sql[] = $migration->createTable('wy_category', array(
+            $table_sql[] = $migration->createTable('wy_categories', array(
                 'cat_id' => 'pk',
                 'title' => 'string NOT NULL',
                 'date_add' => 'datetime NOT NULL',
@@ -114,20 +115,20 @@ WTF;
                 'permalink' => 'string NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_comment', array(
+            $table_sql[] = $migration->createTable('wy_comments', array(
                 'c_id' => 'pk',
-                'c_name' => 'string NOT NULL',
-                'c_email' => 'string NOT NULL',
-                'c_url' => 'string NOT NULL',
-                'c_date' => 'datetime NOT NULL',
-                'c_content' => 'text NOT NULL',
-                'c_post_id' => 'integer NULL',
-                'c_page_id' => 'integer NULL',
-                'c_ip' => 'varchar(15) NOT NULL',
+                'name' => 'string NOT NULL',
+                'email' => 'string NOT NULL',
+                'url' => 'string NOT NULL',
+                'date' => 'datetime NOT NULL',
+                'content' => 'text NOT NULL',
+                'post_id' => 'integer NULL',
+                'page_id' => 'integer NULL',
+                'ip' => 'varchar(15) NOT NULL',
                 'is_parent' => 'integer NOT NULL DEFAULT 0'
             ));
             
-            $table_sql[] = $migration->createTable('wy_page', array(
+            $table_sql[] = $migration->createTable('wy_pages', array(
                 'page_id' => 'pk',
                 'author' => 'integer NOT NULL',
                 'title' => 'string NOT NULL',
@@ -141,14 +142,14 @@ WTF;
                 'permalink' => 'string NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_plugin', array(
+            $table_sql[] = $migration->createTable('wy_plugins', array(
                 'plugin_id' => 'pk',
                 'plugin_name' => 'string NOT NULL',
                 'plugin_path' => 'string NOT NULL',
                 'is_active' => 'tinyint(4) NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_post', array(
+            $table_sql[] = $migration->createTable('wy_posts', array(
                 'post_id' => 'pk',
                 'title' => 'string NOT NULL',
                 'cat_id' => 'integer NOT NULL',
@@ -163,10 +164,10 @@ WTF;
                 'date_modified' => 'datetime DEFAULT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_setting', array(
-                's_id' => 'pk',
-                's_key' => 'string NOT NULL',
-                's_value' => 'string NULL',
+            $table_sql[] = $migration->createTable('wy_settings', array(
+                'id' => 'pk',
+                'key' => 'string NOT NULL',
+                'value' => 'string NULL',
                 'is_auto' => 'varchar(4) NULL'
             ));
             
@@ -177,7 +178,7 @@ WTF;
                 'is_active' => 'tinyint(4) NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_usermeta', array(
+            $table_sql[] = $migration->createTable('wy_usermetas', array(
                 'um_id' => 'pk',
                 'user_id' => 'integer NOT NULL',
                 'key_name' => 'string NOT NULL',
@@ -192,7 +193,7 @@ WTF;
                 (`username`, `pass`, `email`, `url`, `date_registered`, `status`, `display_name`) 
                 VALUES
                 ('.$this->quote(WY_Session::get('install.username')).', 
-                '.$this->quote(sha1(WY_Session::get('install.password'))).', 
+                '.$this->quote(sha1(WY_Session::get('install.password')).WY_Config::get('salt')).', 
                 '.$this->quote(WY_Session::get('install.email')).', 
                 '.$this->quote(WY_Session::get('install.url')).', NOW(), 
                 "admin", '.$this->quote(WY_Session::get('install.display_name')).')');
