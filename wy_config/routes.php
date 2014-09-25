@@ -46,6 +46,11 @@ return array(
     array('GET', '/admin/comments/all', 'admin:comment:all', 'admin-comments'),
     array('GET|POST', '/admin/comments/edit/[i:id]', 'admin:comment:edit', 'admin-comments-edit'),
     array('GET', '/admin/comments/delete/[i:id]', 'admin:comment:delete', 'admin-comments-delete'),
+    // admin media file section
+    array('GET', '/admin/files/all', 'admin:file:all', 'admin-files'),
+    array('GET|POST', '/admin/files/add', 'admin:file:add', 'admin-files-add'),
+    array('GET|POST', '/admin/files/edit/[i:id]', 'admin:file:edit', 'admin-files-edit'),
+    array('GET', '/admin/files/delete/[i:id]', 'admin:file:delete', 'admin-files-delete'),
     // admin themes section
     array('GET', '/admin/themes/all', 'admin:theme:all', 'admin-themes'),
     array('GET|POST', '/admin/themes/add', 'admin:theme:add', 'admin-themes-add'),

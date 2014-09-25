@@ -27,7 +27,7 @@
     <link rel="shortcut icon" href="<?php echo WY_Request::base_url(); ?>/assets/images/icon.ico">
     <!-- Core CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Page-Level Plugin CSS - Dashboard 
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">-->
     <!-- Page-Level Plugin CSS - Tables -->
@@ -79,7 +79,7 @@
                 </li>
             </ul>
 
-            <div class="navbar-default navbar-static-side" role="navigation">
+            <div class="navbar-default navbar-static-side" role="navigation" >
                 <div class="sidebar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -123,6 +123,17 @@
                             <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa  fa-comments "></i> Comments</a>
                         </li>
                         <li>
+                            <a href="#"><i class="fa  fa-file-photo-o"></i> Files Media <span class="fa  arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-files'); ?>"> All Files</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-files-add'); ?>"> Add New Files</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa  fa-wrench "></i> Preferences <span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <!--<li>
@@ -145,9 +156,9 @@
                                         <li>
                                             <a href="<?php echo $router->generate('admin-plugins-add'); ?>"> Add New Plugin</a>
                                         </li>
-                                        <li>
+                                        <!--<li>
                                             <a href="<?php echo $router->generate('register-member-all'); ?>"> Register Member</a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </li>
                                 <!--<li>

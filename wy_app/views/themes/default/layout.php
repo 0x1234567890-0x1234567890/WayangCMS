@@ -22,10 +22,7 @@
 </head>
 
 <body class="home">
-    <div class="navbar navbar-default navbar-fixed-top contnav">
-        <?php echo $menu; ?>
-        <!-- /.nav-collapse -->
-    </div>
+    <?php echo $menu; ?>
     <div class="container wrapslid">
         <div class="row">
             <div class="col-lg-12">
