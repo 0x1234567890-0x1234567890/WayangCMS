@@ -28,7 +28,7 @@ class LoginController extends WY_TController
         if(WY_Request::isPost())
         {
             $username = $_POST['username'];
-            $password = sha1($_POST['password']);
+            $password = sha1($_POST['password'].WY_Config::get('salt'));
             $this->log = WY_Auth::login($username, $password);
             if($this->log)
             {

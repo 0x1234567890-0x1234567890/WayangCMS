@@ -13,7 +13,7 @@ class WY_Auth
      */
 	public static function login($username, $password)
     {
-        $user = WY_Db::row("select * from wy_user where username = :username and pass = :password", array(
+        $user = WY_Db::row("select * from wy_users where username = :username and pass = :password", array(
             ':username' => $username,
             ':password' => $password,
         ));

@@ -72,12 +72,12 @@ WTF;
             }else{ // step 3 process
                 $web_name = WY_Request::post('wname');
                 $web_url = WY_Request::post('wurl');
-                $enable_sidebar = WY_Request::post('wside');
+                //$enable_sidebar = WY_Request::post('wside');
                 
                 
                     WY_Session::set('install.web_name', $web_name);
                     WY_Session::set('install.web_url', $web_url);
-                    WY_Session::set('install.enable_sidebar', $enable_sidebar);
+                    //WY_Session::set('install.enable_sidebar', $enable_sidebar);
                     
                     WY_Response::redirect('install/run');
                 
@@ -189,19 +189,25 @@ WTF;
                 WY_Db::execute($sql);
             }
             
-            WY_Db::execute('INSERT INTO wy_user 
+            WY_Db::execute('INSERT INTO wy_users 
                 (`username`, `pass`, `email`, `url`, `date_registered`, `status`, `display_name`) 
                 VALUES
                 ('.$this->quote(WY_Session::get('install.username')).', 
-                '.$this->quote(sha1(WY_Session::get('install.password')).WY_Config::get('salt')).', 
+                '.$this->quote(sha1(WY_Session::get('install.password').WY_Config::get('salt'))).', 
                 '.$this->quote(WY_Session::get('install.email')).', 
                 '.$this->quote(WY_Session::get('install.url')).', NOW(), 
                 "admin", '.$this->quote(WY_Session::get('install.display_name')).')');
             
-            WY_Response::redirect('');
+            WY_Response::redirect('install/result');
         }
         
         $this->layout->content = WY_View::fetch('install/run');
+        $this->layout->pageTitle = 'Wayang - Initial Installation';
+    }
+    
+    public function result()
+    {
+        $this->layout->content = WY_View::fetch('install/result');
         $this->layout->pageTitle = 'Wayang - Initial Installation';
     }
     

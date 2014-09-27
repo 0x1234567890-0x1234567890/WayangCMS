@@ -5,7 +5,7 @@ class PageController extends WY_TController
     public $layout = 'themes/default/layout';
     
     public function menu() {
-        $lists = WY_Db::all('Select * from wy_page');
+        $lists = WY_Db::all('Select * from wy_pages');
         $this->layout->menu = WY_View::fetch('themes/default/menu',array('lists' => $lists));
     }
     
@@ -18,7 +18,7 @@ class PageController extends WY_TController
     public function index($permalink)
     {
         $this->menu(); 
-        $page = WY_Db::row("select * from wy_page where permalink = :permalink", array(':permalink' => $permalink));
+        $page = WY_Db::row("select * from wy_pages where permalink = :permalink", array(':permalink' => $permalink));
         if($page->use_plugin==0)
         {
             $this->layout->content = WY_View::fetch('themes/default/page', array('page' => $page));
@@ -26,7 +26,7 @@ class PageController extends WY_TController
         }
         else
         {
-            $plug=WY_Db::row("select * from wy_plugin where plugin_id = :id", array(':id' => $page->use_plugin));
+            $plug=WY_Db::row("select * from wy_plugins where plugin_id = :id", array(':id' => $page->use_plugin));
             $this->layout->content = WY_View::fetch('plugins/'.$plug->plugin_path.'/index', array('page' => $page,'plugin'=>$plug));
             $this->layout->pageTitle = 'Wayang - '.$plug->plugin_name;
         }
