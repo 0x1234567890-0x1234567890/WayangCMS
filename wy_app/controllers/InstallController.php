@@ -73,13 +73,11 @@ WTF;
                 $web_url = WY_Request::post('wurl');
                 $enable_sidebar = WY_Request::post('wside');
                 
+                WY_Session::set('install.web_name', $web_name);
+                WY_Session::set('install.web_url', $web_url);
+                WY_Session::set('install.enable_sidebar', $enable_sidebar);
                 
-                    WY_Session::set('install.web_name', $web_name);
-                    WY_Session::set('install.web_url', $web_url);
-                    WY_Session::set('install.enable_sidebar', $enable_sidebar);
-                    
-                    WY_Response::redirect('install/run');
-                
+                WY_Response::redirect('install/run');
             }
         }
         
