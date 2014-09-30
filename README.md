@@ -37,3 +37,5 @@ Next Version with feature:
 Still stay with us
 
 Best Regards
+
+Wayang CMS Dev. Team
