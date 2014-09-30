@@ -2,6 +2,19 @@
     <?php if(!empty($post)): ?>
     <div class="posting">
         <h2><a href="<?php echo WY_Request::base_url(); ?>/post/<?php echo $post->permalink;?>"><?php echo $post->title; ?></a></h2>
+        <h4 class="meta"><i class="fa fa-calendar-o"></i>&nbsp; <?php echo $post->date_add;?>   &nbsp;&nbsp;
+            <i class="fa fa-tags"></i>&nbsp; 
+                <?php 
+                $t=explode(",",$post->tag);
+                $lab=array("label-warning","label-default","label-success","label-info");
+                
+                foreach ($t as $k => $v)
+                {
+                    $l = array_rand($lab);
+                    echo " <span class='label ".$lab[$l]."'>".$v."</span> ";
+                }
+                ?>
+        </h4>
         <?php echo $post->content; ?>
     </div>
     <?php else: ?>
@@ -73,11 +86,11 @@
                                         <input type="url" class="form-control" id="url" name="url" placeholder="Enter URL" value="">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="subject">
                                         Captha</label>
                                     <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Enter captha" required="required">
-                                </div>
+                                </div>-->
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

@@ -327,3 +327,7 @@ table.dataTable thead .sorting:after {
 .show-grid {
     margin: 15px 0;
 }
+
+.brand-admin{
+    margin-top:-12px;
+}

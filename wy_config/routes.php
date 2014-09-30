@@ -71,16 +71,19 @@ return array(
     array('GET', '/admin/users/all', 'admin:user:all', 'admin-users'),
     array('GET|POST', '/admin/users/add', 'admin:user:add', 'admin-users-add'),
     array('GET|POST', '/admin/users/edit/[i:id]', 'admin:user:edit', 'admin-users-edit'),
+    array('GET|POST', '/admin/users/password', 'admin:user:pwd', 'admin-users-pwd'),
+    array('GET|POST', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     array('GET', '/admin/users/delete/[i:id]', 'admin:user:delete', 'admin-users-delete'),
     // admin users level section
     array('GET', '/admin/users/level', 'admin:user:level', 'admin-users-level'),
     array('GET|POST', '/admin/users/level', 'admin:user:level_add', 'admin-users-level-add'),
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_edit', 'admin-users-level-edit'),
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_delete', 'admin-users-level-delete'),
-    array('GET', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     // view page/post/ section
     array('GET', '/page/[*:permalink]', ':page:index', 'page'),
     array('GET', '/post/[*:permalink]', ':post:index', 'post'),
+    // view by categories
+    array('GET','/label/[*:permalink]',':label:index','categories'),
     //adding comment into post/page section
     array('POST', '/post/[*:permalink]', ':comment:add', 'comment'),
     //plugin register

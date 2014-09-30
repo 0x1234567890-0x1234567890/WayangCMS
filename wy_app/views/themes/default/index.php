@@ -18,9 +18,8 @@
         </h4>
         <div class="content clearfix">
             <?php 
-            $p=  explode("<p>", $post->content);
+            $p=  explode("</p>", $post->content);
             echo $p[0];
-            echo $p[1];
             ?>
         </div>
         <a href="<?php echo WY_Request::base_url(); ?>/post/<?php echo $post->permalink;?>" class="btn btn-info">  Read More&nbsp; <i class="fa fa-chevron-right"></i> </a>

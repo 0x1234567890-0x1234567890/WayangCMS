@@ -66,7 +66,7 @@ class WY_View
     {
         extract($this->vars);
         if(!is_null($_data_) and is_array($_data_)) extract($_data_, EXTR_SKIP);
-        $_view_filepath = BASEPATH.'/wy_themes/'.$this->view.'.php';
+        $_view_filepath = BASEPATH.'/wy_app/views/'.$this->view.'.php';
         if(!file_exists($_view_filepath)){
             throw new Exception("The view file doesn't exist");
         }

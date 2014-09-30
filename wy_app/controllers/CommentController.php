@@ -9,7 +9,8 @@ class CommentController extends WY_TController
             $name = $_POST['name'];
             $email = $_POST['email'];
             $url = $_POST['url'];
-            $captcha = $_POST['captcha'];
+            $permalink = $_POST['p'];
+            //$captcha = $_POST['captcha'];
             $content = $_POST['message'];
             if(isset($_POST['postid']))
             {
@@ -22,7 +23,7 @@ class CommentController extends WY_TController
                         ':content'=> htmlspecialchars($content),
                         ':post_id'=> $post_id,
                         ));
-                WY_Response::redirect('post/'.$_POST['permalink']);
+                WY_Response::redirect('post/'.$permalink);
             }
             else
             {
@@ -34,7 +35,7 @@ class CommentController extends WY_TController
                         ':content'=>  htmlspecialchars($content),
                         ':page_id'=> $post_id,
                         ));
-                WY_Response::redirect('page/'.$_POST['permalink']);
+                WY_Response::redirect('page/'.$permalink);
             }
         }
         $this->layout->pageTitle = 'Wayang CMS - Add Category';

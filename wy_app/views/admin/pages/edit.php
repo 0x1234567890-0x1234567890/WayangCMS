@@ -28,8 +28,8 @@
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
                                             <select class="form-control" name="plugin" id="plugin">
+                                                <option value="0">Not Use</option>
                                                 <?php if(!empty($plugins)): ?>
-                                                <option value="">Not Use</option>
                                                     <?php foreach($plugins as $p): ?>
                                                 <option value="<?php echo $p->plugin_id;?>"><?php echo $p->plugin_name;?></option>
                                                     <?php endforeach; ?>
@@ -61,8 +61,8 @@
                                         <div class="form-group">
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
+                                                <option value="0">Not Use</option>
                                                 <?php if(!empty($isParent)): ?>
-                                                <option value="">Not Use</option>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>
@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Tags List</label>
-                                            <input type="text" id="tags" name="tags" value="<?php echo $page->taglist;?>" placeholder="Tags List" class="form-control" data-role="tagsinput" >
+                                            <input type="text" id="tags" name="tags" value="<?php echo $page->tag;?>" placeholder="Tags List" class="form-control" data-role="tagsinput" >
                                         </div>
                                         <button type="submit" class="btn btn-info">Save Page</button>
                                         <button type="reset" class="btn btn-warning">Reset Form</button>

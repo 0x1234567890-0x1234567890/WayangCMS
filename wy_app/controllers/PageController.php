@@ -10,14 +10,16 @@ class PageController extends WY_TController
     }
     
     public function sidebar() {
-        $recent = WY_Db::all('');
-        $list = WY_Db::all('');
-        $this->layout->menu = WY_View::fetch('themes/default/sidebar',array('recent' => $recent));
+        $recents = WY_Db::all('select * from wy_posts WHERE published=1 order by date_add');
+        $lists = WY_Db::all('select * from wy_categories WHERE published=1 order by date_add');
+        //$labels = WY_Db::all('');
+        $this->layout->sidebar = WY_View::fetch('themes/default/sidebar',array('recents' => $recents,'lists' => $lists));
     }
     
     public function index($permalink)
     {
         $this->menu(); 
+        $this->sidebar();  
         $page = WY_Db::row("select * from wy_pages where permalink = :permalink", array(':permalink' => $permalink));
         if($page->use_plugin==0)
         {

@@ -6,7 +6,7 @@ class PageController extends WY_TController
 	
     public function all()
     {
-        $pages = WY_Db::all("SELECT * FROM wy_page ORDER BY page_id ASC");
+        $pages = WY_Db::all("SELECT * FROM wy_pages ORDER BY page_id ASC");
         $this->layout->pageTitle = 'Wayang CMS - Pages All';
         $this->layout->content = WY_View::fetch('admin/pages/all', array('pages'=>$pages));
     }
@@ -35,8 +35,8 @@ class PageController extends WY_TController
             $isParent = $_POST['isParent'];
             $tags = $_POST['tags'];
             $permalink = strtolower(str_replace(' ', '-', $title));
-            WY_Db::execute('INSERT INTO `wy_page`'
-                    . '(`author`, `title`, `date_add`, `content`, `comment_open`, `published`, `use_plugin`, `is_parent`, `permalink`, `taglist`) '
+            WY_Db::execute('INSERT INTO `wy_pages`'
+                    . '(`author`, `title`, `date_add`, `content`, `comment_open`, `published`, `use_plugin`, `is_parent`, `permalink`, `tag`) '
                     . 'VALUES '
                     . '(:author,:title,NOW(),:content,:comment_open,:published,:use_plugin,:is_parent,:permalink,:taglist)', array(
                     ':author'=>$author,
@@ -51,8 +51,8 @@ class PageController extends WY_TController
                 ));
             WY_Response::redirect('admin/pages/all');
         }
-        $isParent = WY_Db::all('SELECT * FROM wy_page WHERE is_parent = 0');
-        $plugins = WY_Db::all("SELECT * FROM `wy_plugin` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
+        $isParent = WY_Db::all('SELECT * FROM wy_pages WHERE is_parent = 0');
+        $plugins = WY_Db::all("SELECT * FROM `wy_plugins` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
         $this->layout->pageTitle = 'Wayang CMS - Pages Add';
         $this->layout->content = WY_View::fetch('admin/pages/new',array('isParent'=>$isParent,'plugins'=>$plugins));
     }
@@ -64,14 +64,14 @@ class PageController extends WY_TController
     
     public function edit($id)
     {
-        $page = WY_Db::row('SELECT * FROM wy_page WHERE page_id = :id', array(':id'=> (int) $id));
+        $page = WY_Db::row('SELECT * FROM wy_pages WHERE page_id = :id', array(':id'=> (int) $id));
         if(!$page){
             $view = new WY_View('404');
             $view->render();
             exit();
         }
-        $isParent = WY_Db::all('SELECT * FROM wy_page WHERE is_parent = 0');
-        $plugins = WY_Db::all("SELECT * FROM `wy_plugin` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
+        $isParent = WY_Db::all('SELECT * FROM wy_pages WHERE is_parent = 0 AND page_id <> :id' , array(':id'=> (int) $id));
+        $plugins = WY_Db::all("SELECT * FROM `wy_plugins` WHERE `is_active` = 1 ORDER BY plugin_name ASC");
         if(WY_Request::isPost()){
             $title = $_POST['title'];
             if(isset($_POST['published']))
@@ -92,8 +92,8 @@ class PageController extends WY_TController
             $content = $_POST['content'];
             $tags = $_POST['tags'];
             $permalink = strtolower(str_replace(' ', '-', $title));
-            WY_Db::execute('UPDATE wy_page 
-                SET title = :title, date_modified = NOW(), content = :content, published = :published, is_parent= :is_parent, permalink = :permalink, comment_open = :comment_open, taglist = :taglist WHERE page_id = :id', array(
+            WY_Db::execute('UPDATE wy_pages 
+                SET title = :title, date_modified = NOW(), content = :content, published = :published, is_parent= :is_parent, permalink = :permalink, comment_open = :comment_open, tag = :taglist WHERE page_id = :id', array(
                     ':title'=>$title,
                     ':published'=>$published,
                     ':content'=>$content,
@@ -111,8 +111,8 @@ class PageController extends WY_TController
     
     public function delete($id)
     {
-        WY_Db::execute('DELETE FROM wy_page WHERE page_id = :id', array(':id'=> (int) $id));
-        WY_Db::execute('DELETE FROM wy_comment WHERE page_id = :id', array(':id'=> (int) $id));
+        WY_Db::execute('DELETE FROM wy_pages WHERE page_id = :id', array(':id'=> (int) $id));
+        WY_Db::execute('DELETE FROM wy_comments WHERE page_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/pages/all');
     }
 }
