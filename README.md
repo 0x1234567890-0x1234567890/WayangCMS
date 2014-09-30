@@ -27,7 +27,7 @@ Feature lists:
 - Posts
 - Categories
 - Comments
-- Users 
+- Users
 
 Next Version with feature:
 - Plugins
