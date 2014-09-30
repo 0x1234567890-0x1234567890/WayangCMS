@@ -10,7 +10,7 @@ class CommentController extends WY_TController
             $email = $_POST['email'];
             $url = $_POST['url'];
             $permalink = $_POST['p'];
-            //$captcha = $_POST['captcha'];
+            // $captcha = $_POST['captcha'];
             $content = $_POST['message'];
             if(isset($_POST['postid']))
             {
