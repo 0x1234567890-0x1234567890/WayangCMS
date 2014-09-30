@@ -53,7 +53,7 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-             <hr>
+            <hr>
             <h3>Left a Comment</h3>
             
             <div class="col-lg-12 row">

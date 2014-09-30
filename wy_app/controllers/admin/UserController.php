@@ -3,9 +3,18 @@
 class UserController extends WY_TController
 {
     public $layout = 'admin/index';
-	
+    
+    public static function auth()
+    {
+        if(!WY_Auth::is_authenticated())
+        {
+            WY_Response::redirect('login');
+        }   
+    }
+    
     public function all()
     {
+        self::auth();
         $user = WY_Db::all('SELECT * FROM `wy_users`');
         $this->layout->pageTitle = 'Wayang CMS - Users';
         $this->layout->content = WY_View::fetch('admin/users/all', array('user'=>$user));
@@ -13,6 +22,7 @@ class UserController extends WY_TController
     
     public function add()
     {
+        self::auth();
         if(WY_Request::isPost()){
             $username=$_POST['username'];
             $email=$_POST['email'];
@@ -37,16 +47,38 @@ class UserController extends WY_TController
     
     public function view($id)
     {
+        self::auth();
         
     }
     
-    public function profile($id)
+    public function profile()
     {
-        
+        self::auth();
+        $user = WY_Db::row('SELECT * FROM `wy_users` WHERE `user_id` = :id', array(':id'=> (int) WY_Session::get('user_id')));
+        if(!$user){
+            $view = new WY_View('404');
+            $view->render();
+            exit();
+        }
+        if(WY_Request::isPost())
+        {
+            $username=$_POST['username'];
+            $npass=$_POST['npassword'];
+            $cpass=$_POST['cpassword'];
+            $sql="UPDATE `wy_users` SET `pass`=:password WHERE `username`=:username";
+            WY_Db::execute($sql, array(
+                ':password'=>sha1($npass.WY_Config::get('salt')),
+                ':username'=>$username,
+                ));
+            WY_Response::redirect('admin/users/all');
+        }
+        $this->layout->pageTitle = 'Wayang CMS - Change User Password';
+        $this->layout->content = WY_View::fetch('admin/users/profile');
     }
     
     public function pwd()
     {
+        self::auth();
         $user = WY_Db::row('SELECT * FROM `wy_users` WHERE `user_id` = :id', array(':id'=> (int) WY_Session::get('user_id')));
         if(!$user){
             $view = new WY_View('404');
@@ -71,6 +103,7 @@ class UserController extends WY_TController
     
     public function edit($id)
     {
+        self::auth();
         $user = WY_Db::row('SELECT * FROM `wy_users` WHERE `user_id` = :id', array(':id'=> (int) $id));
         if(!$user){
             $view = new WY_View('404');
@@ -118,6 +151,7 @@ class UserController extends WY_TController
     
     public function delete($id)
     {
+        self::auth();
         WY_Db::execute('DELETE FROM wy_users WHERE user_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/users/all');
     }

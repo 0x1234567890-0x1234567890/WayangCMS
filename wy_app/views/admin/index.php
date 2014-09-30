@@ -122,7 +122,7 @@
                         <li>
                             <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa  fa-comments "></i> Comments</a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="#"><i class="fa  fa-file-photo-o"></i> Files Media <span class="fa  arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -132,11 +132,11 @@
                                     <a href="<?php echo $router->generate('admin-files-add'); ?>"> Add New Files</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
+                        </li>-->
+                        <!--<li>
                             <a href="#"><i class="fa  fa-wrench "></i> Preferences <span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <!--<li>
+                                <li>
                                     <a href="#"> Themes Preferences <span class="fa  arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
@@ -160,12 +160,12 @@
                                             <a href="<?php echo $router->generate('register-member-all'); ?>"> Register Member</a>
                                         </li>
                                     </ul>
-                                </li>-->
-                                <!--<li>
+                                </li>
+                                <li>
                                     <a href="<?php echo $router->generate('admin-prefs'); ?>"><span class="fa fa-globe"></span> Sites Preferences</a>
-                                </li>-->
+                                </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="#"><i class="fa  fa-users "></i> Users<span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">

@@ -4,8 +4,17 @@ class PostController extends WY_TController
 {
     public $layout = 'admin/index';
     
+    public static function auth()
+    {
+        if(!WY_Auth::is_authenticated())
+        {
+            WY_Response::redirect('login');
+        }   
+    }
+    
     public function all()
     {
+        self::auth();
         $post = WY_Db::all("SELECT wy_p.*,wy_c.title as c_title FROM wy_posts wy_p,wy_categories wy_c WHERE wy_p.cat_id=wy_c.cat_id ORDER BY post_id ASC");
         $this->layout->pageTitle = 'Wayang CMS - Posts';
         $this->layout->content = WY_View::fetch('admin/posts/all',array('post'=>$post));
@@ -13,6 +22,7 @@ class PostController extends WY_TController
     
     public function add()
     {
+        self::auth();
         if(WY_Request::isPost()){
             $author=  WY_Session::get('display');
             $title = $_POST['title'];
@@ -64,10 +74,12 @@ class PostController extends WY_TController
     public function view($id)
     {
         
+        self::auth();
     }
     
     public function edit($id)
     {
+        self::auth();
         $post = WY_Db::row('SELECT * FROM wy_posts WHERE post_id = :id', array(':id'=> (int) $id));
         if(!$post){
             $view = new WY_View('404');
@@ -121,6 +133,7 @@ class PostController extends WY_TController
     
     public function delete($id)
     {
+        self::auth();
         WY_Db::execute('DELETE FROM wy_posts WHERE post_id = :id', array(':id'=> (int) $id));
         WY_Db::execute('DELETE FROM wy_comments WHERE post_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/posts/all');
