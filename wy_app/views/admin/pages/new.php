@@ -27,8 +27,8 @@
                                         <div class="form-group">
                                             <label>Page Plugin/Module</label>
                                             <select class="form-control" name="plugin" id="plugin">
-                                                <?php if(!empty($plugins)): ?>
                                                 <option value="0">Not Use</option>
+                                                <?php if(!empty($plugins)): ?>
                                                     <?php foreach($plugins as $p): ?>
                                                 <option value="<?php echo $p->plugin_id;?>"><?php echo $p->plugin_name;?></option>
                                                     <?php endforeach; ?>
@@ -60,8 +60,8 @@
                                         <div class="form-group">
                                             <label>Page Parent</label>
                                             <select class="form-control" name="isParent" id="isParent">
-                                                <?php if(!empty($isParent)): ?>
                                                 <option value="0">Not Use</option>
+                                                <?php if(!empty($isParent)): ?>
                                                     <?php foreach($isParent as $parent): ?>
                                                 <option value="<?php echo $parent->page_id;?>"><?php echo $parent->title;?></option>
                                                     <?php endforeach; ?>

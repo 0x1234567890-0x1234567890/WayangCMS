@@ -22,6 +22,15 @@
     <body class="home">
         <div class="container">
             <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="clearfix">
+                        <div class="col-md-6 col-md-offset-3">
+                            <img src="<?php echo WY_Request::base_url(); ?>/assets/images/logo.png" class="img-responsive" width="100%"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <?php echo $content; ?>
                 </div>

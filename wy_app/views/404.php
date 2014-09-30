@@ -23,6 +23,7 @@
 
   .logo { display: inline-block; margin-top: 35px; }
   .logo-img-2x { display: none; }
+  .logo-img { width:30%; }
   @media
   only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (   min--moz-device-pixel-ratio: 2),
@@ -47,8 +48,10 @@
 </style>
 <body cz-shortcut-listen="true">
     <div class="container">
-      <h1>404</h1>
-      <p><strong>The Page was Not Found.</strong></p>
+        <img src="<?php echo WY_Request::base_url(); ?>/assets/images/logo.png" class="logo logo-img"/>
+        <h1>404</h1>
+        <p><strong>The Page was Not Found.</strong></p>
+        <p><strong>Go to <a href="<?php echo WY_Request::base_url(); ?>">Home</a>.</strong></p>
     </div>
 </body>
 </html>

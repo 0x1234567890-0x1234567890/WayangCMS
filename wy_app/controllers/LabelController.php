@@ -1,7 +1,8 @@
 <?php
-class PostController extends WY_TController
+
+class LabelController extends WY_TController
 {
-    public $layout = "themes/default/layout";
+    public $layout = 'themes/default/layout';
     
     public function menu() {
         $lists = WY_Db::all('Select * from wy_pages');
@@ -18,10 +19,11 @@ class PostController extends WY_TController
     public function index($permalink)
     {
         $this->menu(); 
-        $this->sidebar(); 
-        $post = WY_Db::row("select * from wy_posts where permalink = :permalink", array(':permalink' => $permalink));
-        $comment = WY_Db::all("SELECT name,date_format(date,'%b %d %Y %h:%i %p') as date,content from wy_comments WHERE post_id =:id",array(':id'=>$post->post_id));
-        $this->layout->content = WY_View::fetch('themes/default/post', array('post' => $post,'comment'=>$comment));
-        $this->layout->pageTitle = 'Wayang - '.$post->title;
+        $this->sidebar();
+        $cats = WY_Db::row("select * from wy_categories WHERE permalink=:permalink",array("permalink"=>$permalink));
+        $posts = WY_Db::all("select * from wy_posts WHERE published=1 AND cat_id=:cat_id order by date_add",array("cat_id"=>$cats->cat_id));
+        $this->layout->content = WY_View::fetch('themes/default/label', array('posts' => $posts,'cats'=>$cats));
+        $this->layout->pageTitle = 'Wayang - Search ';
+
     }
 } 

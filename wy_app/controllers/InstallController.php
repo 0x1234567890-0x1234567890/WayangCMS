@@ -18,6 +18,7 @@ return array(
         'dbname' => '%dbname%',
     ),
     'timezone' => 'Asia/Jakarta',
+    'salt' => 'AB87@#5edV!3s)98s^7_9*6HNM%$))$%Has34bk98s*9)&S$@sda',
 );
 WTF;
     
@@ -71,11 +72,11 @@ WTF;
             }else{ // step 3 process
                 $web_name = WY_Request::post('wname');
                 $web_url = WY_Request::post('wurl');
-                $enable_sidebar = WY_Request::post('wside');
+                //$enable_sidebar = WY_Request::post('wside');
                 
                 WY_Session::set('install.web_name', $web_name);
                 WY_Session::set('install.web_url', $web_url);
-                WY_Session::set('install.enable_sidebar', $enable_sidebar);
+                //WY_Session::set('install.enable_sidebar', $enable_sidebar);
                 
                 WY_Response::redirect('install/run');
             }
@@ -91,7 +92,7 @@ WTF;
             $table_sql = array();
             $migration = new WY_Migration();
         
-            $table_sql[] = $migration->createTable('wy_user', array(
+            $table_sql[] = $migration->createTable('wy_users', array(
                 'user_id' => 'pk',
                 'username' => 'string NOT NULL',
                 'pass' => 'string NOT NULL',
@@ -103,7 +104,7 @@ WTF;
                 'display_name' => 'string NOT NULL',
             ));
             
-            $table_sql[] = $migration->createTable('wy_category', array(
+            $table_sql[] = $migration->createTable('wy_categories', array(
                 'cat_id' => 'pk',
                 'title' => 'string NOT NULL',
                 'date_add' => 'datetime NOT NULL',
@@ -112,20 +113,20 @@ WTF;
                 'permalink' => 'string NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_comment', array(
+            $table_sql[] = $migration->createTable('wy_comments', array(
                 'c_id' => 'pk',
-                'c_name' => 'string NOT NULL',
-                'c_email' => 'string NOT NULL',
-                'c_url' => 'string NOT NULL',
-                'c_date' => 'datetime NOT NULL',
-                'c_content' => 'text NOT NULL',
-                'c_post_id' => 'integer NULL',
-                'c_page_id' => 'integer NULL',
-                'c_ip' => 'varchar(15) NOT NULL',
+                'name' => 'string NOT NULL',
+                'email' => 'string NOT NULL',
+                'url' => 'string NOT NULL',
+                'date' => 'datetime NOT NULL',
+                'content' => 'text NOT NULL',
+                'post_id' => 'integer NULL',
+                'page_id' => 'integer NULL',
+                'ip' => 'varchar(15) NOT NULL',
                 'is_parent' => 'integer NOT NULL DEFAULT 0'
             ));
             
-            $table_sql[] = $migration->createTable('wy_page', array(
+            $table_sql[] = $migration->createTable('wy_pages', array(
                 'page_id' => 'pk',
                 'author' => 'integer NOT NULL',
                 'title' => 'string NOT NULL',
@@ -136,17 +137,18 @@ WTF;
                 'date_modified' => 'datetime NULL',
                 'use_plugin' => 'string NULL',
                 'is_parent' => 'integer NOT NULL',
-                'permalink' => 'string NOT NULL'
+                'permalink' => 'string NOT NULL',
+                'tag' => 'string NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_plugin', array(
+            $table_sql[] = $migration->createTable('wy_plugins', array(
                 'plugin_id' => 'pk',
                 'plugin_name' => 'string NOT NULL',
                 'plugin_path' => 'string NOT NULL',
                 'is_active' => 'tinyint(4) NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_post', array(
+            $table_sql[] = $migration->createTable('wy_posts', array(
                 'post_id' => 'pk',
                 'title' => 'string NOT NULL',
                 'cat_id' => 'integer NOT NULL',
@@ -161,10 +163,10 @@ WTF;
                 'date_modified' => 'datetime DEFAULT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_setting', array(
-                's_id' => 'pk',
-                's_key' => 'string NOT NULL',
-                's_value' => 'string NULL',
+            $table_sql[] = $migration->createTable('wy_settings', array(
+                'id' => 'pk',
+                'key' => 'string NOT NULL',
+                'value' => 'string NULL',
                 'is_auto' => 'varchar(4) NULL'
             ));
             
@@ -175,7 +177,7 @@ WTF;
                 'is_active' => 'tinyint(4) NOT NULL'
             ));
             
-            $table_sql[] = $migration->createTable('wy_usermeta', array(
+            $table_sql[] = $migration->createTable('wy_usermetas', array(
                 'um_id' => 'pk',
                 'user_id' => 'integer NOT NULL',
                 'key_name' => 'string NOT NULL',
@@ -186,19 +188,58 @@ WTF;
                 WY_Db::execute($sql);
             }
             
-            WY_Db::execute('INSERT INTO wy_user 
+            WY_Db::execute('INSERT INTO wy_users 
                 (`username`, `pass`, `email`, `url`, `date_registered`, `status`, `display_name`) 
                 VALUES
                 ('.$this->quote(WY_Session::get('install.username')).', 
-                '.$this->quote(sha1(WY_Session::get('install.password'))).', 
+                '.$this->quote(sha1(WY_Session::get('install.password').WY_Config::get('salt'))).', 
                 '.$this->quote(WY_Session::get('install.email')).', 
                 '.$this->quote(WY_Session::get('install.url')).', NOW(), 
                 "admin", '.$this->quote(WY_Session::get('install.display_name')).')');
-            
-            WY_Response::redirect('');
+            WY_Db::execute("INSERT INTO `wy_categories`(`title`, `date_add`, `published`, `permalink`) "
+                    . "VALUES "
+                    . "('Uncategories',NOW(),1,'uncategories')");
+            WY_Db::execute('INSERT INTO `wy_pages`'
+                    . '(`author`, `title`, `date_add`, `content`, `comment_open`, `published`, `use_plugin`, `is_parent`, `permalink`, `tag`) '
+                    . 'VALUES '
+                    . '(:author,:title,NOW(),:content,:comment_open,:published,:use_plugin,:is_parent,:permalink,:taglist)', array(
+                    ':author'=>(int) 1,
+                    ':title'=>"First Page",
+                    ':content'=>"<p style='text-align:justify'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>
+                                <p style='text-align:justify'>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                                ",                    
+                    ':comment_open'=>(int) 0,
+                    ':published'=>(int) 1,
+                    ':use_plugin'=>(int) 0,
+                    ':is_parent'=>(int) 0, 
+                    ':permalink'=>"first-page",
+                    ':taglist'=>"First Page, Page",
+                ));
+             WY_Db::execute('INSERT INTO `wy_posts`'
+                    . '(`cat_id`, `title`, `tag`, `date_add`, `author`, `content`, `comment_open`, `permalink`, `published`) '
+                    . 'VALUES '
+                    . '(:cat_id,:title,:tag,NOW(),:author,:content,:comment_open,:permalink,:published)', array(
+                    ':cat_id'=>1,
+                    ':title'=>"First Post",
+                    ':tag'=>"Post, First Post",
+                    ':author'=>(int) 1,
+                    ':content'=>"<p style='text-align:justify'>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>
+                                <p style='text-align:justify'>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                                ",
+                    ':comment_open'=>(int) 1,
+                    ':permalink'=>"first-post",
+                    ':published'=>(int) 1,
+                ));
+            WY_Response::redirect('install/result');
         }
         
         $this->layout->content = WY_View::fetch('install/run');
+        $this->layout->pageTitle = 'Wayang - Initial Installation';
+    }
+    
+    public function result()
+    {
+        $this->layout->content = WY_View::fetch('install/result');
         $this->layout->pageTitle = 'Wayang - Initial Installation';
     }
     

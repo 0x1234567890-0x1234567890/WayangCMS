@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <div class="col-md-12">
                     <label class="col-md-4 control-label">Enable Side Bar</label>
                     <div class="form-group col-md-8">
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="col-md-4 col-md-offset-4">
                 <button type="submit" class="btn btn-md btn-primary btn-block">Check Data</button>
             </div>

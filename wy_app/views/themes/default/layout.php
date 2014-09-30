@@ -22,10 +22,7 @@
 </head>
 
 <body class="home">
-    <div class="navbar navbar-default navbar-fixed-top contnav">
-        <?php echo $menu; ?>
-        <!-- /.nav-collapse -->
-    </div>
+    <?php echo $menu; ?>
     <div class="container wrapslid">
         <div class="row">
             <div class="col-lg-12">
@@ -67,71 +64,12 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="jumbotron box-wide">
-                    <h2>Jumbotron</h2>
-                    <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                    <p><a class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-globe"></span> Learn more</a>
-                    </p>
-                </div>
-            </div>
-        </div>
         <div class="main">
             <!-- Articles -->
 
             <?php echo $content; ?>
 
-            <div class="row col-lg-4 sidebar">
-                <h2>Labels</h2>
-                <div class="bs-example" style="margin-bottom: 20px;border-bottom: 1px solid #dddddd;padding-bottom:25px;">
-                    <span class="label label-default">Default</span>
-                    <span class="label label-primary">Primary</span>
-                    <span class="label label-success">Success</span>
-                    <span class="label label-warning">Warning</span>
-                    <span class="label label-danger">Danger</span>
-                    <span class="label label-info">Info</span>
-                    <span class="label label-primary">Primary</span>
-                    <span class="label label-success">Success</span>
-                    <span class="label label-warning">Warning</span>
-                    <span class="label label-danger">Danger</span>
-                    <span class="label label-info">Info</span>
-                </div>
-                <div class="media recent-post">
-                    <h2>Recent Post</h2>
-                    <a href="#" class="pull-left">
-                        <img src="http://lorempixel.com/64/64/" class="media-object">
-                    </a>
-                    <div class="media-body post-recent" contenteditable="false">
-                        <h4 class="media-heading">Nested media heading</h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                    </div>
-                    <a href="#" class="pull-left">
-                        <img src="http://lorempixel.com/64/64/" class="media-object">
-                    </a>
-                    <div class="media-body post-recent" contenteditable="false">
-                        <h4 class="media-heading">Nested media heading</h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                    </div>
-                    <a href="#" class="pull-left">
-                        <img src="http://lorempixel.com/64/64/" class="media-object">
-                    </a>
-                    <div class="media-body post-recent" contenteditable="false">
-                        <h4 class="media-heading">Nested media heading</h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                    </div>
-                </div>
-                <h2>List Item</h2>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        Cras justo odio
-                        </a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in
-                        </a>
-                    <a href="#" class="list-group-item">Morbi leo risus
-                        </a>
-                </div>
-            </div>
+            <?php echo $sidebar;?>
         </div>
     </div>
     <!-- Foooter

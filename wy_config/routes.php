@@ -14,6 +14,7 @@ return array(
     array('GET', '/install', ':install:index', 'install'),
     array('GET|POST','/install/step/[*:id]', ':install:step', 'install-step'),
     array('GET|POST','/install/run', ':install:run', 'install-run'),
+    array('GET','/install/result', ':install:result', 'install-result'),
     array('GET', '/install/migration', ':install:migration', 'install-migration'),
     //index home section
     array('GET', '/', ':home:index', 'home'),
@@ -46,6 +47,11 @@ return array(
     array('GET', '/admin/comments/all', 'admin:comment:all', 'admin-comments'),
     array('GET|POST', '/admin/comments/edit/[i:id]', 'admin:comment:edit', 'admin-comments-edit'),
     array('GET', '/admin/comments/delete/[i:id]', 'admin:comment:delete', 'admin-comments-delete'),
+    // admin media file section
+    array('GET', '/admin/files/all', 'admin:file:all', 'admin-files'),
+    array('GET|POST', '/admin/files/add', 'admin:file:add', 'admin-files-add'),
+    array('GET|POST', '/admin/files/edit/[i:id]', 'admin:file:edit', 'admin-files-edit'),
+    array('GET', '/admin/files/delete/[i:id]', 'admin:file:delete', 'admin-files-delete'),
     // admin themes section
     array('GET', '/admin/themes/all', 'admin:theme:all', 'admin-themes'),
     array('GET|POST', '/admin/themes/add', 'admin:theme:add', 'admin-themes-add'),
@@ -65,16 +71,19 @@ return array(
     array('GET', '/admin/users/all', 'admin:user:all', 'admin-users'),
     array('GET|POST', '/admin/users/add', 'admin:user:add', 'admin-users-add'),
     array('GET|POST', '/admin/users/edit/[i:id]', 'admin:user:edit', 'admin-users-edit'),
+    array('GET|POST', '/admin/users/password', 'admin:user:pwd', 'admin-users-pwd'),
+    array('GET|POST', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     array('GET', '/admin/users/delete/[i:id]', 'admin:user:delete', 'admin-users-delete'),
     // admin users level section
     array('GET', '/admin/users/level', 'admin:user:level', 'admin-users-level'),
     array('GET|POST', '/admin/users/level', 'admin:user:level_add', 'admin-users-level-add'),
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_edit', 'admin-users-level-edit'),
     array('GET|POST', '/admin/users/level/[i:id]', 'admin:user:level_delete', 'admin-users-level-delete'),
-    array('GET', '/admin/users/profile', 'admin:user:profile', 'admin-users-profile'),
     // view page/post/ section
     array('GET', '/page/[*:permalink]', ':page:index', 'page'),
     array('GET', '/post/[*:permalink]', ':post:index', 'post'),
+    // view by categories
+    array('GET','/label/[*:permalink]',':label:index','categories'),
     //adding comment into post/page section
     array('POST', '/post/[*:permalink]', ':comment:add', 'comment'),
     //plugin register

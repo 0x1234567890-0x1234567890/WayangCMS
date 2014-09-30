@@ -27,7 +27,7 @@
     <link rel="shortcut icon" href="<?php echo WY_Request::base_url(); ?>/assets/images/icon.ico">
     <!-- Core CSS - Include with every page -->
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Page-Level Plugin CSS - Dashboard 
     <link href="<?php echo WY_Request::base_url(); ?>/assets/admin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">-->
     <!-- Page-Level Plugin CSS - Tables -->
@@ -54,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo $router->generate('admin-home'); ?>">Wayang CMS Administration</a>
+                <a class="navbar-brand brand-admin" href="<?php echo $router->generate('admin-home'); ?>"><img src="<?php echo WY_Request::base_url(); ?>/assets/images/wy-logo.png"/> Wayang CMS Administration</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -65,12 +65,12 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="<?php echo $router->generate('home'); ?>"><i class="fa  fa-globe "></i> View Website</a></li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa  fa-user "></i> User Profile</a>
-                        </li>
                         <!--<li>
-                            <a href="#"><i class="fa  fa-gear "></i> Settings</a>
+                            <a href="<?php echo $router->generate('admin-users-profile'); ?>"><i class="fa  fa-user "></i> User Profile</a>
                         </li>-->
+                        <li>
+                            <a href="<?php echo $router->generate('admin-users-pwd'); ?>"><i class="fa  fa-lock "></i> Change Password</a>
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="<?php echo $router->generate('admin-logout'); ?>"><i class="fa  fa-sign-out "></i> Logout</a>
@@ -79,7 +79,7 @@
                 </li>
             </ul>
 
-            <div class="navbar-default navbar-static-side" role="navigation">
+            <div class="navbar-default navbar-static-side" role="navigation" >
                 <div class="sidebar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
@@ -122,10 +122,21 @@
                         <li>
                             <a href="<?php echo $router->generate('admin-comments'); ?>"><i class="fa  fa-comments "></i> Comments</a>
                         </li>
-                        <li>
+                        <!--<li>
+                            <a href="#"><i class="fa  fa-file-photo-o"></i> Files Media <span class="fa  arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-files'); ?>"> All Files</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $router->generate('admin-files-add'); ?>"> Add New Files</a>
+                                </li>
+                            </ul>
+                        </li>-->
+                        <!--<li>
                             <a href="#"><i class="fa  fa-wrench "></i> Preferences <span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <!--<li>
+                                <li>
                                     <a href="#"> Themes Preferences <span class="fa  arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
@@ -135,7 +146,7 @@
                                             <a href="<?php echo $router->generate('admin-themes-add'); ?>"> Add New Themes</a>
                                         </li>
                                     </ul>
-                                </li>-->
+                                </li>
                                 <li>
                                     <a href="#"><span class="fa  fa-gears"></span> Plugins Preferences <span class="fa  fa-gears arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -145,16 +156,16 @@
                                         <li>
                                             <a href="<?php echo $router->generate('admin-plugins-add'); ?>"> Add New Plugin</a>
                                         </li>
-                                        <li>
+                                        <!--<li>
                                             <a href="<?php echo $router->generate('register-member-all'); ?>"> Register Member</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <!--<li>
+                                <li>
                                     <a href="<?php echo $router->generate('admin-prefs'); ?>"><span class="fa fa-globe"></span> Sites Preferences</a>
-                                </li>-->
+                                </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="#"><i class="fa  fa-users "></i> Users<span class="fa  arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -199,6 +210,7 @@
     
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/sb-admin.js"></script>
+    <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/extra.js"></script>
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference  
     <script src="<?php echo WY_Request::base_url(); ?>/assets/admin/js/demo/dashboard-demo.js"></script>
     <!-- Page-Level Plugin Scripts - Dashboard 
