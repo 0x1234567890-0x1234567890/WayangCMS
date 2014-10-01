@@ -60,5 +60,7 @@ class CommentController extends WY_TController
     public function delete($id)
     {
         self::auth();
+        WY_Db::execute('DELETE FROM wy_comments WHERE c_id = :id', array(':id'=> (int) $id));
+        WY_Response::redirect('admin/comments/all');
     }
 }

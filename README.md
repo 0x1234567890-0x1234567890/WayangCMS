@@ -19,7 +19,23 @@ This our schedule for Wayang CMS Development
 - Documentation Complete
 - Stable Version Release
 
+
+
+Alpha 1 Release
+Feature lists:
+- Pages
+- Posts
+- Categories
+- Comments
+- Users
+
+Next Version with feature:
+- Plugins
+- Themes
+- Dyanimc dashboard menu
+
 Still stay with us
 
-
 Best Regards
+
+Wayang CMS Dev. Team
