@@ -35,8 +35,8 @@
             </div>
             <div class="form-group">
                 <div class="col-lg-11 col-lg-offset-1">
-                    <a href="<?php echo $router->generate('admin-reset-password'); ?>" class="btn btn-sm btn-warning" ><span class="glyphicon glyphicon-question-sign"> Forgot Password</a>
-                    <a href="<?php echo $router->generate('home'); ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-globe"> Go to Website</a>
+                    <a href="<?php echo $router->generate('admin-reset-password'); ?>" class="btn btn-sm btn-warning" ><span class="glyphicon glyphicon-question-sign"></span> Forgot Password</a>
+                    <a href="<?php echo $router->generate('home'); ?>" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-globe"></span> Go to Website</a>
                 </div>
             </div>
         </form>
