@@ -39,7 +39,7 @@
                                             <td><?php echo $c->date_modified; ?></td>
                                             <th>
                                                 <a class="btn btn-primary btn-sm" title="Edit" href="<?php echo WY_Registry::get('router')->generate('admin-categories-edit', array('id'=>$c->cat_id)); ?>"><span class="glyphicon glyphicon-pencil"></a>
-                                                <a class="btn btn-danger btn-sm" title="Edit" href="<?php echo WY_Registry::get('router')->generate('admin-categories-delete', array('id'=>$c->cat_id)); ?>"><span class="glyphicon glyphicon-trash"></a>
+                                                <a class="btn btn-danger btn-sm" title="Delete" href="<?php echo WY_Registry::get('router')->generate('admin-categories-delete', array('id'=>$c->cat_id)); ?>"><span class="glyphicon glyphicon-trash"></a>
                                             </th>
                                         </tr>
                                         <?php endforeach; ?>
