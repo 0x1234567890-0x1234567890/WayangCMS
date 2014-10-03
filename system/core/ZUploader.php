@@ -3,7 +3,7 @@
 /* 
  * Class for themes and plugin Uploader
  */
-class WY_ZUploader{
+class ZUploader{
     
     private function getInfo($file){
         

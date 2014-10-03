@@ -4,7 +4,7 @@
  * Kelas ini berfungsi menangani HTTP request
  * 
  */
-class WY_Request
+class Request
 {
     /**
      * Mendapatkan satu parameter dari GET method

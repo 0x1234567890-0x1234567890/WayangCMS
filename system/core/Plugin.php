@@ -1,6 +1,6 @@
 <?php
 
-class WY_Plugin
+class Plugin
 {
 	
 }

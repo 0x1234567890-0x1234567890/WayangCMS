@@ -4,7 +4,7 @@
  * Kelas ini berfungsi sebagai base controller
  * 
  */
-class WY_Controller
+class Controller
 {   
     /**
      * @var string aksi default yang dijalankan ketika tidak disediakan melalui url

@@ -1,6 +1,6 @@
 <?php
 
-class WY_Array
+class ArrayUtil
 {
 	public function flatten($array, $return = array()){
         foreach($array as $key => $value){

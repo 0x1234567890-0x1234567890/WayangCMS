@@ -4,7 +4,7 @@
  * Kelas ini berfungsi menangani rendering view dan layout sistem
  * 
  */
-class WY_View
+class View
 {
     /**
      * @var string nama file view

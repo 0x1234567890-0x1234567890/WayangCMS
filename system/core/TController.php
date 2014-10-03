@@ -4,7 +4,7 @@
  * Kelas ini merupakan turunan dari base controller
  * berfungsi menangani rendering layout untuk view
  */
-class WY_TController extends WY_Controller
+class TController extends Controller
 {
     /**
      * @var string nama layout yang akan digunakan controller

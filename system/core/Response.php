@@ -4,7 +4,7 @@
  * Kelas ini berfungsi menangani HTTP response
  * 
  */
-class WY_Response
+class Response
 {
     /**
      * redirect pengguna ke url tertentu

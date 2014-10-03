@@ -1,6 +1,6 @@
 <?php
 
-class WY_Session
+class Session
 {
     protected static $flash_types = array('success', 'error', 'info', 'warning');
     

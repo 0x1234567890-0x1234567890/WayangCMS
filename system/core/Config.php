@@ -4,7 +4,7 @@
  * Kelas ini berfungsi memuat dan me-manage konfigurasi
  * 
  */
-class WY_Config
+class Config
 {
     /**
      * @var array variable tempat penyimpanan item-item konfigurasi

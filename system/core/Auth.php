@@ -3,7 +3,7 @@
 /**
  * Kelas ini berfungsi untuk keperluan otentifikasi dan otorisasi pengguna sistem
  */
-class WY_Auth
+class Auth
 {
     /**
      * Melakukan proses login pada sistem

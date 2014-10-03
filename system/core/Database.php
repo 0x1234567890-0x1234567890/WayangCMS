@@ -4,7 +4,7 @@
  * Kelas ini membuat koneksi dan melakukan peng-query-an ke database
  * 
  */
-class WY_Db
+class Database
 {
     /**
      * @var PDO variable penyimpan koneksi database

@@ -4,7 +4,7 @@
  * Kelas ini berfungi sebagai autoloader untuk kelas lain yang
  * diperlukan ketika sistem berjalan
  */
-class WY_Autoloader
+class Autoloader
 {
     /**
      * Fungsi ini bertujuan mendaftarkan autoloader ke php

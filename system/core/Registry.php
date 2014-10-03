@@ -4,7 +4,7 @@
  * Kelas ini berfungsi menyimpan objek dari kelas lain dan me-manage nya
  * 
  */
-class WY_Registry
+class Registry
 {
     /**
      * @var array variable penyimpan objek-objek kelas lain

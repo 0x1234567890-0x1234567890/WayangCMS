@@ -4,7 +4,7 @@
  * Kelas ini berisi fungsi-fungsi untuk meng-generate tag-tag html
  * 
  */
-class WY_Html
+class Html
 {
     /**
      * Meng-generate tag <ul>[<li></li>,...]</ul>

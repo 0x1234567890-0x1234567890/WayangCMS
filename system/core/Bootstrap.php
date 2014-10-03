@@ -4,7 +4,7 @@
  * Kelas ini berfungsi sebagai inisialisasi awal framework
  * 
  */
-class WY_Bootstrap
+class Bootstrap
 {
     /**
      * Inisialisasi routing engine

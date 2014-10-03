@@ -4,7 +4,7 @@
  * Kelas ini menangani event-event yang terjadi pada sistem
  * 
  */
-class WY_Events
+class Events
 {
     /**
      * @var array variable penyimpan semua callback yang didaftarkan

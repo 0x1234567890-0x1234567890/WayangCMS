@@ -1,6 +1,6 @@
 <?php
 
-class WY_Migration
+class Migration
 {   
     public $columnTypes=array(
 		'pk' => 'int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY',

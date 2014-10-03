@@ -3,6 +3,6 @@
 /* 
  * Class for file uploader
  */
-class WY_FUploader{
+class FUploader{
     
 }

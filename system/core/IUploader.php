@@ -4,7 +4,7 @@
  * Kelas ini berfungsi untuk mengontrol proses upload gambar
  */
 
-class WY_IUploader{
+class IUploader{
     private $imageType;
     private $image;
     private $message="";
