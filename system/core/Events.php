@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini menangani event-event yang terjadi pada sistem
  * 

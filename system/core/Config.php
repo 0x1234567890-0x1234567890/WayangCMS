@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini berfungsi memuat dan me-manage konfigurasi
  * 

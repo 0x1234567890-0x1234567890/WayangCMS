@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini berfungsi sebagai base controller
  * 

@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini berfungsi menangani HTTP request
  * 

@@ -1,20 +1,25 @@
 <?php
 
-/* 
+namespace wayang\uploader;
+
+/** 
  * Kelas ini berfungsi untuk mengontrol proses upload gambar
  */
 
-class IUploader{
+class IUploader
+{
     private $imageType;
     private $image;
     private $message="";
     private $thumPath;
     private static $thumbnail=0.15;
     private $path;
-    /*
+    
+    /**
      * fungsi mendapatkan info detail tentang image file
      */
-    private function getInfo($file){
+    private function getInfo($file)
+    {
         $temp=getimagesize($file);
         $this->imageType=$temp[2];
         if( $this->imageType == IMAGETYPE_JPEG ){
@@ -27,10 +32,12 @@ class IUploader{
             $this->image = imagecreatefrompng($file);
         }
     }
-    /*
+    
+    /**
      * fungsi cek file bertipe jpeg/jpg,png,gif
      */
-    private function checkExt($file){
+    private function checkExt($file)
+    {
         $this->getInfo($file);
         $stat=FALSE;
         if( $this->imageType == IMAGETYPE_JPEG ){
@@ -44,42 +51,52 @@ class IUploader{
         }
         return $stat;
     }
-    /*
+    
+    /**
      * fungsi mendapatkan width image
      */
-    private function getW(){
+    private function getW()
+    {
         return imagesx($this->image);
     }
-    /*
+    
+    /**
      * fungsi mendapatkan height image
      */
-    private function getH(){
+    private function getH()
+    {
         return imagesy($this->image);
     }
-    /*
+    
+    /**
      * fungsi resize image
      */
-    private function resizeImage($percent){
+    private function resizeImage($percent)
+    {
         $w=($percent/100)*$this->getW();
         $h=($percent/100)*$this->getH();
         $newI = imagecreatetruecolor($w, $h);
         imagecopyresampled($newI, $this->image, 0, 0, 0, 0, $w, $h, $this->getW(), $this->getH());
         $this->image = $newI;
     }
-    /*
+    
+    /**
      * fungsi membuat thumbnail image
      */
-    private function imageThumbnail(){
+    private function imageThumbnail()
+    {
         $w=self::$thumbnail*$this->getW();
         $h=self::$thumbnail*$this->getH();
         $newI = imagecreatetruecolor($w, $h);
         imagecopyresampled($newI, $this->image, 0, 0, 0, 0, $w, $h, $this->getW(), $this->getH());
         $this->image = $newI;
     }
-    /*
+    
+    /**
      * fungsi menyimpan image berdasarkan tipe mime nya(jpeg/jpg,png,gif)
      */
-    private function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=70){
+    private function save($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=70)
+    {
         $this->getInfo($file);
         $this->path=WY_Request::base_url()."/assets/uploads/";
         if(!$resize){
@@ -107,8 +124,7 @@ class IUploader{
                     $this->message="Cannot Save Image!";
                 }
             }
-        }
-        else{
+        }else{
             $this->resizeImage($percent);
             $this->imageThumbnail();
             if( $this->imageType == IMAGETYPE_JPEG ){
@@ -138,10 +154,12 @@ class IUploader{
         }
         return $this->message;
     }
-    /*
+    
+    /**
      * fungsi private untuk menerima parameter kiriman berupa file image, path/location ,width,height,compression leve dari image
      */
-    public function saveImage($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=80){
+    public function saveImage($file,$resize=FALSE,$x=NULL,$y=NULL,$compression=80)
+    {
         $ext=$this->checkExt($file);
         if($ext===FALSE){
             return "File not allow to upload!";

@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini berfungsi untuk keperluan otentifikasi dan otorisasi pengguna sistem
  */

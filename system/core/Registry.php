@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang;
+
 /**
  * Kelas ini berfungsi menyimpan objek dari kelas lain dan me-manage nya
  * 

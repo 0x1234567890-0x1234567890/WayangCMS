@@ -1,5 +1,11 @@
 <?php
 
+namespace wayang;
+
+/**
+ * Kelas ini berfungsi untuk migrasi database
+ * 
+ */
 class Migration
 {   
     public $columnTypes=array(

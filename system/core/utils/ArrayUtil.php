@@ -1,5 +1,7 @@
 <?php
 
+namespace wayang\utils;
+
 class ArrayUtil
 {
 	public function flatten($array, $return = array()){
