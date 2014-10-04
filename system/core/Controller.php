@@ -7,7 +7,7 @@ namespace wayang;
  * 
  */
 class Controller
-{   
+{
     /**
      * @var string aksi default yang dijalankan ketika tidak disediakan melalui url
      * 

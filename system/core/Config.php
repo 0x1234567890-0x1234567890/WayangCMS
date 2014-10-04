@@ -24,7 +24,7 @@ class Config
             $this->config_items = include $config_path;
             return true;
         }else{
-            return false;
+            throw new Exception("Config file not exsists");
         }
     }
     
