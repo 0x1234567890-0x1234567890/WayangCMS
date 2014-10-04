@@ -2,20 +2,15 @@
 
 namespace wayang;
 
+use wayang\Base as Base;
+
 /**
  * Kelas ini berfungsi untuk keperluan otentifikasi dan otorisasi pengguna sistem
  */
-class Auth
+class Auth extends Base
 {
-    /**
-     * Konstruktor
-     * @param object $registry registry object
-     */
-    public function __construct($registry)
-    {
-        $this->session = $registry['session'];
-        $this->dbConnection = $registry['dbConnection'];
-    }
+    protected $db;
+    protected $session;
     
     /**
      * Melakukan proses login pada sistem
@@ -25,19 +20,19 @@ class Auth
      */
 	public function login($username, $password)
     {
-        $user = WY_Db::row("select * from wy_users where username = :username and pass = :password", array(
+        $user = $this->db->query("select * from wy_users where username = :username and pass = :password", array(
             ':username' => $username,
             ':password' => $password,
         ));
         
         if($user){ // login sukses
-            WY_Session::set('authenticated', true);
-            WY_Session::set('user_id', $user->user_id);
-            WY_Session::set('user_name', $user->username);
-            WY_Session::set('display', $user->display_name);
+            $this->session->set('authenticated', true);
+            $this->session->set('user_id', $user->user_id);
+            $this->session->set('user_name', $user->username);
+            $this->session->set('display', $user->display_name);
             return true;
         }else{ // login gagal
-            WY_Session::set_flash('error', 'Invalid username or password');
+            $this->session->set_flash('error', 'Invalid username or password');
             return false;
         }
     }
@@ -57,7 +52,7 @@ class Auth
      */
     public function is_authenticated()
     {
-        return WY_Session::get('authenticated', false);
+        return $this->session->get('authenticated', false);
     }
     
     /**
