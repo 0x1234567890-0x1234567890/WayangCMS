@@ -6,56 +6,82 @@ namespace wayang;
  * Kelas ini berfungsi menyimpan objek dari kelas lain dan me-manage nya
  * 
  */
-class Registry
+class Registry implements ArrayAccess
 {
+    protected $objects = array();
+    
     /**
-     * @var array variable penyimpan objek-objek kelas lain
+     * default
      * 
      */
-    private static $instances = array();
-    
-    /**
-     * Konstruktor
-     * @access private
-     */
-    private function __construct(){}
-    
-    /**
-     * @access private
-     * 
-     */
-    private function __clone(){}
-    
-    /**
-     * Mendapatkan satu objek yang telah tersimpan sebelumnya
-     * @param string $key kunci objek yang dicari
-     * @param mixed $default nilai default yang dikembalikan jika objek tidak ditemukan
-     * @return mixed objek yang dicari, null jika tidak ditemukan
-     */
-    public static function get($key, $default=null)
+    public function __construct(array $objects)
     {
-        if(isset(self::$instances[$key])){
-            return self::$instances[$key];
+        $this->objects = $objects;
+    }
+    
+    /**
+     * default
+     * 
+     */
+    public function offsetSet($id, $object)
+    {
+        $this->objects[$id] = $object;
+    }
+    
+    /**
+     * default
+     * 
+     */
+    public function offsetGet($id)
+    {
+        if(!array_key_exists($id, $this->objects)){
+            throw new InvalidArgumentException(sprintf('Object with ID "%s" is not defined', $id));
         }
-        return $default;
+        
+        $isFactory = is_object($this->objects[$id]) && method_exists($this->objects[$id], '__invoke');
+        
+        return $isFactory ? $this->objects[$id]($this) : $this->objects[$id];
     }
     
     /**
-     * Menyimpan sebuah objek
-     * @param string $key kunci objek yang akan disimpan
-     * @param object $value objek yang akan disimpan
+     * default
+     * 
      */
-    public static function set($key, $value)
+    public function offsetExists($id)
     {
-        self::$instances[$key] = $value;
+        return array_key_exists($id, $this->objects);
     }
     
     /**
-     * Menghapus sebuah objek dari penyimpanan
-     * @param string $key kunci objek yang akan dihapus
+     * default
+     * 
      */
-    public static function remove($key)
+    public function offsetUnset($id)
     {
-        unset(self::$instances[$key]);
+        unset($this->objects[$id]);
+    }
+    
+    /**
+     * default
+     * 
+     */
+    public static function share(Closure $callable)
+    {
+        return function($c) use($callable){
+            static $object;
+            if(null === $object){
+                $object = $callable($c);
+            }
+            return $object;
+        };
+    }
+    
+    /**
+     * default
+     * 
+     */
+    public function keys()
+    {
+        return array_keys($this->objects);
     }
 }
