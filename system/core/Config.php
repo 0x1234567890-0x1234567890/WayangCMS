@@ -12,7 +12,7 @@ class Config
      * @var array variable tempat penyimpanan item-item konfigurasi
      * 
      */
-    private $config_items = array();
+    protected $config_items = array();
     
     /**
      * Memuat file konfigurasi berdasarkan path yang diberikan
