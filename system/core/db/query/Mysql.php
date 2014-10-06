@@ -10,7 +10,12 @@ class Mysql extends db\Query
     {
         $sql = $this->buildSelect();
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute();
+        
+        if(!empty($this->params)){
+            $result = $stmt->execute($this->params);
+        }else{
+            $result = $stmt->execute();
+        }
         
         if($result === false){
             $error = $this->db->getLastError();

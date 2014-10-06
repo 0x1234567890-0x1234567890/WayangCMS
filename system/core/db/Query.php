@@ -18,7 +18,6 @@ class Query extends Base
     protected $join = array();
     protected $where;
     
-    
     public function from($from, $fields = array('*'))
     {
         if(empty($from)){
@@ -74,7 +73,7 @@ class Query extends Base
         return $this;
     }
     
-    public function where($condition, $params = null)
+    public function where($condition, array $params = array())
     {
         if(empty($condition)){
             throw new \Exception('Invalid Argument');
@@ -148,8 +147,8 @@ class Query extends Base
         $template = "INSERT INTO %s (%s) VALUES (%s)";
         
         foreach($data as $field => $value){
-            $fields[] = substr($field, 1);
-            $values[] = $field;
+            $fields[] = $field;
+            $values[] = ':'.$field;
         }
         
         $fields = implode(", ", $fields);
@@ -165,7 +164,7 @@ class Query extends Base
         $template = "UPDATE %s SET %s %s %s";
         
         foreach($data as $field => $value){
-            $parts[] = "{$field}=".$value;
+            $parts[] = "{$field} = :".$field;
         }
         
         $parts = implode(", ", $parts);
@@ -213,6 +212,15 @@ class Query extends Base
     {
         $isInsert = count($this->where) == 0;
         
+        $paramData = array();
+        foreach($data as $key => $value){
+            $paramData[':'.$key] = $value;
+        }
+        
+        if(!empty($this->params)){
+            $paramData = array_merge($paramData, $this->params);
+        }
+        
         if($isInsert){
             $sql = $this->buildInsert($data);
         }else{
@@ -220,7 +228,7 @@ class Query extends Base
         }
         
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute($data);
+        $result = $stmt->execute($paramData);
         
         if($result === false){
             throw new \Exception('Query Failed');
@@ -230,14 +238,19 @@ class Query extends Base
             return $this->db->getLastInsertId();
         }
         
-        return 0;
+        return $stmt->rowCount();
     }
     
     public function delete()
     {
         $sql = $this->buildDelete();
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute();
+        
+        if(!empty($this->params)){
+            $result = $stmt->execute($this->params);
+        }else{
+            $result = $stmt->execute();
+        }
         
         if($result === false){
             throw new \Exception('Query Failed');
@@ -255,7 +268,12 @@ class Query extends Base
         
         $sql = $this->buildSelect();
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute();
+        
+        if(!empty($this->params)){
+            $result = $stmt->execute($this->params);
+        }else{
+            $result = $stmt->execute();
+        }
         
         if($result === false){
             $error = $this->db->getLastError();
@@ -282,6 +300,7 @@ class Query extends Base
         $this->fields = array($this->from => array('COUNT(1)' => 'rows'));
         
         $this->limit(1);
+        
         $row = $this->first();
         
         $this->fields = $fields;
