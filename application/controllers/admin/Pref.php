@@ -1,6 +1,10 @@
 <?php
 
-class PrefController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Pref extends Controller
 {
     public $layout = 'admin/index';
     

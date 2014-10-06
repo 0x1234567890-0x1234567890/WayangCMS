@@ -1,6 +1,10 @@
 <?php
 
-class PostController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Post extends Controller
 {
     public $layout = 'admin/index';
     

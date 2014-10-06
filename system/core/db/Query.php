@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang\db;
+namespace system\core\db;
 
-use wayang\Base as Base;
+use system\core\Base as Base;
 
 class Query extends Base
 {

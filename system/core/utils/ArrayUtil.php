@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang\utils;
+namespace system\core\utils;
 
 class ArrayUtil
 {

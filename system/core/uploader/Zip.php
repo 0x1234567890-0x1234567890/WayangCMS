@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang\uploader;
+namespace system\core\uploader;
 
 /* 
  * Class for themes and plugin Uploader

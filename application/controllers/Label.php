@@ -1,6 +1,10 @@
 <?php
 
-class LabelController extends WY_TController
+namespace application\controllers;
+
+use system\core\Controller as Controller;
+
+class Label extends Controller
 {
     public $layout = 'themes/default/layout';
     

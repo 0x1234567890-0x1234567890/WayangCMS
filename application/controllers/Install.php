@@ -1,6 +1,10 @@
 <?php
 
-class InstallController extends WY_TController
+namespace application\controllers;
+
+use system\core\Controller as Controller;
+
+class Install extends Controller
 {
     public $layout = 'install/layout';
     

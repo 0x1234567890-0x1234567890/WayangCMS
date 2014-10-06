@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
 /**
  * Kelas ini berfungsi memuat dan me-manage konfigurasi

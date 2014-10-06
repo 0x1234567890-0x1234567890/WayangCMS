@@ -1,6 +1,10 @@
 <?php
 
-class ThemeController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Theme extends Controller
 {
     public $layout = 'admin/index';
     

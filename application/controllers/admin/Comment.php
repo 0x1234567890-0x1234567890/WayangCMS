@@ -1,6 +1,10 @@
 <?php
 
-class CommentController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Comment extends Controller
 {
     public $layout = 'admin/index';
     

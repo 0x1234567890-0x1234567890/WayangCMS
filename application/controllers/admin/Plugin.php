@@ -1,6 +1,10 @@
 <?php
 
-class PluginController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Plugin extends Controller
 {
     public $layout = 'admin/index';
     

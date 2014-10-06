@@ -1,12 +1,14 @@
 <?php
 
-namespace wayang;
+namespace system\core;
+
+use system\core\Base as Base;
 
 /**
  * Kelas ini berfungsi sebagai base controller
  * 
  */
-class Controller
+class Controller extends Base
 {
     /**
      * @var string aksi default yang dijalankan ketika tidak disediakan melalui url

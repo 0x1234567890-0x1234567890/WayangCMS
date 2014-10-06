@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang\router;
+namespace system\core\router;
 
-use wayang\Base as Base;
+use system\core\Base as Base;
 
 class Route extends Base
 {

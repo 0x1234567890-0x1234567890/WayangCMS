@@ -1,6 +1,10 @@
 <?php
 
-class PageController extends WY_TController
+namespace application\controllers;
+
+use system\core\Controller as Controller;
+
+class Page extends Controller
 {
     public $layout = 'themes/default/layout';
     

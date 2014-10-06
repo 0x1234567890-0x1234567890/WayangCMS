@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
 /**
  * Kelas ini berisi fungsi-fungsi untuk meng-generate tag-tag html

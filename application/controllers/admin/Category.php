@@ -1,6 +1,10 @@
 <?php
 
-class CategoryController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Category extends Controller
 {
     public $layout = 'admin/index';
     

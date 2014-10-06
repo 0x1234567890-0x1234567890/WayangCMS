@@ -1,6 +1,10 @@
 <?php
 
-class LoginController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Login extends Controller
 {
     public $layout = 'admin/login';
     public $log;

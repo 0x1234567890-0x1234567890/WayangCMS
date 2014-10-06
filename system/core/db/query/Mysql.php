@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang\db\query;
+namespace system\core\db\query;
 
-use wayang\db as db;
+use system\core\db as db;
 
 class Mysql extends db\Query
 {

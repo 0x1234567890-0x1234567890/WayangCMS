@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
-use wayang\Base as Base;
+use system\core\Base as Base;
 
 /**
  * Kelas ini berfungsi untuk keperluan otentifikasi dan otorisasi pengguna sistem

@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
 /**
  * Kelas ini berfungsi untuk migrasi database
@@ -8,7 +8,7 @@ namespace wayang;
  */
 class Migration
 {   
-    public $columnTypes=array(
+    protected $columnTypes=array(
 		'pk' => 'int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY',
 		'string' => 'varchar(255)',
 		'text' => 'text',

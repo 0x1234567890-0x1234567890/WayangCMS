@@ -1,5 +1,10 @@
 <?php
-class CommentController extends WY_TController
+
+namespace application\controllers;
+
+use system\core\Controller as Controller;
+
+class Comment extends Controller
 {
     public $layout = "themes/default/layout";
     

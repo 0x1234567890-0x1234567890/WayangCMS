@@ -1,5 +1,10 @@
 <?php
-class PostController extends WY_TController
+
+namespace application\controllers;
+
+use system\core\Controller as Controller;
+
+class Post extends Controller
 {
     public $layout = "themes/default/layout";
     

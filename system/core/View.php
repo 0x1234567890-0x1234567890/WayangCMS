@@ -1,6 +1,6 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
 /**
  * Kelas ini berfungsi menangani rendering view dan layout sistem

@@ -1,12 +1,12 @@
 <?php
 
-namespace wayang;
+namespace system\core;
 
 /**
  * Kelas ini berfungsi menyimpan objek dari kelas lain dan me-manage nya
  * 
  */
-class Registry implements ArrayAccess
+class Registry implements \ArrayAccess
 {
     protected $objects = array();
     
@@ -14,7 +14,7 @@ class Registry implements ArrayAccess
      * default
      * 
      */
-    public function __construct(array $objects)
+    public function __construct(array $objects = array())
     {
         $this->objects = $objects;
     }
@@ -65,7 +65,7 @@ class Registry implements ArrayAccess
      * default
      * 
      */
-    public static function share(Closure $callable)
+    public static function share(\Closure $callable)
     {
         return function($c) use($callable){
             static $object;

@@ -1,6 +1,10 @@
 <?php
 
-class HomeController extends WY_TController
+namespace application\controllers\admin;
+
+use system\core\Controller as Controller;
+
+class Home extends Controller
 {
     public $layout = 'admin/index';
     

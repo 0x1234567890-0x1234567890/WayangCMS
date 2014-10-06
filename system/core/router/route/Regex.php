@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang\router\route;
+namespace system\core\router\route;
 
-use wayang\router as router;
+use system\core\router as router;
 
 class Regex extends router\Route
 {

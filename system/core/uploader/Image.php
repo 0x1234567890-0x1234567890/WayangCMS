@@ -1,8 +1,8 @@
 <?php
 
-namespace wayang\uploader;
+namespace system\core\uploader;
 
-use wayang\Base as Base;
+use system\core\Base as Base;
 
 /** 
  * Kelas ini berfungsi untuk mengontrol proses upload gambar
