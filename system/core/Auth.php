@@ -13,7 +13,7 @@ class Auth extends Base
     protected $session;
     
     /**
-     * Melakukan proses login pada sistem
+     * Melakukan proses login ke sistem
      * @param string $username username yang mau di-check
      * @param string $password password yang mau di-check
      * @return boolean true bila login sukses, false jika login gagal
