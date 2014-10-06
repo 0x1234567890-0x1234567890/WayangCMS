@@ -39,10 +39,10 @@ class Database extends Base
                 if($this->type === 'mysql'){
                     $port = isset($this->port) ? $this->port : '3306';
                     $dsn = "mysql:dbname={$this->schema};host={$this->host};port={$port}";
-                    $this->instance = new \PDO($dsn, $username, $password);
+                    $this->instance = new \PDO($dsn, $this->username, $this->password);
                 }else{
                     $port = isset($this->port) ? $this->port : '5432';
-                    $dsn = "pgsql:dbname={$this->schema};host={$this->host};port={$port};user={$this->user};password={$this->password}";
+                    $dsn = "pgsql:dbname={$this->schema};host={$this->host};port={$port};user={$this->username};password={$this->password}";
                     $this->instance = new \PDO($dsn);
                 }
                 $this->instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -58,14 +58,13 @@ class Database extends Base
         return $this;
     }
     
-    public function disconnect()
+    public function prepare($sql)
     {
-        if($this->hasConnected()){
-            $this->isConnected = false;
-            $this->instance = null;
+        if(!$this->hasConnected()){
+            throw new \Exception('Database Not Connected Yet!');
         }
         
-        return $this;
+        return $this->instance->prepare($sql);
     }
     
     public function query()
@@ -81,30 +80,49 @@ class Database extends Base
         }
     }
     
+    public function disconnect()
+    {
+        if($this->hasConnected()){
+            $this->isConnected = false;
+            $this->instance = null;
+        }
+        
+        return $this;
+    }
+    
     public function execute($sql)
     {
         if(!$this->hasConnected()){
-            throw new Exception('Database Not Connected Yet!');
+            throw new \Exception('Database Not Connected Yet!');
         }
         
         return $this->instance->exec($sql);
     }
     
-    public function getLastInsertId()
-    {
-        if(!$this->hasConnected()){
-            throw new Exception('Database Not Connected Yet!');
-        }
-        
-        return $this->instance->lastInsertId();
-    }
-    
     public function getLastError()
     {
         if(!$this->hasConnected()){
-            throw new Exception('Database Not Connected Yet!');
+            throw new \Exception('Database Not Connected Yet!');
         }
         
         return $this->instance->errorInfo();
+    }
+    
+    public function escape($value)
+    {
+        if(!$this->hasConnected()){
+            throw new \Exception('Database Not Connected Yet!');
+        }
+        
+        return $this->instance->quote($value);
+    }
+    
+    public function getLastInsertId()
+    {
+        if(!$this->hasConnected()){
+            throw new \Exception('Database Not Connected Yet!');
+        }
+        
+        return $this->instance->lastInsertId();
     }
 }

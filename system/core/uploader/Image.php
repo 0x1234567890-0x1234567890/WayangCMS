@@ -2,11 +2,13 @@
 
 namespace wayang\uploader;
 
+use wayang\Base as Base;
+
 /** 
  * Kelas ini berfungsi untuk mengontrol proses upload gambar
  */
 
-class IUploader
+class Image extends Base
 {
     private $imageType;
     private $image;
