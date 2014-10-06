@@ -14,16 +14,17 @@ class Session
      * mengeset nilai ke session
      * 
      */
-    public static function set($key, $value)
+    public function set($key, $value)
     {
         $_SESSION[$key] = $value;
+        return $this;
     }
     
     /**
      * membaca sebuah nilai dari session
      * 
      */
-    public static function get($key, $default = null)
+    public function get($key, $default = null)
     {
         if(isset($_SESSION[$key])){
             return $_SESSION[$key];
@@ -35,7 +36,7 @@ class Session
      * menghancurkan session pengguna saat ini
      * 
      */
-    public static function destroy()
+    public function destroy()
     {
         $_SESSION = array();
         session_destroy();
@@ -46,7 +47,7 @@ class Session
      * mengeset flash message
      * 
      */
-    public static function set_flash($type, $message)
+    public function set_flash($type, $message)
     {
         if(!in_array($type, self::$flash_types)){
             return false;
@@ -61,13 +62,15 @@ class Session
                 $_SESSION['flash_message'][$type][] = $msg;
             }
         }
+        
+        return $this;
     }
     
     /**
      * membaca flash message
      * 
      */
-    public static function get_flash($type = 'all')
+    public function get_flash($type = 'all')
     {
         if(!isset($_SESSION['flash_message'][$type])){
             return false;
@@ -97,7 +100,7 @@ class Session
      * membersihkan flash message
      * 
      */
-    public static function clear_flash($type = 'all')
+    public function clear_flash($type = 'all')
     {
         if($type == 'all'){
             unset($_SESSION['flash_message']);
@@ -110,7 +113,7 @@ class Session
      * mengecek apakah terdapat flash message bertipe error
      * 
      */
-    public static function flash_has_error()
+    public function flash_has_error()
     {
         if(!isset($_SESSION['flash_message'][$type])){
             return false;
@@ -128,7 +131,7 @@ class Session
      * mengecek apakah terdapat flash message tipe tertentu
      * 
      */
-    public static function has_flash($type)
+    public function has_flash($type)
     {
         if(!isset($_SESSION['flash_message'][$type])){
             return false;
