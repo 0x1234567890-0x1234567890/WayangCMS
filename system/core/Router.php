@@ -7,6 +7,7 @@ use system\core\Base as Base;
 class Router extends Base
 {
 	protected $url;
+    protected $basePath;
     protected $ext;
     protected $controller;
     protected $action;
@@ -42,7 +43,8 @@ class Router extends Base
     
     public function dispatch()
     {
-        $url = $this->url;
+        $url = str_replace($this->basePath, "", $this->url);
+        $url = $url == '/' ? '/' : rtrim($url, '/');
         $parameters = array();
         $controller = 'index';
         $action = 'index';
@@ -75,9 +77,20 @@ class Router extends Base
     
     public function pass($controller, $action, $parameters = array())
     {
-        $name = ucfirst($controller);
-        
         $this->controller = $controller;
         $this->action = $action;
+        
+        try{
+            $instance = new $controller();
+        }
+        catch(\Exception $e){
+            throw new \Exception("Controller not found");
+        }
+        
+        if(!method_exists($instance, $action)){
+            throw new \Exception('Action not found');
+        }
+        
+        call_user_func_array(array($instance,$action), is_array($parameters) ? $parameters : array());
     }
 }

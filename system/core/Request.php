@@ -53,19 +53,4 @@ class Request
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
-    
-    /**
-     * Mendapatkan base url dari sistem
-     * @return string base_url sistem saat ini
-     */
-    public static function base_url()
-    {
-        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
-        $path = $_SERVER['PHP_SELF'];
-        $path_parts = pathinfo($path);
-        $directory = $path_parts['dirname'];
-        $directory = ($directory == "/") ? "" : $directory;
-        $host = $_SERVER['HTTP_HOST'];
-        return $protocol . $host . $directory;
-    }
 }

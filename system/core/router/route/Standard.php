@@ -25,8 +25,20 @@ class Standard extends router\Route
         if(count($values) && count($values[0]) && count($values[1])){
             unset($values[0]);
             
+            $flatten = function($array, $return = array()) use(&$flatten){
+                foreach($array as $key => $value){
+                    if(is_array($value) || is_object($value)){
+                        $return = $flatten($value, $return);
+                    }else{
+                        $return[] = $value;
+                    }
+                }
+                
+                return $return;
+            };
+            
             $derived = array_combine($keys, $values);
-            $this->parameters = array_merge($this->parameters, $derived);
+            $this->parameters = array_merge($this->parameters, $flatten($derived));
             
             return true;
         }

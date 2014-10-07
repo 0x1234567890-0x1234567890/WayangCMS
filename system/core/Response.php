@@ -15,7 +15,7 @@ class Response
      */
 	public function redirect($to, $statusCode=302)
     {
-        header('Location: '.WY_Request::base_url().'/'.$to, true, $statusCode);
+        header('Location: '.base_url().'/'.$to, true, $statusCode);
         exit();
     }
 }
