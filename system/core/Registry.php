@@ -8,80 +8,33 @@ namespace system\core;
  */
 class Registry implements \ArrayAccess
 {
-    protected $objects = array();
+    private static $instances = array();
     
-    /**
-     * default
-     * 
-     */
-    public function __construct(array $objects = array())
+    private function __construct()
     {
-        $this->objects = $objects;
+        // no implementation
     }
     
-    /**
-     * default
-     * 
-     */
-    public function offsetSet($id, $object)
+    private function __clone()
     {
-        $this->objects[$id] = $object;
+        // no implementation
     }
     
-    /**
-     * default
-     * 
-     */
-    public function offsetGet($id)
+    public static function get($key, $default = null)
     {
-        if(!array_key_exists($id, $this->objects)){
-            throw new InvalidArgumentException(sprintf('Object with ID "%s" is not defined', $id));
+        if(isset(self::$instances[$key])){
+            return self::$instances[$key];
         }
-        
-        $isFactory = is_object($this->objects[$id]) && method_exists($this->objects[$id], '__invoke');
-        
-        return $isFactory ? $this->objects[$id]($this) : $this->objects[$id];
+        return $default;
     }
     
-    /**
-     * default
-     * 
-     */
-    public function offsetExists($id)
+    public static function set($key, $value = null)
     {
-        return array_key_exists($id, $this->objects);
+        self::$instances[$key] = $value;
     }
     
-    /**
-     * default
-     * 
-     */
-    public function offsetUnset($id)
+    public static function remove($key)
     {
-        unset($this->objects[$id]);
-    }
-    
-    /**
-     * default
-     * 
-     */
-    public static function share(\Closure $callable)
-    {
-        return function($c) use($callable){
-            static $object;
-            if(null === $object){
-                $object = $callable($c);
-            }
-            return $object;
-        };
-    }
-    
-    /**
-     * default
-     * 
-     */
-    public function keys()
-    {
-        return array_keys($this->objects);
+        unset(self::$instances[$key]);
     }
 }

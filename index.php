@@ -22,41 +22,30 @@ try{
 	require 'system/core/Core.php';
     
     system\core\Core::init();
-
-    $registry = new system\core\Registry();
     
-    $config = new system\core\Config();
+    Config::load('config/config.php');
     
-    $config->load('config/config.php');
-
-    $registry['config'] = $config;
-    
-    $database = new system\core\Database(array('registry'=>$registry));
-
-    $registry['db'] = $database;
+    Registry::set('database', new system\core\Database());
     
     $session = new system\core\Session(array(
         'type'=>'file'
     ));
     
-    $registry['session'] = $session->init();
+    Registry::set('session', $session->init());
     
     $router = new system\core\Router(array(
         'url' => $_SERVER['REQUEST_URI'],
         'basePath' => dirname($_SERVER['SCRIPT_NAME'])
     ));
     
-    $registry['router'] = $router;
+    Registry::set('router', $router);
     
     require 'config/routes.php';
     
     $router->dispatch();
     
-    unset($config);
-    unset($database);
     unset($session);
     unset($router);
-    unset($register);
     
 }catch(Exception $e){
     header("Content-type: text/html");

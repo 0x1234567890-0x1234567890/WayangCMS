@@ -12,16 +12,16 @@ class Config
      * @var array variable tempat penyimpanan item-item konfigurasi
      * 
      */
-    protected $config_items = array();
+    protected static $config_items = array();
     
     /**
      * Memuat file konfigurasi berdasarkan path yang diberikan
      * @param string $config_path lokasi ke file konfigurasi
      */
-    public function load($config_path)
+    public static function load($config_path)
     {
         if(file_exists($config_path)){
-            $this->config_items = include $config_path;
+            self::$config_items = include $config_path;
             return true;
         }else{
             throw new \Exception("Config file not exsists");
@@ -33,9 +33,9 @@ class Config
      * @param string $key kunci item yang akan disimpan
      * @param string $value nilai item yang akan disimpan
      */
-    public function set($key, $value)
+    public static function set($key, $value)
     {
-        $this->config_items[$key] = $value;
+        self::$config_items[$key] = $value;
     }
     
     /**
@@ -46,8 +46,8 @@ class Config
      */
     public function get($key, $default = null)
     {
-        if(isset($this->config_items[$key])){
-            return $this->config_items[$key];
+        if(isset(self::$config_items[$key])){
+            return self::$config_items[$key];
         }
         return $default;
     }
@@ -59,7 +59,7 @@ class Config
      */
     public function has($key)
     {
-        if(isset($this->config_items[$key])){
+        if(isset(self::$config_items[$key])){
             return true;
         }
         return false;
