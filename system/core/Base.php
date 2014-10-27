@@ -15,6 +15,12 @@ class Base
     
     public function __get($name)
     {
-        return $this->$name;
+        $getter = 'get'.ucfirst($name);
+        
+        if(method_exists($this, $getter)){
+            return $this->$getter();
+        }else{
+            throw new \Exception('Private property cannot accessed directly');
+        }
     }
 }

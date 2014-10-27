@@ -3,10 +3,6 @@
 define('BASEPATH', __DIR__);
 define('DEBUG', TRUE);
 
-set_error_handler(function ($errno, $errstr, $errfile, $errline ,array $errcontex){
-    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-});
-
 function base_url()
 {
     $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
@@ -23,22 +19,17 @@ try{
     
     system\core\Core::init();
     
-    Config::load('config/config.php');
+    system\core\Config::load('config/config.php');
     
-    Registry::set('database', new system\core\Database());
+    system\core\Registry::set('database', new system\core\Database());
     
-    $session = new system\core\Session(array(
-        'type'=>'file'
-    ));
+    $session = new system\core\Session(array('type'=>'file'));
     
-    Registry::set('session', $session->init());
+    system\core\Registry::set('session', $session->init());
     
-    $router = new system\core\Router(array(
-        'url' => $_SERVER['REQUEST_URI'],
-        'basePath' => dirname($_SERVER['SCRIPT_NAME'])
-    ));
+    $router = new system\core\Router(array('url' => $_SERVER['REQUEST_URI'], 'basePath' => dirname($_SERVER['SCRIPT_NAME'])));
     
-    Registry::set('router', $router);
+    system\core\Registry::set('router', $router);
     
     require 'config/routes.php';
     

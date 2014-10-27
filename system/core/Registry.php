@@ -6,7 +6,7 @@ namespace system\core;
  * Kelas ini berfungsi menyimpan objek dari kelas lain dan me-manage nya
  * 
  */
-class Registry implements \ArrayAccess
+class Registry
 {
     private static $instances = array();
     

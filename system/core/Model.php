@@ -8,7 +8,6 @@ use system\core\Reflector as Reflector;
 class Model extends Base
 {
 	protected $table;
-    protected $registry;
     protected $db;
     protected $types = array(
         'autonumber',
@@ -29,14 +28,15 @@ class Model extends Base
     public function getDb()
     {
         if(empty($this->db)){
-            if(!isset($this->registry['db'])){
+            $database = Registry::get('database')
+            if(!$database)){
                 throw new \Exception('No Database connected');
             }
             
-            $this->db = $this->registry['db'];
-            
-            return $this->db;
+            $this->db = $database;
         }
+        
+        return $this->db;
     }
     
     public function getColumns()
@@ -119,5 +119,96 @@ class Model extends Base
             $this->primary = $primary;
         }
         return $this->primary;
+    }
+    
+    public function save()
+    {
+        $primary = $this->primaryColumn;
+        
+        $raw = $primary['raw'];
+        $name = $primary['name'];
+        
+        $query = $this->db->query()->from($this->table);
+        
+        if(!empty($this->$raw)){
+            $query->where("{$name} = :name", array(':name'=>$this->$raw));
+        }
+        
+        $data = array();
+        foreach($this->columns as $key => $column){
+            if($column != $this->primaryColumn && $column){
+                $data[$key] = $this->$key;
+                continue;
+            }
+        }
+        $result = $query->save($data);
+        if($result > 0){
+            $this->$raw = $result;
+        }
+        
+        return $result;
+    }
+    
+    public function delete()
+    {
+        $primary = $this->primaryColumn;
+        
+        $raw = $primary['raw'];
+        $name = $primary['name'];
+        
+        if(!empty($this->$raw)){
+            return $this->db
+                ->query()
+                ->from($this->table)
+                ->where("{$name} = :name", array(':name'=>$this->$raw))
+                ->delete();
+        }
+    }
+    
+    public static function deleteAll($where = array())
+    {
+        $instance = new static();
+        
+        $query = $instance->db->query()->from($instance->table);
+        
+        foreach($where as $clause => $value){
+            $query->where($clause, $value);
+        }
+        
+        return $query->delete();
+    }
+    
+    public static function all($where = array(), $fields = array('*'), $order = null, $direction = null, $limit = null, $page = null)
+    {
+        $model = new static();
+        return $model->_all($where, $fields, $order, $direction, $limit, $page);
+    }
+    
+    protected function all($where = array(), $fields = array('*'), $order = null, $direction = null, $limit = null, $page = null)
+    {
+        $query = $this->db
+            ->query()
+            ->from($this->table, $fields);
+            
+        foreach($where as $clause => $value){
+            $query->where($clause, $value);
+        }
+        
+        if($order != null){
+            $query->order($order, $direction);
+        }
+        
+        if($limit != null){
+            $query->limit($limit, $page);
+        }
+        
+        $rows = array();
+        $class = get_class($this);
+        
+        foreach($query->all() as $row){
+            $rows[] = new $class($row);
+        }
+        
+        return $rows;
     }
 }
