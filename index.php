@@ -3,17 +3,6 @@
 define('BASEPATH', __DIR__);
 define('DEBUG', TRUE);
 
-function base_url()
-{
-    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
-    $path = $_SERVER['PHP_SELF'];
-    $path_parts = pathinfo($path);
-    $directory = $path_parts['dirname'];
-    $directory = ($directory == "/") ? "" : $directory;
-    $host = $_SERVER['HTTP_HOST'];
-    return $protocol . $host . $directory;
-}
-
 try{
 	require 'system/core/Core.php';
     
