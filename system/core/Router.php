@@ -2,9 +2,7 @@
 
 namespace system\core;
 
-use system\core\Base as Base;
-
-class Router extends Base
+class Router
 {
 	protected $url;
     protected $basePath;
@@ -12,34 +10,6 @@ class Router extends Base
     protected $controller;
     protected $action;
     protected $routes = array();
-    
-    public function addRoute($route)
-    {
-        $this->routes[] = $route;
-        return $this;
-    }
-    
-    public function removeRoute($route)
-    {
-        foreach($this->routes as $i => $stored){
-            if($stored == $route){
-                unset($this->routes[$i]);
-            }
-        }
-        
-        return $this;
-    }
-    
-    public function getRoutes()
-    {
-        $list = array();
-        
-        foreach($this->routes as $route){
-            $list[$route->pattern] = get_class($route);
-        }
-        
-        return $list;
-    }
     
     public function dispatch()
     {
