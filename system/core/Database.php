@@ -67,7 +67,7 @@ class Database
             return $results->fetch();
         }
         
-        return return $results->fetchAll();
+        return $results->fetchAll();
     }
     
     public function disconnect()
