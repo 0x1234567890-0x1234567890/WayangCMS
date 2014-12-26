@@ -1,8 +1,8 @@
 <?php
 
-namespace application\controllers;
+namespace main\controllers;
 
-use system\core\Controller as Controller;
+use system\core\Controller;
 
 class Page extends Controller
 {

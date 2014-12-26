@@ -10,7 +10,7 @@ try{
     
     system\core\Config::load('config/config.php');
     
-    system\core\Registry::set('database', new system\core\Database());
+    system\core\Registry::set('db', new system\core\Database());
     
     system\core\Session::start();
     

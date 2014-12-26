@@ -15,7 +15,6 @@ class Router
     
 	public function dispatch()
     {
-        echo $this->uri.'<br />';
-        echo $this->basePath;
+        
     }
 }
