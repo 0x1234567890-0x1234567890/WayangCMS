@@ -2,23 +2,16 @@
 
 namespace system\core;
 
-use system\core\Base as Base;
+use system\core\Config;
 
 /**
  * Kelas ini membuat koneksi dan melakukan peng-query-an ke database
  * 
  */
-class Database extends Base
+class Database
 {
-    protected $type;
-    protected $username;
-    protected $password;
-    protected $host;
-    protected $port;
-    protected $schema;
-    protected $charset = 'utf8';
-    protected $isConnected = false;
     protected $instance;
+    protected $isConnected;
     
     protected function hasConnected()
     {
@@ -36,15 +29,16 @@ class Database extends Base
     {
         if(!$this->hasConnected()){
             try{
-                if($this->type === 'mysql'){
-                    $port = isset($this->port) ? $this->port : '3306';
-                    $dsn = "mysql:dbname={$this->schema};host={$this->host};port={$port}";
-                    $this->instance = new \PDO($dsn, $this->username, $this->password);
-                }else{
-                    $port = isset($this->port) ? $this->port : '5432';
-                    $dsn = "pgsql:dbname={$this->schema};host={$this->host};port={$port};user={$this->username};password={$this->password}";
-                    $this->instance = new \PDO($dsn);
-                }
+                $conf = Config::get('db');
+                $dbname = $conf['dbname'];
+                $host = $conf['host'];
+                $port = $conf['port'];
+                $user = $conf['user'];
+                $password = $conf['password'];
+                
+                $dsn = "mysql:dbname={$dbname};host={$host};port={$port}";
+                $this->instance = new \PDO($dsn, $user, $password);
+                
                 $this->instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 $this->instance->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
             }
@@ -69,15 +63,7 @@ class Database extends Base
     
     public function query()
     {
-        if($this->type === 'mysql'){
-            return new db\query\Mysql(array(
-                'db' => $this
-            ));
-        }else{
-            return new db\query\Pgsql(array(
-                'db' => $this
-            ));
-        }
+        
     }
     
     public function disconnect()
