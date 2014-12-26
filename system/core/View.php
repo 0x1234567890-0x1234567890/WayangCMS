@@ -18,7 +18,7 @@ class View
      * @var string judul halaman
      * 
      */
-    public $pageTitle = "";
+    public $title = "";
     
     /**
      * @var array variable penyimpanan data-data untuk ditampilkan

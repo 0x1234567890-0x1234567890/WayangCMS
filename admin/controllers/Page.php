@@ -1,24 +1,15 @@
 <?php
 
-namespace application\controllers\admin;
+namespace admin\controllers;
 
-use system\core\Controller as Controller;
+use system\core\Controller;
 
 class Page extends Controller
 {
     public $layout = 'admin/index';
     
-    public static function auth()
-    {
-        if(!WY_Auth::is_authenticated())
-        {
-            WY_Response::redirect('login');
-        }   
-    }
-    
     public function all()
     {
-        self::auth();
         $pages = WY_Db::all("SELECT * FROM wy_pages ORDER BY page_id ASC");
         $this->layout->pageTitle = 'Wayang CMS - Pages All';
         $this->layout->content = WY_View::fetch('admin/pages/all', array('pages'=>$pages));
@@ -26,7 +17,6 @@ class Page extends Controller
     
     public function add()
     {
-        self::auth();
         if(WY_Request::isPost()){
             $author=  WY_Session::get('display');
             $title = $_POST['title'];
@@ -73,13 +63,11 @@ class Page extends Controller
     
     public function view($id)
     {
-        self::auth();
         
     }
     
     public function edit($id)
     {
-        self::auth();
         $page = WY_Db::row('SELECT * FROM wy_pages WHERE page_id = :id', array(':id'=> (int) $id));
         if(!$page){
             $view = new WY_View('404');
@@ -127,7 +115,6 @@ class Page extends Controller
     
     public function delete($id)
     {
-        self::auth();
         WY_Db::execute('DELETE FROM wy_pages WHERE page_id = :id', array(':id'=> (int) $id));
         WY_Db::execute('DELETE FROM wy_comments WHERE page_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/pages/all');

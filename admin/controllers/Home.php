@@ -1,24 +1,15 @@
 <?php
 
-namespace application\controllers\admin;
+namespace admin\controllers;
 
-use system\core\Controller as Controller;
+use system\core\Controller;
 
 class Home extends Controller
 {
     public $layout = 'admin/index';
-    
-    public static function auth()
-    {
-        if(!WY_Auth::is_authenticated())
-        {
-            WY_Response::redirect('login');
-        }   
-    }
 
     public function index()
     {
-        self::auth();
         $pages = WY_Db::row("SELECT COUNT(*) as num FROM wy_pages");
         $posts = WY_Db::row("SELECT COUNT(*) as num FROM wy_posts");
         $comments = WY_Db::row("SELECT COUNT(*) as num FROM wy_comments");

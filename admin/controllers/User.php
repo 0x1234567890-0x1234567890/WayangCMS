@@ -1,24 +1,15 @@
 <?php
 
-namespace application\controllers\admin;
+namespace admin\controllers;
 
-use system\core\Controller as Controller;
+use system\core\Controller;
 
 class User extends Controller
 {
     public $layout = 'admin/index';
     
-    public static function auth()
-    {
-        if(!WY_Auth::is_authenticated())
-        {
-            WY_Response::redirect('login');
-        }   
-    }
-    
     public function all()
     {
-        self::auth();
         $user = WY_Db::all('SELECT * FROM `wy_users`');
         $this->layout->pageTitle = 'Wayang CMS - Users';
         $this->layout->content = WY_View::fetch('admin/users/all', array('user'=>$user));
@@ -26,7 +17,6 @@ class User extends Controller
     
     public function add()
     {
-        self::auth();
         if(WY_Request::isPost()){
             $username=$_POST['username'];
             $email=$_POST['email'];
@@ -51,13 +41,11 @@ class User extends Controller
     
     public function view($id)
     {
-        self::auth();
         
     }
     
     public function profile()
     {
-        self::auth();
         $user = WY_Db::row('SELECT * FROM `wy_users` WHERE `user_id` = :id', array(':id'=> (int) WY_Session::get('user_id')));
         if(!$user){
             $view = new WY_View('404');
@@ -155,7 +143,6 @@ class User extends Controller
     
     public function delete($id)
     {
-        self::auth();
         WY_Db::execute('DELETE FROM wy_users WHERE user_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/users/all');
     }

@@ -1,24 +1,15 @@
 <?php
 
-namespace application\controllers\admin;
+namespace admin\controllers;
 
-use system\core\Controller as Controller;
+use system\core\Controller;
 
 class Comment extends Controller
 {
     public $layout = 'admin/index';
     
-    public static function auth()
-    {
-        if(!WY_Auth::is_authenticated())
-        {
-            WY_Response::redirect('login');
-        }   
-    }
-    
     public function all()
     {
-        self::auth();
         $comment = WY_Db::all('SELECT wyc.*,wyps.title as ps_title,wypg.title as pg_title FROM wy_comments wyc LEFT JOIN wy_pages wypg ON wypg.page_id=wyc.page_id LEFT JOIN wy_posts wyps ON wyps.post_id=wyc.post_id Order By wyc.c_id ASC');
         $this->layout->pageTitle = 'Wayang CMS - Comments';
         $this->layout->content = WY_View::fetch('admin/comments/all',array('comment'=>$comment));
@@ -26,17 +17,16 @@ class Comment extends Controller
     
     public function add($id)
     {
-        self::auth();
+        
     }
     
     public function view($id)
     {
-        self::auth();
+        
     }
     
     public function edit($id)
     {
-        self::auth();
         $comment = WY_Db::row('SELECT * FROM wy_comments WHERE c_id = :id', array(':id'=> (int) $id));
         if(!$comment){
             $view = new WY_View('404');
@@ -63,7 +53,6 @@ class Comment extends Controller
     
     public function delete($id)
     {
-        self::auth();
         WY_Db::execute('DELETE FROM wy_comments WHERE c_id = :id', array(':id'=> (int) $id));
         WY_Response::redirect('admin/comments/all');
     }
