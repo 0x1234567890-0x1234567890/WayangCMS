@@ -15,6 +15,22 @@ class Router
     
 	public function dispatch()
     {
-        print_r(explode('/', trim(str_replace($this->basePath, '', $this->uri), '/')));
+        $url = trim(str_replace($this->basePath, '', $this->uri), '/');
+        
+        $parts = explode('/', $url);
+        
+        $partsCount = count($parts);
+        
+        echo "<pre>";
+        print_r($parts);
+        echo "</pre>";
+        
+        $activeModules = Config::get('modules');
+        
+        if ($partsCount == 1) {
+            if (in_array($parts[0], $activeModules)) {
+                
+            }
+        }
     }
 }
