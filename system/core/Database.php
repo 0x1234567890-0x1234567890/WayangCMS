@@ -48,22 +48,26 @@ class Database
             
             $this->isConnected = true;
         }
-        
-        return $this;
     }
     
     public function prepare($sql)
     {
-        if(!$this->hasConnected()){
-            throw new \Exception('Database Not Connected Yet!');
-        }
+        $this->connect();
         
         return $this->instance->prepare($sql);
     }
     
-    public function query()
+    public function query($sql, $params = array(), $multiple = true)
     {
+        $statement = $this->prepare($sql);
         
+        $results = $statement->execute($params);
+        
+        if ($multiple) {
+            return $results->fetch();
+        }
+        
+        return return $results->fetchAll();
     }
     
     public function disconnect()
@@ -78,19 +82,13 @@ class Database
     
     public function execute($sql)
     {
-        if(!$this->hasConnected()){
-            throw new \Exception('Database Not Connected Yet!');
-        }
+        $this->connect();
         
         return $this->instance->exec($sql);
     }
     
     public function getLastError()
-    {
-        if(!$this->hasConnected()){
-            throw new \Exception('Database Not Connected Yet!');
-        }
-        
+    {   
         return $this->instance->errorInfo();
     }
     
@@ -105,10 +103,6 @@ class Database
     
     public function getLastInsertId()
     {
-        if(!$this->hasConnected()){
-            throw new \Exception('Database Not Connected Yet!');
-        }
-        
         return $this->instance->lastInsertId();
     }
 }
