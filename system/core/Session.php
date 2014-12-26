@@ -2,32 +2,33 @@
 
 namespace system\core;
 
-use system\core\Base as Base;
-use system\core\session as session;
-
 /**
  * Kelas ini berfungsi sebagai wrapper untuk session pada PHP
  * pengambilan penge-set-an session dilakukan melalui kelas ini
  */
-class Session extends Base
+class Session
 {
-    protected $type;
-    protected $options;
-    
-    public function init()
+    public static function start()
     {
-        $type = $this->type;
-        
-        if(empty($type)){
-            throw new \Exception('Invalid Type');
+        session_start();
+    }
+    
+    public static function destroy()
+    {
+        session_destroy();
+    }
+    
+    public static function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+    
+    public static function get($key, $default = null)
+    {
+        if (isset($_SESSION[$key])) {
+            return $_SESSION[$key];
         }
         
-        switch($type){
-            case "file":
-                return new session\driver\File($this->options);
-                break;
-            default:
-                throw new \Exception('Invalid Type');
-        }
+        return $default;
     }
 }

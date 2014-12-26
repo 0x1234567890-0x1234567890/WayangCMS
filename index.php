@@ -12,20 +12,11 @@ try{
     
     system\core\Registry::set('database', new system\core\Database());
     
-    $session = new system\core\Session(array('type'=>'file'));
+    system\core\Session::start();
     
-    system\core\Registry::set('session', $session->init());
+    system\core\Registry::set('router', new system\core\Router());
     
-    $router = new system\core\Router(array('url' => $_SERVER['REQUEST_URI'], 'basePath' => dirname($_SERVER['SCRIPT_NAME'])));
-    
-    system\core\Registry::set('router', $router);
-    
-    require 'config/routes.php';
-    
-    $router->dispatch();
-    
-    unset($session);
-    unset($router);
+    system\core\Registry::get('router')->dispatch();
     
 }catch(Exception $e){
     header("Content-type: text/html");
