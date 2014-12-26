@@ -15,6 +15,6 @@ class Router
     
 	public function dispatch()
     {
-        
+        print_r(explode('/', trim(str_replace($this->basePath, '', $this->uri), '/')));
     }
 }
