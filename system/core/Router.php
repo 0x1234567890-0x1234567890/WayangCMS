@@ -56,7 +56,7 @@ class Router
         
         try{
             $ns = "$module\\controllers\\$controller";
-            $obj = new $ns();
+            $obj = new $ns(strtolower($controller), $module, $action);
             call_user_func_array(array($obj, $action), $params);
         }
         catch(Exception $e){
