@@ -7,7 +7,7 @@ namespace system\core;
  * 
  */
 class View
-{   
+{
     /**
      * @var string judul halaman
      * 
@@ -25,6 +25,10 @@ class View
      * 
      */
     public $params;
+    
+    public $cssFiles;
+    
+    public $jsFiles;
     
     /**
      * me-render view yang telah ditetapkan
@@ -75,6 +79,31 @@ class View
      * 
      */
     public function endBlock()
+    {
+        
+    }
+    
+    public function registerCss()
+    {
+        
+    }
+    
+    public function registerCssFile()
+    {
+        
+    }
+    
+    public function registerJs()
+    {
+        
+    }
+    
+    public function registerJsFile()
+    {
+        
+    }
+    
+    public function registerMeta()
     {
         
     }

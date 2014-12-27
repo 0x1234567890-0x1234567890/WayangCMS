@@ -3,7 +3,7 @@
 namespace system\core\uploader;
 
 /**
- * Class for file uploader
+ * Kelas uploader untuk file binary
  */
 class File
 {

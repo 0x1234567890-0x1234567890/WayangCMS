@@ -2,13 +2,11 @@
 
 namespace system\core\uploader;
 
-use system\core\Base as Base;
-
 /** 
  * Kelas ini berfungsi untuk mengontrol proses upload gambar
  */
 
-class Image extends Base
+class Image
 {
     private $imageType;
     private $image;

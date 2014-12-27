@@ -8,5 +8,12 @@ namespace system\core;
  */
 class Plugin
 {
-	
+    /**
+     * Konstruktor kelas
+     * 
+     */
+	public function __construct()
+    {
+        
+    }
 }
