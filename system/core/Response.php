@@ -13,9 +13,17 @@ class Response
      * @param string $to url redirect
      * @param int $statusCode status header yang di tetapkan untuk redirect
      */
-	public function redirect($to, $statusCode=302)
+	public function redirect($url, $status = 302)
     {
-        header('Location: '.base_url().'/'.$to, true, $statusCode);
+        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
+        $path = $_SERVER['PHP_SELF'];
+        $pathParts = pathinfo($path);
+        $directory = $pathParts['dirname'];
+        $directory = ($directory == "/") ? "" : $directory;
+        $host = $_SERVER['HTTP_HOST'];
+        $baseUrl = $protocol . $host . $directory;
+
+        header('Location: ' . $baseUrl . '/' . $to, true, $status);
         exit();
     }
 }

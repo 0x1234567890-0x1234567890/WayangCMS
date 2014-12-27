@@ -37,4 +37,15 @@ class Registry
     {
         unset(self::$instances[$key]);
     }
+    
+    public static function __callStatic($name, $arguments)
+    {
+        $key = strtolower(substr($name, 3));
+        
+        if (isset(self::$instances[$key])) {
+            return self::$instances[$key];
+        }
+        
+        return null;
+    }
 }

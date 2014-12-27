@@ -7,55 +7,58 @@ namespace system\core;
  * 
  */
 class View
-{
-    /**
-     * @var string nama file view
-     * 
-     */
-	protected $view;
-    
+{   
     /**
      * @var string judul halaman
      * 
      */
     public $title = "";
     
+    /**
+     * @var array blok untuk konten dinamis
+     * 
+     */
     public $blocks;
     
     /**
-     * Konstruktor
-     * @param string $view nama file view yang akan dirender
+     * @var array parameter yang tersedia di semua view
+     * 
      */
-    public function __construct($view = null){
-        if(!$view){
-            throw new Exception("No view was supplied");
-        }
-        $this->view = $view;
-    }
+    public $params;
     
     /**
      * me-render view yang telah ditetapkan
-     * @param boolean $_print_ menentukan apakah view langsung di echo atau tidak
      * @param mixed $_data_ data-data yang akan di outputkan
+     * @param boolean $_print_ menentukan apakah view langsung di echo atau tidak
      */
-    public function render($_print_ = true, $_data_ = null)
+    public function render($_view_, $_data_ = null, $_print_ = true)
     {
-        if(!is_null($_data_) and is_array($_data_)) extract($_data_, EXTR_SKIP);
+        if (!is_null($_data_) and is_array($_data_)) {
+            extract($_data_, EXTR_SKIP);
+        }
         
-        $_view_filepath = BASEPATH.'/wy_app/views/'.$this->view.'.php';
-        
-        if(!file_exists($_view_filepath)){
+        if (!file_exists($_view_)) {
             throw new Exception("The view file doesn't exist");
         }
         
-        if(!$_print_){
+        if (!$_print_) {
             ob_start();
         }
         
-        require_once $_view_filepath;
+        require_once $_view_;
         
-        if(!$_print_){
+        if (!$_print_) {
             return ob_get_clean();
         }
+    }
+    
+    public function beginBlock($key)
+    {
+        
+    }
+    
+    public function endBlock()
+    {
+        
     }
 }

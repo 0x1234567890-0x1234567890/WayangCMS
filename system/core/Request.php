@@ -14,7 +14,7 @@ class Request
      * @param mixed $default nilai default jika parameter tidak di temukan
      * @return mixed
      */
-    public static function get($key, $default = null)
+    public function get($key, $default = null)
     {
         if(isset($_GET[$key])){
             return $_GET[$key];
@@ -28,7 +28,7 @@ class Request
      * @param mixed $default nilai default jika parameter tidak di temukan
      * @return mixed
      */
-    public static function post($key, $default = null)
+    public function post($key, $default = null)
     {
         if(isset($_POST[$key])){
             return $_POST[$key];
@@ -40,7 +40,7 @@ class Request
      * Memeriksa apakah request saat ini melalui GET method
      * @return boolean
      */
-    public static function isGet()
+    public function isGet()
     {
         return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
@@ -49,7 +49,7 @@ class Request
      * Memeriksa apakah request saat ini melalui POST method
      * @return boolean
      */
-    public static function isPost()
+    public function isPost()
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }

@@ -3,7 +3,7 @@
 define('BASEPATH', __DIR__);
 define('DEBUG', TRUE);
 
-try{
+try {
 	require 'system/core/Core.php';
     
     system\core\Core::init();
@@ -14,11 +14,13 @@ try{
     
     system\core\Session::start();
     
+    system\core\Registry::set('response', new system\core\Response());
+    
     system\core\Registry::set('router', new system\core\Router());
     
-    system\core\Registry::get('router')->dispatch();
+    system\core\Registry::getRouter()->dispatch();
     
-}catch(Exception $e){
+} catch(Exception $e) {
     header("Content-type: text/html");
 	include('application/views/error/500.php');
     exit;

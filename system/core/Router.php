@@ -4,8 +4,8 @@ namespace system\core;
 
 class Router
 {
-    protected $uri;
-    protected $basePath;
+    public $uri;
+    public $basePath;
     
     public function __construct()
     {
@@ -55,8 +55,9 @@ class Router
         }
         
         try{
-            $ns = "$module\\controllers\\$controller";
+            $ns = "{$module}\\controllers\\{$controller}";
             $obj = new $ns(strtolower($controller), $module, $action);
+            Registry::set('controller', $obj);
             call_user_func_array(array($obj, $action), $params);
         }
         catch(Exception $e){
