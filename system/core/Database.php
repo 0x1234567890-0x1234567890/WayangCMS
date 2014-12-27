@@ -9,10 +9,23 @@ use system\core\Config;
  * 
  */
 class Database
-{
+{   
+    /**
+     * @var object instance dari PDO
+     * 
+     */
     protected $instance;
+    
+    /**
+     * @var boolean menentukan apakah database sudah terkoneksi
+     * 
+     */
     protected $isConnected;
     
+    /**
+     * untuk menentukan apakah database sudah terkoneksi dengan benar
+     * 
+     */
     protected function hasConnected()
     {
         $isEmpty = empty($this->instance);
@@ -25,6 +38,10 @@ class Database
         return false;
     }
     
+    /**
+     * mengkoneksikan sistem ke database
+     * 
+     */
     public function connect()
     {
         if(!$this->hasConnected()){
@@ -50,6 +67,10 @@ class Database
         }
     }
     
+    /**
+     * mempersiapkan query untuk diproses
+     * @param string $sql query yang hendak di persiapkan oleh engine PDO
+     */
     public function prepare($sql)
     {
         $this->connect();
@@ -57,6 +78,12 @@ class Database
         return $this->instance->prepare($sql);
     }
     
+    /**
+     * melakukan select ke database berdasarkan query tertentu
+     * @param string $sql query yang ingin dijalankan
+     * @param array $params variable yang ingin di-bindind ke query
+     * @param boolean $multiple apakah query mengembalikan banyak baris atau tidak
+     */
     public function query($sql, $params = array(), $multiple = true)
     {
         $statement = $this->prepare($sql);
@@ -70,6 +97,10 @@ class Database
         return $results->fetchAll();
     }
     
+    /**
+     * memutuskan hubungan ke database
+     * 
+     */
     public function disconnect()
     {
         if($this->hasConnected()){
@@ -80,6 +111,10 @@ class Database
         return $this;
     }
     
+    /**
+     * mengeksekusi perintah DDL database
+     * @param string $sql perintah DDL yang ingin di eksekusi
+     */
     public function execute($sql)
     {
         $this->connect();
@@ -87,11 +122,19 @@ class Database
         return $this->instance->exec($sql);
     }
     
+    /**
+     * mendapatkan pesan error terakhir yang terjadi pada sistem
+     * 
+     */
     public function getLastError()
     {   
         return $this->instance->errorInfo();
     }
     
+    /**
+     * membersihkan variable dengan engine PDO
+     * @param mixed $value variable yang ingin di bersihkan
+     */
     public function escape($value)
     {
         if(!$this->hasConnected()){
@@ -101,6 +144,10 @@ class Database
         return $this->instance->quote($value);
     }
     
+    /**
+     * mendapatkan id terakhir dari baris yang berhasil di insert ke table
+     * 
+     */
     public function getLastInsertId()
     {
         return $this->instance->lastInsertId();

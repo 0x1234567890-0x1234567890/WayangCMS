@@ -22,6 +22,6 @@ try {
     
 } catch(Exception $e) {
     header("Content-type: text/html");
-	include('application/views/error/500.php');
+	include('main/views/error/500.php');
     exit;
 }

@@ -8,11 +8,16 @@ class Home extends Controller
 {
     public function index()
     {
-        echo 'home';
+        $this->render('index', array('name' => 'Rully Ramanda'));
     }
     
-    public function hello()
+    public function hello($id, $name)
     {
-        echo 'hello';
+        echo 'hello '.$id.' '.$name;
+    }
+    
+    public function redir()
+    {
+        $this->redirect('/');
     }
 }

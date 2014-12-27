@@ -4,15 +4,32 @@ namespace system\core;
 
 class Router
 {
+    /**
+     * @var string url untuk request saat ini
+     * 
+     */
     public $uri;
+    
+    /**
+     * @var string lokasi dimana aplikasi berada
+     * 
+     */
     public $basePath;
     
+    /**
+     * Konstruktor kelas
+     * 
+     */
     public function __construct()
     {
         $this->uri = $_SERVER['REQUEST_URI'];
         $this->basePath = dirname($_SERVER['SCRIPT_NAME']);
     }
     
+    /**
+     * memecah uri serta menentukan module, controller dan action mana yang akan diakses
+     * 
+     */
 	public function dispatch()
     {
         $url = trim(str_replace($this->basePath, '', $this->uri), '/');
@@ -31,8 +48,6 @@ class Router
         if ($partsCount == 1) {
             if (in_array($parts[0], $activeModules)) {
                 $module = $activeModules[array_search($parts[0], $activeModules)];
-            } else {
-                $controller = ucfirst($parts[0]);
             }
         } elseif ($partsCount == 2) {
             if (in_array($parts[0], $activeModules)) {

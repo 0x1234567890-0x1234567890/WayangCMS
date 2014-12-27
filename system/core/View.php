@@ -21,7 +21,7 @@ class View
     public $blocks;
     
     /**
-     * @var array parameter yang tersedia di semua view
+     * @var array parameter yang tersedia di semua template
      * 
      */
     public $params;
@@ -38,7 +38,7 @@ class View
         }
         
         if (!file_exists($_view_)) {
-            throw new Exception("The view file doesn't exist");
+            throw new \Exception("The view file doesn't exist");
         }
         
         if (!$_print_) {
@@ -52,11 +52,28 @@ class View
         }
     }
     
+    /**
+     * menampilkan konten dinamis yang sudah di set sebelum nya
+     * @param string $key id dari konten dinamis
+     */
+    public function block($key)
+    {
+        
+    }
+    
+    /**
+     * memulai penangkapan output konten dinamis di view
+     * @param string $key id dari konten dinamis
+     */
     public function beginBlock($key)
     {
         
     }
     
+    /**
+     * mengakhiri penangkapan output konten dinamis
+     * 
+     */
     public function endBlock()
     {
         
