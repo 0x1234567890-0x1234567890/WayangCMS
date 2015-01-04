@@ -51,15 +51,13 @@ abstract class Controller
         
         $viewFile = $this->getViewFile($view);
         
-        $content = $obj->render($viewFile, $params);
-        
         if (is_string($this->layout)) {
             $layoutFile = $this->getViewFile($this->layout, true);
         
-            return $obj->render($layoutFile, array('content' => $content));
+            return $obj->render($layoutFile, array('content' => $obj->render($viewFile, $params, false)));
         }
         
-        return $content;
+        return $obj->render($viewFile, $params);
     }
     
     /**

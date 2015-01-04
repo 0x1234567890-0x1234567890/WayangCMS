@@ -50,7 +50,7 @@ class Events
      * @param string $type tipe event
      * @param array $parameters parameter yang akan di lewatkan ke callback
      */
-    public static function fire($type, $parameters = null)
+    public static function fire($type, $parameters = array())
     {
         if(!empty(self::$callbacks[$type])){
             foreach(self::$callbacks[$type] as $callback){

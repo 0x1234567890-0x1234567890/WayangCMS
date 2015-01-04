@@ -53,4 +53,17 @@ class Request
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
+    
+    public function baseUrl()
+    {
+        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';
+        $path = $_SERVER['PHP_SELF'];
+        $pathParts = pathinfo($path);
+        $directory = $pathParts['dirname'];
+        $directory = ($directory == "/") ? "" : $directory;
+        $host = $_SERVER['HTTP_HOST'];
+        $baseUrl = $protocol . $host . $directory;
+        
+        return $baseUrl;
+    }
 }
