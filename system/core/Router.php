@@ -70,7 +70,7 @@ class Router
         }
         
         try{
-            $ns = "{$module}\\controllers\\{$controller}";
+            $ns = "{$module}\\controllers\\{$controller}Controller";
             $obj = new $ns(strtolower($controller), $module, $action);
             Registry::set('controller', $obj);
             call_user_func_array(array($obj, $action), $params);
