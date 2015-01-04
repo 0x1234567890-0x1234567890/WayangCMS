@@ -4,7 +4,7 @@ namespace main\controllers;
 
 use system\core\Controller;
 
-class Register extends Controller
+class RegisterController extends Controller
 {
 	public $layout = 'layout';
     

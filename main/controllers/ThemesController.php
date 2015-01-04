@@ -4,7 +4,7 @@ namespace main\controllers;
 
 use system\core\Controller;
 
-class Themes extends Controller
+class ThemesController extends Controller
 {
 	
 }

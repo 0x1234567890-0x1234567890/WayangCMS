@@ -4,7 +4,7 @@ namespace main\controllers;
 
 use system\core\Controller;
 
-class Post extends Controller
+class PostController extends Controller
 {   
     public function index($permalink)
     {

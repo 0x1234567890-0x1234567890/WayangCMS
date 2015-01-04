@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use system\core\Controller;
 
-class Plugin extends Controller
+class PluginController extends Controller
 {
     public $layout = 'admin/index';
     

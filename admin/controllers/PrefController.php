@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use system\core\Controller;
 
-class Pref extends Controller
+class PrefController extends Controller
 {
     public $layout = 'admin/index';
     

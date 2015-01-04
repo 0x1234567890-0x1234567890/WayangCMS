@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use system\core\Controller;
 
-class Comment extends Controller
+class CommentController extends Controller
 {
     public $layout = 'admin/index';
     

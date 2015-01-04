@@ -4,7 +4,7 @@ namespace main\controllers;
 
 use system\core\Controller;
 
-class Label extends Controller
+class LabelController extends Controller
 {
     public $layout = 'themes/default/layout';
     

@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use system\core\Controller;
 
-class Login extends Controller
+class LoginController extends Controller
 {
     public $layout = 'admin/login';
     public $log;

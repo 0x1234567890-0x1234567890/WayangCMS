@@ -4,7 +4,7 @@ namespace admin\controllers;
 
 use system\core\Controller;
 
-class Theme extends Controller
+class ThemeController extends Controller
 {
     public $layout = 'admin/index';
     
