@@ -20,4 +20,13 @@ class Home extends Controller
     {
         $this->redirect('/');
     }
+    
+    public function query()
+    {
+        $users = $this->db->query('select * from wy_user');
+        
+        echo "<pre>";
+        print_r($users);
+        echo "</pre>";
+    }
 }

@@ -101,4 +101,9 @@ abstract class Controller
         
         return null;
     }
+    
+    public function getDb()
+    {
+        return Registry::getDb();
+    }
 }

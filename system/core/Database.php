@@ -50,7 +50,7 @@ class Database
                 $dbname = $conf['dbname'];
                 $host = $conf['host'];
                 $port = $conf['port'];
-                $user = $conf['user'];
+                $user = $conf['username'];
                 $password = $conf['password'];
                 
                 $dsn = "mysql:dbname={$dbname};host={$host};port={$port}";
@@ -71,7 +71,7 @@ class Database
      * mempersiapkan query untuk diproses
      * @param string $sql query yang hendak di persiapkan oleh engine PDO
      */
-    public function prepare($sql)
+    private function prepare($sql)
     {
         $this->connect();
         
@@ -91,10 +91,10 @@ class Database
         $results = $statement->execute($params);
         
         if ($multiple) {
-            return $results->fetch();
+            return $statement->fetchAll();
         }
         
-        return $results->fetchAll();
+        return $statement->fetch();
     }
     
     /**

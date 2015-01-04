@@ -14,6 +14,8 @@ try {
     
     system\core\Session::start();
     
+    system\core\Registry::set('request', new system\core\Request());
+    
     system\core\Registry::set('response', new system\core\Response());
     
     system\core\Registry::set('router', new system\core\Router());
