@@ -56,6 +56,31 @@ class View
         }
     }
     
+    public function beginPage()
+    {
+        
+    }
+    
+    public function endPage()
+    {
+        
+    }
+    
+    public function head()
+    {
+        
+    }
+    
+    public function beginBody()
+    {
+        
+    }
+    
+    public function endBody()
+    {
+        
+    }
+    
     /**
      * menampilkan konten dinamis yang sudah di set sebelum nya
      * @param string $key id dari konten dinamis
