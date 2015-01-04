@@ -32,7 +32,7 @@ class Model
         return Registry::getDb();
     }
     
-    public static function getDb()
+    public static function db()
     {
         return Registry::getDb();
     }

@@ -4,6 +4,8 @@ namespace main\controllers;
 
 use system\core\Controller;
 
+use main\models\User;
+
 class HomeController extends Controller
 {
     public function index()
@@ -23,7 +25,7 @@ class HomeController extends Controller
     
     public function query()
     {
-        $users = $this->db->query('select * from wy_user');
+        $users = User::getAll();
         
         echo "<pre>";
         print_r($users);
