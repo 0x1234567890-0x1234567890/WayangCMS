@@ -114,6 +114,8 @@ class View
      */
     public function beginBlock($key)
     {
+        $this->blocks[$key] = null;
+        
         ob_start();
         ob_implicit_flush(false);
     }
@@ -132,9 +134,12 @@ class View
         $this->cssScripts[] = $css;
     }
     
-    public function registerCssFile($file)
+    public function registerCssFile($file, $options = array())
     {
-        $this->cssFiles[] = $file;
+        $this->cssFiles[] = array(
+            'file' => $file,
+            'options' => $options
+        );
     }
     
     public function registerJs($js, $position = 'VIEW_BOTTOM')
@@ -156,8 +161,20 @@ class View
     {
         $baseUrl = Registry::getRequest()->baseUrl();
         
-        foreach ($this->cssFiles as $file) {
-            echo "<link href='{$baseUrl}{$file}' rel='stylesheet' media='all' />";
+        foreach ($this->cssFiles as $css) {
+            if (strpos($css['file'], 'http') === false) {
+                $href = $baseUrl.$css['file'];
+            } else {
+                $href = $css['file'];
+            }
+            
+            if (isset($css['options']['rel'])) {
+                $rel = $css['options']['rel'];
+            } else {
+                $rel = 'stylesheet';
+            }
+            
+            echo "<link href='{$href}' rel='{$rel}' />";
         }
         
         if (!empty($this->cssScripts)) {
