@@ -16,4 +16,24 @@ class Model
     {
         
     }
+    
+    public function __get($key)
+    {
+        $getter = 'get' . ucfirst($key);
+        if (method_exists($this, $getter)) {
+            return $this->$getter();
+        }
+        
+        return null;
+    }
+    
+    public function getDb()
+    {
+        return Registry::getDb();
+    }
+    
+    public static function getDb()
+    {
+        return Registry::getDb();
+    }
 }
