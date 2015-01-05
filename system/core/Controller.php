@@ -37,6 +37,10 @@ abstract class Controller
         $this->id = $id;
         $this->module = $module;
         $this->action = $action;
+        
+        $this->db = Registry::getDb();
+        $this->response = Registry::getResponse();
+        $this->request = Registry::getRequest();
     }
     
     /**
@@ -67,7 +71,7 @@ abstract class Controller
      */
     public function redirect($url, $status = 302)
     {
-        Registry::getResponse()->redirect($url, $status);
+        $this->response->redirect($url, $status);
     }
     
     /**
@@ -84,24 +88,5 @@ abstract class Controller
         }
         
         return BASEPATH . DIRECTORY_SEPARATOR . $this->module . DIRECTORY_SEPARATOR . 'views' .DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $view . '.php';
-    }
-    
-    /**
-     * magic getter
-     * @param string $key nama property yang ingin diakses
-     */
-    public function __get($key)
-    {
-        $getter = 'get' . ucfirst($key);
-        if (method_exists($this, $getter)) {
-            return $this->$getter();
-        }
-        
-        return null;
-    }
-    
-    public function getDb()
-    {
-        return Registry::getDb();
     }
 }
