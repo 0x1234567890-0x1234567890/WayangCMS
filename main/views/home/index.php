@@ -29,6 +29,6 @@ $this->title = 'Wayang-CMS - Home';
         </div>
         <a href="<?= Url::to(array('post/view', 'permalink' => $post->permalink)) ?>" class="btn btn-info">  Read More&nbsp; <i class="fa fa-chevron-right"></i> </a>
     </div>
-    <?php endforeach; ?>    
+    <?php endforeach; ?>
     <?php endif; ?>
 </div>
