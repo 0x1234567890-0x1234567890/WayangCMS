@@ -1,5 +1,5 @@
 <?php
-use system\core\Menu;
+use main\components\Menu;
 
 
 ?>
@@ -10,6 +10,7 @@ use system\core\Menu;
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><?= $this->title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- =================== CSS ================================== -->
     
     <?php $this->registerCssFile("/assets/theme/css/bootstrap.min.css") ?>
@@ -27,7 +28,7 @@ use system\core\Menu;
 </head>
 <body class="home">
     <?php $this->beginBody() ?>
-    <?= Menu::generate() ?>
+    <?= Menu::render() ?>
     <div class="container wrapslid">
         <div class="row">
             <div class="col-lg-12">
