@@ -19,13 +19,8 @@ class Menu extends Widget
     
 	public function run()
     {
-        $html = '<ul>';
-        foreach ($this->menuItems as $menu) {
-            $url = Url::to(array('page/view', 'permalink' => $menu->permalink));
-            $html .= "<li><a href='{$url}'>{$menu->title}</a></li>";
-        }
-        $html .= '</ul>';
-        
-        return $html;
+        return $this->render('menu', array(
+            'menuItems' => $this->menuItems,
+        ));
     }
 }

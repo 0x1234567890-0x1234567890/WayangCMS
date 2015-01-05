@@ -28,7 +28,7 @@ use main\components\Menu;
 </head>
 <body class="home">
     <?php $this->beginBody() ?>
-    <?= Menu::render() ?>
+    <?= Menu::widget() ?>
     <div class="container wrapslid">
         <div class="row">
             <div class="col-lg-12">

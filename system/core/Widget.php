@@ -11,7 +11,26 @@ abstract class Widget
         
     }
     
-    public static function render(array $options = array())
+    
+    public function render($view, $params = array())
+    {
+        $obj = new View();
+        
+        $viewFile = $this->getViewFile($view);
+        
+        return $obj->render($viewFile, $params, false);
+    }
+    
+    protected function getViewFile($view, $layout = false)
+    {
+        $controller = Registry::getController();
+        
+        $module = $controller->module;
+        
+        return BASEPATH . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'components' .DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php';
+    }
+    
+    public static function widget(array $options = array())
     {
         $instance = new static();
         
