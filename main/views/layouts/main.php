@@ -1,6 +1,6 @@
 <?php
 use main\components\Menu;
-
+use main\components\Sidebar;
 
 ?>
 <?php $this->beginPage() ?>
@@ -74,6 +74,8 @@ use main\components\Menu;
             <!-- Articles -->
 
             <?= $content ?>
+            
+            <?= Sidebar::widget() ?>
         </div>
     </div>
     <!-- Foooter

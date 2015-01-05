@@ -10,7 +10,7 @@ use system\core\helpers\Url;
             <?php foreach ($recentPosts as $post) : ?>
                 <div class="media-body recent-recent" contenteditable="false">
                     <h4 class="media-heading"><a href="<?= Url::to(array('post/view', 'permalink' => $post->permalink)) ?>"><?= $post->title ?></a></h4>
-                    <?php $p = explode("</p>", $recent->content); echo substr($p[0],0,100)." ..."; ?>
+                    <?php $p = explode("</p>", $post->content); echo substr($p[0],0,100)." ..."; ?>
                 </div>
             <?php endforeach; ?>    
         <?php endif; ?>
