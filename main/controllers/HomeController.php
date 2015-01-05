@@ -5,12 +5,15 @@ namespace main\controllers;
 use system\core\Controller;
 
 use main\models\User;
+use main\models\Post;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $this->render('index', array('name' => 'Rully Ramanda'));
+        $this->render('index', array(
+            'posts' => Post::getAll(),
+        ));
     }
     
     public function hello($id, $name)
