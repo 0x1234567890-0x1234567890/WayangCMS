@@ -14,7 +14,7 @@ class Sidebar extends Widget
         
         $db = Registry::getDb();
         
-        $this->recentPosts = $db->query('select * from wy_page where published=1 AND is_parent=0');
+        $this->recentPosts = $db->query('select * from wy_post where published=1 order by date_add');
         
         $this->categories = $db->query('select * from wy_category where published=1 order by date_add');
     }
