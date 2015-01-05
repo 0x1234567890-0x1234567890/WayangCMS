@@ -1,0 +1,29 @@
+<?php
+
+namespace main\components;
+
+use system\core\Widget;
+use system\core\Registry;
+use system\core\helpers\Url;
+
+class Sidebar extends Widget
+{
+    public function init()
+    {
+        parent::init();
+        
+        $db = Registry::getDb();
+        
+        $this->recentPosts = $db->query('select title, permalink from wy_page where published=1 AND is_parent=0');
+        
+        $this->categories = $db->query('select * from wy_categories where published=1 order by date_add');
+    }
+    
+	public function run()
+    {
+        return $this->render('sidebar', array(
+            'recentPosts' => $this->recentPosts,
+            'categories' => $this->categories,
+        ));
+    }
+}
